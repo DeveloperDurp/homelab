@@ -92,7 +92,7 @@ nextcloud:
       # passwordKey: password
 
   redis:
-    enabled: false
+    enabled: true
     auth:
       enabled: true
       password: 'changeme'
