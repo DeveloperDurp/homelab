@@ -1,0 +1,114 @@
+keycloak:  
+
+  global:
+    storageClass: longhorn
+
+  image:
+    registry: docker.io
+    repository: bitnami/keycloak
+    digest: ""
+    pullPolicy: Always
+    pullSecrets: []
+    debug: false
+  auth:
+    adminUser: user
+    existingSecret: "keycloak-credentials"
+    existingSecretPerPassword: {}
+
+  replicaCount: 1
+
+  containerPorts:
+    http: 8080
+    https: 8443
+
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
+    runAsNonRoot: true
+
+  resources:
+    limits: {}
+    requests: {}
+
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 300
+    periodSeconds: 1
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 3
+    successThreshold: 1
+
+  startupProbe:
+    enabled: false
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate: {}
+
+  service:
+    type: ClusterIP
+    http:
+      enabled: true
+    ports:
+      http: 80
+      https: 443
+  
+  ingress:
+    enabled: true
+    ingressClassName: ""
+    pathType: ImplementationSpecific
+    hostname: keycloak.durp.info
+    servicePort: http
+    annotations: 
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        kubernetes.io/ingress.class: nginx
+    tls: 
+      - secretName: keycloak-tls
+        hosts:
+        - keycloak.durp.info
+    selfSigned: false
+    secrets: []
+    extraRules: []
+  
+  
+  serviceAccount:
+    create: true
+    name: ""
+    automountServiceAccountToken: true
+    annotations: {}
+    
+  postgresql:
+    enabled: true
+    auth:
+      username: bn_keycloak
+      database: bitnami_keycloak
+      existingSecret: "keycloak-credentials"
+    architecture: standalone
+
+  externalDatabase:
+    host: ""
+    port: 5432
+    user: bn_keycloak
+    database: bitnami_keycloak
+    password: "password122"
+    existingSecret: ""
+    existingSecretPasswordKey: ""
+  
+  cache:
+    enabled: false
+  
+  logging:
+    output: default
+  

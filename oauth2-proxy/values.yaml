@@ -1,0 +1,64 @@
+oauth2-proxy:
+
+  config:
+    existingSecret: oauth-credentials
+    configFile: |-
+      email_domains = [ "*" ]
+      upstreams = [ "file:///dev/null" ]
+      set_xauthrequest=true
+      pass_host_header=true
+      pass_user_headers=true
+      request_logging=true
+      cookie_secure=true
+
+  image:
+    repository: "quay.io/oauth2-proxy/oauth2-proxy"
+    pullPolicy: "Always"
+
+  extraArgs: 
+    provider: keycloak-oidc
+    redirect-url: https://oauth.durp.info/oauth2/callback/
+    oidc-issuer-url: https://keycloak.durp.info/realms/homelab
+    allowed-role: user
+
+  serviceAccount:
+    enabled: true
+    name:
+    annotations: {}
+
+  ingress:
+    enabled: true
+    path: /
+    pathType: Prefix
+    hosts:
+      - oauth.durp.info
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-production 
+    tls:
+      - secretName: oauth-tls
+        hosts:
+          - oauth.durp.info
+
+  resources: 
+    limits:
+      cpu: 100m
+      memory: 300Mi
+    requests:
+      cpu: 100m
+      memory: 300Mi
+
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 0
+    timeoutSeconds: 1
+
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 0
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+
+  replicaCount: 1

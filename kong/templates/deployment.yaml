@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kong
+  name: kong
+  labels:
+    app: kong
+spec:
+  selector:
+    matchLabels:
+      app: kong
+  #replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kong
+    spec:
+      containers:
+      - name: kong
+        image: kong
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m     
+        env:
+          - name: KONG_DATABASE
+            value: 'off'
+          - name: KONG_NGINX_WORKER_PROCESSES
+            value: "1"
+          - name: KONG_LOG_LEVEL
+            value: notice
+          - name: KONG_ADMIN_ACCESS_LOG
+            value: /dev/stdout
+          - name: KONG_PROXY_ERROR_LOG
+            value: /dev/stderr
+          - name: KONG_ADMIN_ERROR_LOG
+            value: /dev/stderr
+          - name: KONG_ADMIN_LISTEN
+            value: '127.0.0.1:8001'
+          - name: KONG_PROXY_LISTEN
+            value: 0.0.0.0:8000,0.0.0.0:8443 ssl
+          - name: KONG_DECLARATIVE_CONFIG
+            value: /kong/config.yaml
+        volumeMounts:
+          - name: kongconfig
+            mountPath: /kong
+        ports:
+        - name: data-http
+          containerPort: 8000
+        ports:
+        - name: data-https
+          containerPort: 8443          
+      volumes:
+      - name: kongconfig
+        configMap:
+          name: kongconfig

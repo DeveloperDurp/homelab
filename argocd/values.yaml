@@ -1,0 +1,182 @@
+argocd:
+  
+  image:
+    registry: docker.io
+    repository: bitnami/argo-cd
+    pullPolicy: Always
+  
+  controller:
+    replicaCount: 3
+  
+    startupProbe:
+      enabled: false
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+  
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+  
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+  
+    resources:
+      limits: {}
+      requests: {}
+  
+    service:
+      type: ClusterIP
+      port: 8082
+      
+  
+  server:
+  
+    replicaCount: 3
+  
+    startupProbe:
+      enabled: false
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+  
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+  
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
+    
+    resources:
+      limits: {}
+      requests: {}
+    
+    url: "argocd.internal.durp.info"
+  
+    ## Argo CD server config. This object will be directly rendered
+    ## @param server.config [object] Argo CD server configuration that will end on the argocd-cm Config Map
+    ## Ref: https://argoproj.github.io/argo-cd/operator-manual/user-management/
+    ## E.g:
+    ## repositories:
+    ##   - url: git@github.com:group/repo.git
+    ##     sshPrivateKeySecret:
+    ##       name: secret-name
+    ##       key: sshPrivateKey
+    ##   - type: helm
+    ##     url: https://charts.helm.sh/stable
+    ##     name: stable
+    ##   - type: helm
+    ##     url: https://argoproj.github.io/argo-helm
+    ##     name: argo
+    ## oidc.config:
+    ##   name: AzureAD
+    ##   issuer: https://login.microsoftonline.com/TENANT_ID/v2.0
+    ##   clientID: CLIENT_ID
+    ##   clientSecret: $oidc.azuread.clientSecret
+    ##   requestedIDTokenClaims:
+    ##     groups:
+    ##       essential: true
+    ##   requestedScopes:
+    ##     - openid
+    ##     - profile
+    ##     - email
+    ## dex.config:
+    ##    connectors:
+    ##      # GitHub example
+    ##      - type: github
+    ##        id: github
+    ##        name: GitHub
+    ##        config:
+    ##          clientID: aabbccddeeff00112233
+    ##          clientSecret: $dex.github.clientSecret
+    ##          orgs:
+    ##          - name: your-github-org
+    config:
+      url: "{{ .Values.server.url }}"
+      application.instanceLabelKey: argocd.argoproj.io/instance
+  
+    ingress:
+      enabled: true
+      pathType: ImplementationSpecific
+      hostname: argocd.internal.durp.info
+      path: /
+      annotations: 
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-production 
+        nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  
+      tls: 
+        - secretName: argocd-tls
+          hosts:
+          - argocd.internal.durp.info
+  
+  repoServer:
+    replicaCount: 3
+    
+    resources:
+      limits: {}
+      requests: {}
+  
+  
+  dex:
+    image:
+      registry: docker.io
+      repository: bitnami/dex
+      pullPolicy: Always
+  
+    enabled: true
+  
+    replicaCount: 3
+  
+    resources:
+      limits: {}
+      requests: {}
+    
+  config:
+    
+  redis:
+    image:
+      registry: docker.io
+      repository: bitnami/redis
+      pullPolicy: Always
+  
+    enabled: true
+    nameOverride: ""
+    service:
+      port: 6379
+  
+    auth:
+      enabled: true
+      existingSecret: ""
+      existingSecretPasswordKey: 'redis-password'
+  
+    architecture: standalone
+  
+  redisWait:
+    enabled: true
+    extraArgs: ''
+    securityContext: {}
+  

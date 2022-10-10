@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: littlelink
+  name: littlelink
+  labels:
+    app: littlelink
+spec:
+  selector:
+    matchLabels:
+      app: littlelink
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: littlelink
+    spec:
+      containers:
+      - name: littlelink
+        image: ghcr.io/techno-tim/littlelink-server:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000            
+        env:
+          - name: META_TITLE
+            value: DeveloperDurp
+          - name: META_DESCRIPTION
+            value: The Durpy Developer
+          - name: META_AUTHOR
+            value: DeveloperDurp
+          - name: LANG
+            value: en
+          - name: META_INDEX_STATUS
+            value: all
+          - name: OG_TITLE
+            value: DeveloperDurp
+          - name: OG_DESCRIPTION
+            value: DeveloperDurp
+          - name: OG_URL
+            value: https://gitlab.com/developerdurp
+          - name: OG_IMAGE
+            value: https://gitlab.com/uploads/-/system/user/avatar/9987937/avatar.png
+          - name : OG_IMAGE_WIDTH
+            value: "400"
+          - name : OG_IMAGE_HEIGHT
+            value: "400"
+          - name : THEME
+            value: Dark 
+          - name : FAVICON_URL
+            value: https://gitlab.com/uploads/-/system/user/avatar/9987937/avatar.png
+          - name : AVATAR_URL
+            value: https://gitlab.com/uploads/-/system/user/avatar/9987937/avatar.png
+          - name : AVATAR_2X_URL
+            value: https://gitlab.com/uploads/-/system/user/avatar/9987937/avatar.png   
+          - name : AVATAR_ALT
+            value: DeveloperDurp Profile Pic
+          - name : NAME
+            value: DeveloperDurp
+          - name : BIO
+            value: Sup Nerd,
+          - name : BUTTON_ORDER
+            value: GITHUB,GITLAB,REDDIT,WEBSITE,EMAIL
+          - name : GITHUB
+            value: https://github.com/DeveloperDurp
+          - name : GITLAB
+            value: https://gitlab.com/developerdurp
+          - name : REDDIT
+            value: https://www.reddit.com/user/DeveloperDurp 
+          - name : EMAIL
+            value: DeveloperDurp@durp.info
+          - name : EMAIL_TEXT
+            value: DeveloperDurp@durp.info            
+          - name : FOOTER
+            value: DeveloperDurp © 2022         
+          - name: CUSTOM_BUTTON_TEXT
+            value: Website
+          - name: CUSTOM_BUTTON_URL
+            value: https://developerdurp.durp.info/
+          - name: CUSTOM_BUTTON_COLOR
+            value: '#000000'
+          - name: CUSTOM_BUTTON_TEXT_COLOR
+            value: '#ffffff'
+          - name: CUSTOM_BUTTON_ALT_TEXT
+            value: Tech documentation site for my videos and more
+          - name: CUSTOM_BUTTON_NAME
+            value: WEBSITE
+          - name: CUSTOM_BUTTON_ICON
+            value: fas file-alt                        
+        ports:
+        - name: http
+          containerPort: 3000          

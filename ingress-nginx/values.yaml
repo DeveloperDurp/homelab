@@ -1,0 +1,109 @@
+ingress-nginx:
+
+  controller:
+    name: controller
+    image:
+      chroot: false
+      registry: registry.k8s.io
+      image: ingress-nginx/controller
+      pullPolicy: Always
+      runAsUser: 101
+      allowPrivilegeEscalation: true
+
+    containerName: controller
+    containerPort:
+      http: 80
+      https: 443
+
+    livenessProbe:
+      httpGet:
+        path: "/healthz"
+        port: 10254
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 5
+    readinessProbe:
+      httpGet:
+        path: "/healthz"
+        port: 10254
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 3
+
+    healthCheckPath: "/healthz"
+    healthCheckHost: ""
+    podAnnotations: {}
+
+    replicaCount: 3
+
+    minAvailable: 3
+
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 200m
+        memory: 256Mi
+
+    service:
+      enabled: true
+      appProtocol: true
+      annotations: {}
+      labels: {}
+      externalIPs: []
+
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+
+      enableHttp: true
+      enableHttps: true
+      
+      ports:
+        http: 80
+        https: 443
+
+      targetPorts:
+        http: http
+        https: https
+
+      type: LoadBalancer
+
+      external:
+        enabled: true
+      externalTrafficPolicy: "Local"
+
+      patch:
+        enabled: true
+        image:
+          registry: registry.k8s.io
+          image: ingress-nginx/kube-webhook-certgen
+          pullPolicy: Always
+        runAsUser: 2000
+        fsGroup: 2000
+
+    lifecycle:
+      preStop:
+        exec:
+          command:
+            - /wait-shutdown
+
+    priorityClassName: ""
+
+  revisionHistoryLimit: 1
+
+  rbac:
+    create: true
+    scope: false
+
+  serviceAccount:
+    create: true
+    name: ""
+    automountServiceAccountToken: true
+    annotations: {}

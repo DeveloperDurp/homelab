@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoogle
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    cert-manager.io/cluster-issuer: letsencrypt-production 
+spec:
+  rules:     
+  - host: whoogle.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: whoogle
+            port: 
+              number: 5000                                
+  tls:
+    - hosts: 
+      - whoogle.durp.info
+      secretName: whoogle-tls

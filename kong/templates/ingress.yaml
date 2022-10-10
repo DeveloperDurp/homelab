@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production 
+    external-dns.alpha.kubernetes.io/hostname: kong.durp.info
+spec:
+  rules:
+  - host: kong.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kong
+            port: 
+              number: 80              
+  tls:
+    - hosts: 
+      - kong.durp.info
+      secretName: kong-durp-tls      

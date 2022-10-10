@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DeveloperDurp/homelab.git
+    targetRevision: main
+    path: oauth2-proxy
+  destination:
+    namespace: oauth2-proxy
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true  
+    syncOptions:
+      - CreateNamespace=true 
+

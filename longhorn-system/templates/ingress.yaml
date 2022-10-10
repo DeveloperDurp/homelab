@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: longhorn-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production 
+    #nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+    #nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth
+    #nginx.ingress.kubernetes.io/auth-signin: https://oauth.durp.info/oauth2/start?rd=https://$host$request_uri$is_args$args
+    #nginx.ingress.kubernetes.io/auth-signin: "https://oauth.durp.info/oauth2/start?rd=https://longhorn.internal.durp.info"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+spec:
+  rules:
+  - host: longhorn.internal.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: longhorn-frontend
+            port: 
+              number: 80         
+  tls:
+    - hosts: 
+      - longhorn.internal.durp.info
+      secretName: longhorn-tls
+

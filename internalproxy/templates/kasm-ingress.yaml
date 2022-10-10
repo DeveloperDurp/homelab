@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kasm
+spec:
+  ports:
+  - name: app
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  clusterIP: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: kasm
+subsets:
+- addresses:
+  - ip: 192.168.20.110
+  ports:
+  - name: app
+    port: 8443
+    protocol: TCP
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kasm-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production 
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    #nginx.ingress.kubernetes.io/proxy-body-size: 10M
+    #nginx.ingress.kubernetes.io/proxy-read-timeout: "1800s"
+    #nginx.ingress.kubernetes.io/proxy-send-timeout: "1800s"
+    #nginx.ingress.kubernetes.io/proxy_connect_timeout: "1800s"
+    nginx.ingress.kubernetes.io/server-snippets: |
+      location / {
+         # The following configurations must be configured when proxying to Kasm Workspaces
+
+         # WebSocket Support
+         proxy_set_header        Upgrade $http_upgrade;
+         proxy_set_header        Connection "upgrade";
+
+         # Host and X headers
+         proxy_set_header        Host $host;
+         proxy_set_header        X-Real-IP $remote_addr;
+         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header        X-Forwarded-Proto $scheme;
+
+         # Connectivity Options
+         proxy_http_version      1.1;
+         proxy_read_timeout      1800s;
+         proxy_send_timeout      1800s;
+         proxy_connect_timeout   1800s;
+         proxy_buffering         off;
+
+         # Allow large requests to support file uploads to sessions
+         client_max_body_size 10M;
+
+         # Proxy to Kasm Workspaces running locally on 8443 using ssl
+         proxy_pass https://192.168.20.110:8443 ;
+      }
+
+
+spec:
+  rules:
+  - host: kasm.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kasm
+            port: 
+              number: 443         
+  tls:
+    - hosts: 
+      - kasm.durp.info
+      secretName: kasm-tls
+

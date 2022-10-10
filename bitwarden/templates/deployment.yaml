@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: bitwarden
+  name: bitwarden
+  labels:
+    app: bitwarden
+spec:
+  selector:
+    matchLabels:
+      app: bitwarden
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bitwarden
+    spec:
+      containers:
+      - name: bitwarden
+        image: bitwardenrs/server:latest
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: bitwarden-longhorn-pvc
+          mountPath: /data
+          subPath: bitwaren-data              
+        ports:
+        - name: http
+          containerPort: 80
+        env:
+          - name: SIGNUPS_ALLOWED
+            value: "TRUE"
+          - name: INVITATIONS_ALLOWED
+            value: "TRUE"                      
+          - name: WEBSOCKET_ENABLED
+            value: "TRUE"          
+          - name: ROCKET_ENV
+            value: "staging"              
+          - name: ROCKET_PORT
+            value: "80"            
+          - name: ROCKET_WORKERS
+            value: "10"            
+      volumes:
+      - name: bitwarden-longhorn-pvc
+        persistentVolumeClaim:
+          claimName: bitwarden-longhorn-pvc             

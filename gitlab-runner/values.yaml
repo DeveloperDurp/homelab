@@ -1,0 +1,60 @@
+gitlab-runner:
+
+  imagePullPolicy: Always
+  gitlabUrl: https://gitlab.com/
+  unregisterRunner: true
+  terminationGracePeriodSeconds: 3600
+  concurrent: 10
+  checkInterval: 30
+
+  rbac:
+    create: true
+    rules: []
+    clusterWideAccess: false
+    podSecurityPolicy:
+      enabled: false
+      resourceNames:
+      - gitlab-runner
+
+  runners:
+    config: |
+      [[runners]]
+        [runners.kubernetes]
+          namespace = "{{.Release.Namespace}}"
+          image = "ubuntu:22.04"
+          privileged = true
+
+    executor: kubernetes
+    name: "k3s"
+    runUntagged: true
+    privileged: true
+    secret: gitlab-secret
+    builds: 
+      cpuLimit: 200m
+      cpuLimitOverwriteMaxAllowed: 400m
+      memoryLimit: 256Mi
+      memoryLimitOverwriteMaxAllowed: 512Mi
+      cpuRequests: 100m
+      cpuRequestsOverwriteMaxAllowed: 200m
+      memoryRequests: 128Mi
+      memoryRequestsOverwriteMaxAllowed: 256Mi
+
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: false
+    runAsNonRoot: true
+    privileged: false
+    capabilities:
+      drop: ["ALL"]
+
+  podSecurityContext:
+    runAsUser: 100
+    fsGroup: 65533
+
+  resources: 
+    limits:
+      memory: 256Mi
+      cpu: 200m
+    requests:
+      memory: 128Mi
+      cpu: 100m
