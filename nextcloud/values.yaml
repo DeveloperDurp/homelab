@@ -44,7 +44,6 @@ nextcloud:
     path: /
     pathType: Prefix
 
-
   nextcloud:
     host: nextcloud.durp.info
     existingSecret:
@@ -75,21 +74,37 @@ nextcloud:
     #        )
     #      );
 
+    defaultConfigs:
+      .htaccess: true
+      redis.config.php: true
+      apache-pretty-urls.config.php: true
+      apcu.config.php: true
+      apps.config.php: true
+      autoconfig.php: true
+      smtp.config.php: false    
+
   internalDatabase:
     enabled: false
 
   externalDatabase:
+    enabled: false
+
+  mariadb:
     enabled: true
-    type: mysql
-    host:
-    user: nextcloud
-    password: test
-    database: nextcloud
-    existingSecret:
-      enabled: false
-      # secretName: nameofsecret
-      # usernameKey: username
-      # passwordKey: password
+
+    auth:
+      database: nextcloud
+      username: nextcloud
+      password: changeme
+
+    architecture: standalone
+
+    primary:
+      persistence:
+        enabled: true
+        storageClass: "longhorn"
+        accessMode: ReadWriteOnce
+        size: 8Gi      
 
   redis:
     enabled: true
