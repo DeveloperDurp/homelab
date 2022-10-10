@@ -76,15 +76,14 @@ nextcloud:
     #      );
 
   internalDatabase:
-    enabled: true
-    name: nextcloud
+    enabled: false
 
   externalDatabase:
-    enabled: false
+    enabled: true
     type: mysql
     host:
     user: nextcloud
-    password:
+    password: test
     database: nextcloud
     existingSecret:
       enabled: false
