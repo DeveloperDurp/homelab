@@ -103,7 +103,7 @@ nextcloud:
       persistence:
         enabled: true
         storageClass: "longhorn"
-        accessMode: ReadWriteOnce
+        accessMode: ReadWriteMany
         size: 8Gi      
 
   redis:
@@ -122,7 +122,7 @@ nextcloud:
     enabled: true
     annotations: {}
     storageClass: "longhorn"
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 50Gi
 
   resources: {}
