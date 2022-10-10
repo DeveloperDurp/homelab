@@ -70,8 +70,8 @@ nextcloud:
               'secret'         => 'THbopkCtESSWui6A1Z0DDDLG5WZo4Eon',
               'hostname'       => '192.168.20.253',
               'port'           => 9768,
-              'use_ssl'        => false
-              'use_path_style' =>true
+              'use_ssl'        => false,
+              'use_path_style' => true
             )
           )
         );
