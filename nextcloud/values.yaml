@@ -65,6 +65,7 @@ nextcloud:
             'class' => '\\OC\\Files\\ObjectStore\\S3',
             'arguments' => array(
               'bucket'         => 'nextcloud',
+              'autocreate' => true,
               'key'            => '9qTcNX9Q6nw1teIM',
               'secret'         => 'THbopkCtESSWui6A1Z0DDDLG5WZo4Eon',
               'hostname'       => '192.168.20.253',
