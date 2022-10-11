@@ -68,7 +68,7 @@ nextcloud:
               'autocreate'     => true,
               'key'            => 'DeTWD5Dc2hNwCYft',
               'secret'         => 'tHfIcq4tmCrNNlL679YcjAe6pscs9PJd',
-              'hostname'       => 'http://192.168.20.253',
+              'hostname'       => '192.168.20.253',
               'port'           => 9768,
               'use_ssl'        => false,
               'use_path_style' => true
