@@ -107,7 +107,7 @@ nextcloud:
     nodePort: nil
 
   persistence:
-    enabled: true
+    enabled: false
     annotations: {}
     storageClass: "longhorn"
     accessMode: ReadWriteMany
