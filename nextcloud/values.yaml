@@ -122,13 +122,12 @@ nextcloud:
     accessMode: ReadWriteOnce
     size: 10Gi
 
-  resources: {}
-    # limits:
-    #  cpu: 100m
-    #  memory: 128Mi
-    # requests:
-    #  cpu: 100m
-    #  memory: 128Mi
+  resources: 
+    limits:
+     memory: 128Mi
+    requests:
+     cpu: 100m
+     memory: 512Mi
 
   livenessProbe:
     enabled: true
