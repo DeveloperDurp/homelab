@@ -77,6 +77,18 @@ nextcloud:
             )
           )
         );
+      redis.config.php: |-
+        <?php
+        $CONFIG = array (
+          'memcache.local' => '\\OC\\Memcache\\Redis',
+          'memcache.distributed' => '\OC\Memcache\Redis',
+          'memcache.locking' => '\OC\Memcache\Redis',
+          'redis' => array(
+            'host' => getenv('REDIS_HOST'),
+            'port' => getenv('REDIS_HOST_PORT') ?: 6379,
+            'password' => getenv('REDIS_HOST_PASSWORD')
+          )
+        );        
 
   internalDatabase:
     enabled: false
@@ -84,21 +96,37 @@ nextcloud:
   externalDatabase:
     enabled: false
 
-  postgresql:
+  mariadb:
+    db:
+      name: nextcloud
+      password: db-password
+      user: nextcloud
     enabled: true
-    global:
-      postgresql:
-        auth:
-          username: nextcloud
-          password: changeme
-          database: nextcloud
-    primary:
+    master:
       persistence:
+        accessMode: ReadWriteOnce
         enabled: true
-        storageClass: "longhorn"          
+        storageClass: "longhorn"    
+        size: 8Gi
+    replication:
+      enabled: false
+    rootUser:
+      password: root-db-password
+      forcePassword: true     
+
+  defaultConfigs:
+    .htaccess: true
+    apache-pretty-urls.config.php: true
+    apcu.config.php: true
+    apps.config.php: true
+    autoconfig.php: false
+    redis.config.php: false
+    smtp.config.php: true
 
   redis:
-    enabled: false    
+    enabled: true
+    password: 'redis-password'
+    usePassword: true
 
   service:
     type: ClusterIP
@@ -107,10 +135,10 @@ nextcloud:
     nodePort: nil
 
   persistence:
-    enabled: false
+    enabled: true
     annotations: {}
     storageClass: "longhorn"
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 10Gi
 
   resources: {}
