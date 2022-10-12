@@ -107,9 +107,7 @@ nextcloud:
     smtp.config.php: true
 
   redis:
-    enabled: true
-    password: 'redis-password'
-    usePassword: true
+    enabled: false
 
   service:
     type: ClusterIP
