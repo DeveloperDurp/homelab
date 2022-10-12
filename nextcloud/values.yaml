@@ -96,23 +96,18 @@ nextcloud:
   externalDatabase:
     enabled: false
 
-  mariadb:
-    db:
-      name: nextcloud
-      password: db-password
-      user: nextcloud
+  postgresql:
     enabled: true
-    master:
+    global:
+      postgresql:
+        auth:
+          username: nextcloud
+          password: changeme
+          database: nextcloud
+    primary:
       persistence:
-        accessMode: ReadWriteOnce
         enabled: true
-        storageClass: "longhorn"    
-        size: 8Gi
-    replication:
-      enabled: false
-    rootUser:
-      password: root-db-password
-      forcePassword: true     
+        storageClass: "longhorn"  
 
   defaultConfigs:
     .htaccess: true
