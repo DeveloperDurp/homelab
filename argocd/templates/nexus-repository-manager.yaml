@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nexus-repository-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DeveloperDurp/homelab.git
+    targetRevision: main
+    path: nexus-repository-manager
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nexus-repository-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true   
+
