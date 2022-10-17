@@ -7,7 +7,7 @@ spec:
   - name: app
     port: 443
     protocol: TCP
-    targetPort: 8443
+    targetPort: 443
   clusterIP: None
   type: ClusterIP
 ---
@@ -20,7 +20,7 @@ subsets:
   - ip: 192.168.20.110
   ports:
   - name: app
-    port: 8443
+    port: 443
     protocol: TCP
 ---
 
