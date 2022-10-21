@@ -66,14 +66,15 @@ spec:
             value: Sup Nerd,
           - name : BUTTON_ORDER
             value: GITHUB,GITLAB,REDDIT,TWITTER,WEBSITE,EMAIL
+          - name : TWITTER
+            value: https://twitter.com/developerdurp                
           - name : GITHUB
             value: https://github.com/DeveloperDurp
           - name : GITLAB
             value: https://gitlab.com/developerdurp
           - name : REDDIT
-            value: https://www.reddit.com/user/DeveloperDurp 
-          - name : TWITTER
-            value: https://twitter.com/developerdurp           
+            value: google.com
+            #value: https://www.reddit.com/user/DeveloperDurp 
           - name : EMAIL
             value: DeveloperDurp@durp.info
           - name : EMAIL_TEXT
