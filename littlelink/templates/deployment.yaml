@@ -80,20 +80,20 @@ spec:
             value: DeveloperDurp@durp.info            
           - name : FOOTER
             value: DeveloperDurp © 2022         
-          - name: CUSTOM_BUTTON_TEXT
-            value: Website
-          - name: CUSTOM_BUTTON_URL
-            value: https://developerdurp.durp.info/
-          - name: CUSTOM_BUTTON_COLOR
-            value: '#000000'
-          - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#ffffff'
-          - name: CUSTOM_BUTTON_ALT_TEXT
-            value: Tech documentation site for my videos and more
-          - name: CUSTOM_BUTTON_NAME
-            value: WEBSITE
-          - name: CUSTOM_BUTTON_ICON
-            value: fas file-alt                        
+          #- name: CUSTOM_BUTTON_TEXT
+          #  value: Website
+          #- name: CUSTOM_BUTTON_URL
+          #  value: https://developerdurp.durp.info/
+          #- name: CUSTOM_BUTTON_COLOR
+          #  value: '#000000'
+          #- name: CUSTOM_BUTTON_TEXT_COLOR
+          #  value: '#ffffff'
+          #- name: CUSTOM_BUTTON_ALT_TEXT
+          #  value: Tech documentation site for my videos and more
+          #- name: CUSTOM_BUTTON_NAME
+          #  value: WEBSITE
+          #- name: CUSTOM_BUTTON_ICON
+          #  value: fas file-alt                        
         ports:
         - name: http
           containerPort: 3000          
