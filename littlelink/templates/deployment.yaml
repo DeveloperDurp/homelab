@@ -72,6 +72,8 @@ spec:
             value: https://gitlab.com/developerdurp
           - name : REDDIT
             value: https://www.reddit.com/user/DeveloperDurp 
+          - name : TWITTER
+            value: https://mobile.twitter.com/developerdurp           
           - name : EMAIL
             value: DeveloperDurp@durp.info
           - name : EMAIL_TEXT
