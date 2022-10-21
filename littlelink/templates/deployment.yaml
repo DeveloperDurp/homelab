@@ -64,15 +64,15 @@ spec:
             value: DeveloperDurp
           - name : BIO
             value: Sup Nerd,
-          #- name : BUTTON_ORDER
-          #  value: GITHUB,GITLAB,TWITTER,REDDIT,WEBSITE,EMAIL
+          - name : BUTTON_ORDER
+            value: GITHUB,GITLAB,TWITTER,REDDIT,WEBSITE,EMAIL
           - name : TWITTER
             value: https://twitter.com/developerdurp                
           - name : GITHUB
             value: https://github.com/DeveloperDurp
           - name : GITLAB
             value: https://gitlab.com/developerdurp
-          - name : TWITTER
+          - name : REDDIT
             value: https://www.reddit.com/user/DeveloperDurp 
           - name : EMAIL
             value: DeveloperDurp@durp.info
@@ -80,20 +80,20 @@ spec:
             value: DeveloperDurp@durp.info            
           - name : FOOTER
             value: DeveloperDurp © 2022         
-          #- name: CUSTOM_BUTTON_TEXT
-          #  value: Website
-          #- name: CUSTOM_BUTTON_URL
-          #  value: https://developerdurp.durp.info/
-          #- name: CUSTOM_BUTTON_COLOR
-          #  value: '#000000'
-          #- name: CUSTOM_BUTTON_TEXT_COLOR
-          #  value: '#ffffff'
-          #- name: CUSTOM_BUTTON_ALT_TEXT
-          #  value: Tech documentation site for my videos and more
-          #- name: CUSTOM_BUTTON_NAME
-          #  value: WEBSITE
-          #- name: CUSTOM_BUTTON_ICON
-          #  value: fas file-alt                        
+          - name: CUSTOM_BUTTON_TEXT
+            value: Website
+          - name: CUSTOM_BUTTON_URL
+            value: https://developerdurp.durp.info/
+          - name: CUSTOM_BUTTON_COLOR
+            value: '#000000'
+          - name: CUSTOM_BUTTON_TEXT_COLOR
+            value: '#ffffff'
+          - name: CUSTOM_BUTTON_ALT_TEXT
+            value: Tech documentation site for my videos and more
+          - name: CUSTOM_BUTTON_NAME
+            value: WEBSITE
+          - name: CUSTOM_BUTTON_ICON
+            value: fas file-alt                        
         ports:
         - name: http
           containerPort: 3000          
