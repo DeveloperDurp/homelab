@@ -64,17 +64,16 @@ spec:
             value: DeveloperDurp
           - name : BIO
             value: Sup Nerd,
-          - name : BUTTON_ORDER
-            value: GITHUB,GITLAB,REDDIT,TWITTER,WEBSITE,EMAIL
-          - name : FACEBOOK
+          #- name : BUTTON_ORDER
+          #  value: GITHUB,GITLAB,TWITTER,REDDIT,WEBSITE,EMAIL
+          - name : TWITTER
             value: https://twitter.com/developerdurp                
           - name : GITHUB
             value: https://github.com/DeveloperDurp
           - name : GITLAB
             value: https://gitlab.com/developerdurp
           - name : REDDIT
-            value: https://twitter.com/developerdurp 
-            #value: https://www.reddit.com/user/DeveloperDurp 
+            value: https://www.reddit.com/user/DeveloperDurp 
           - name : EMAIL
             value: DeveloperDurp@durp.info
           - name : EMAIL_TEXT
