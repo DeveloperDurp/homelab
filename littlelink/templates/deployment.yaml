@@ -72,7 +72,7 @@ spec:
             value: https://github.com/DeveloperDurp
           - name : GITLAB
             value: https://gitlab.com/developerdurp
-          - name : REDDIT
+          - name : TWITTER
             value: https://www.reddit.com/user/DeveloperDurp 
           - name : EMAIL
             value: DeveloperDurp@durp.info
