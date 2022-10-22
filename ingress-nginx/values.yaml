@@ -38,11 +38,16 @@ ingress-nginx:
 
     healthCheckPath: "/healthz"
     healthCheckHost: ""
-    podAnnotations: {}
+    podAnnotations: 
+      prometheus\.io/scrape: true
+      prometheus\.io/port: 10254
 
     replicaCount: 3
 
     minAvailable: 3
+
+    metrics:
+      enabled: true
 
     resources:
       limits:
