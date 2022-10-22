@@ -54,6 +54,8 @@ kube-prometheus-stack:
     forceDeployDashboards: false
     defaultDashboardsEnabled: true
     defaultDashboardsTimezone: utc
+    plugins:
+      - grafana-polystat-panel
     serviceMonitor:
       enabled: true
     admin:
