@@ -150,3 +150,28 @@ nextcloud:
     timeoutSeconds: 5
     failureThreshold: 30
     successThreshold: 1
+
+  metrics:
+    enabled: true
+
+    replicaCount: 1
+    https: false
+
+    image:
+      repository: xperimental/nextcloud-exporter
+      pullPolicy: Always
+
+    service:
+      type: ClusterIP
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9205"
+      labels: {}
+
+    serviceMonitor:
+      enabled: true
+      namespace: "kube-prometheus-stack"
+      jobLabel: ""
+      interval: 30s
+      scrapeTimeout: ""
+      labels: {}
