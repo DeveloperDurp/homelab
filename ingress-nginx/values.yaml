@@ -49,6 +49,11 @@ ingress-nginx:
 
     metrics:
       enabled: true
+      serviceMonitor:
+        enabled: true
+        namespace: kube-prometheus-stack
+        additionalLabels:
+          release: prometheus-stack
 
     resources:
       limits:
