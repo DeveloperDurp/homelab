@@ -41,6 +41,7 @@ ingress-nginx:
     podAnnotations: 
       prometheus.io/scrape: true
       prometheus.io/port: 10254
+      prometheus.io/scheme: http
 
     replicaCount: 3
 
