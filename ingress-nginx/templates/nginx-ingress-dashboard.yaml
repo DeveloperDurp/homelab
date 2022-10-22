@@ -1459,4 +1459,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: nginx-ingress-dashboard
-  namespace: kube-prometheus-stack
+  namespace: ingress-nginx
