@@ -201,6 +201,15 @@ kube-prometheus-stack:
       retention: 6h
       enableAdminAPI: true
       walCompression: true
+      storageSpec: 
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            accessModes: ["ReadWriteMany"]
+            resources:
+              requests:
+                storage: 50Gi
+          selector: {}
 
   thanosRuler:
     enabled: false
