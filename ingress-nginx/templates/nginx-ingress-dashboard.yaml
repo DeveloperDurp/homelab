@@ -7,7 +7,7 @@ metadata:
   name: nginx-ingress-dashboard
   namespace: ingress-nginx
 data:
-  nginx-ingress-controller_rev1.json: |
+  nginx-ingress-controller_rev1.json: "
     {
       "__inputs": [
         {
@@ -1461,4 +1461,4 @@ data:
       "uid": "nginx",
       "version": 1,
       "description": "Ingress-nginx supports a rich collection of prometheus metrics. If you have prometheus and grafana installed on your cluster then prometheus will already be scraping this data due to the scrape annotation on the deployment."
-    }
+    }"
