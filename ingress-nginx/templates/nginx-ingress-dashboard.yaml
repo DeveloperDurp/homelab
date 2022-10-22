@@ -1458,5 +1458,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    grafana_dashboard: "1"
   name: nginx-ingress-dashboard
   namespace: ingress-nginx
