@@ -53,7 +53,7 @@ ingress-nginx:
         enabled: true
         namespace: kube-prometheus-stack
         additionalLabels:
-          release: prometheus-stack
+          release: kube-prometheus
 
     resources:
       limits:
