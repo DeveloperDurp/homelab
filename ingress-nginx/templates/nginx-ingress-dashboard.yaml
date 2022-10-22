@@ -7,7 +7,7 @@ metadata:
   name: nginx-ingress-dashboard
   namespace: ingress-nginx
 data:
-  nginx-ingress-controller_rev1.json: | +
+  nginx-ingress-controller_rev1.json: |+
     {
       "__inputs": [
         {
