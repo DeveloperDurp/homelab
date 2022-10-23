@@ -22,10 +22,10 @@ gitlab-runner:
       enabled: true      
   service:
     enabled: true
-    annotations: 
-      prometheus.io/scrape: true
-      prometheus.io/port: 9252
-      prometheus.io/scheme: http      
+    annotations: {}
+      #prometheus.io/scrape: true
+      #prometheus.io/port: 9252
+      #prometheus.io/scheme: http      
 
   runners:
     config: |
@@ -64,7 +64,7 @@ gitlab-runner:
 
   resources: 
     limits:
-      memory: 256Mi
+      memory: 2Gi
     requests:
       memory: 128Mi
-      cpu: 100m
+      cpu: 500m
