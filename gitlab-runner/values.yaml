@@ -20,6 +20,9 @@ gitlab-runner:
     enabled: true
     serviceMonitor:
       enabled: true      
+  service:
+    enabled: true
+      
 
   runners:
     config: |
