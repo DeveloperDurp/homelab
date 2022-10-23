@@ -22,10 +22,7 @@ gitlab-runner:
       enabled: true      
   service:
     enabled: true
-    annotations: {}
-      #prometheus.io/scrape: true
-      #prometheus.io/port: 9252
-      #prometheus.io/scheme: http      
+    annotations: {}  
 
   runners:
     config: |
