@@ -5,11 +5,16 @@ oauth2-proxy:
     configFile: |-
       email_domains = [ "*" ]
       upstreams = [ "file:///dev/null" ]
-      set_xauthrequest=true
-      pass_host_header=true
-      pass_user_headers=true
+      pass_authorization_header = true
+      pass_access_token = true
+      pass_user_headers = true
+      set_authorization_header = true
+      set_xauthrequest = true
       request_logging=true
       cookie_secure=true
+      scope = "openid profile email"
+      cookie_refresh = "1m"
+      cookie_expire = "30m"
 
   image:
     repository: "quay.io/oauth2-proxy/oauth2-proxy"
@@ -19,7 +24,6 @@ oauth2-proxy:
     provider: keycloak-oidc
     redirect-url: https://oauth.durp.info/oauth2/callback/
     oidc-issuer-url: https://keycloak.durp.info/realms/homelab
-    allowed-role: user
 
   serviceAccount:
     enabled: true
