@@ -33,6 +33,7 @@ oauth2-proxy:
     redirect-url: https://oauth.durp.info/oauth2/callback/
     oidc-issuer-url: https://keycloak.durp.info/realms/master
     whitelist-domain: durp.info
+    scope: groups
 
   serviceAccount:
     enabled: true
