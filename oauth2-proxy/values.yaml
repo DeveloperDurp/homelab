@@ -6,6 +6,7 @@ oauth2-proxy:
       --provider=keycloak-oidc
       --redirect-url=https://oauth.durp.info/oauth2/callback
       --oidc-issuer-url=https://keycloak.durp.info/realms/master
+      
     #--allowed-role=<realm role name> // Optional, required realm role
     #--allowed-role=<client id>:<client role name> // Optional, required client role
 
