@@ -2,11 +2,11 @@ oauth2-proxy:
 
   config:
     existingSecret: oauth-credentials
-    configFile: |-
-      --provider=keycloak-oidc
-      --redirect-url=https://oauth.durp.info/oauth2/callback
-      --oidc-issuer-url=https://keycloak.durp.info/realms/master
-      
+    #configFile: |-
+    #  --provider=keycloak-oidc
+    #  --redirect-url=https://oauth.durp.info/oauth2/callback
+    #  --oidc-issuer-url=https://keycloak.durp.info/realms/master
+
     #--allowed-role=<realm role name> // Optional, required realm role
     #--allowed-role=<client id>:<client role name> // Optional, required client role
 
@@ -28,10 +28,10 @@ oauth2-proxy:
     repository: "quay.io/oauth2-proxy/oauth2-proxy"
     pullPolicy: "Always"
 
-  #extraArgs: 
-  #  provider: keycloak-oidc
-  #  redirect-url: https://oauth.durp.info/oauth2/callback/
-  #  oidc-issuer-url: https://keycloak.durp.info/realms/master
+  extraArgs: 
+    provider: keycloak-oidc
+    redirect-url: https://oauth.durp.info/oauth2/callback/
+    oidc-issuer-url: https://keycloak.durp.info/realms/master
 
   serviceAccount:
     enabled: true
