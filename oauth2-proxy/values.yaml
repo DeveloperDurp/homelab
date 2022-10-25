@@ -4,6 +4,7 @@ oauth2-proxy:
     existingSecret: oauth-credentials
     configFile: |-
       email_domains = [ "*" ]
+      whitelist-domain = [ "*" ]
       upstreams = [ "file:///dev/null" ]
       pass_authorization_header = true
       pass_access_token = true
