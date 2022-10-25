@@ -3,7 +3,7 @@ oauth2-proxy:
   config:
     existingSecret: oauth-credentials
     configFile: |-
-      whitelist-domain = durp.info
+      whitelist-domain = 'durp.info'
       scope = groups
       email_domains = [ "*" ]
       upstreams = [ "file:///dev/null" ]
