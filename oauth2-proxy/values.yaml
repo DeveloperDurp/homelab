@@ -2,11 +2,13 @@ oauth2-proxy:
 
   config:
     existingSecret: oauth-credentials
-    #configFile: |-
-    #  --provider=keycloak-oidc
-    #  --redirect-url=https://oauth.durp.info/oauth2/callback
-    #  --oidc-issuer-url=https://keycloak.durp.info/realms/master
-
+    configFile: |-
+      whitelist-domain = durp.info
+      scope = groups
+      email_domains = [ "*" ]
+      upstreams = [ "file:///dev/null" ]
+    
+    
     #--allowed-role=<realm role name> // Optional, required realm role
     #--allowed-role=<client id>:<client role name> // Optional, required client role
 
@@ -32,8 +34,6 @@ oauth2-proxy:
     provider: keycloak-oidc
     redirect-url: https://oauth.durp.info/oauth2/callback/
     oidc-issuer-url: https://keycloak.durp.info/realms/master
-    whitelist-domain: durp.info
-    scope: groups
 
   serviceAccount:
     enabled: true
