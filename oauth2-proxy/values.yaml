@@ -3,9 +3,18 @@ oauth2-proxy:
   config:
     existingSecret: oauth-credentials
     configFile: |-
-      scope = groups
       email_domains = [ "*" ]
       upstreams = [ "file:///dev/null" ]
+      pass_authorization_header = true
+      pass_access_token = true
+      pass_user_headers = true
+      set_authorization_header = true
+      set_xauthrequest = true
+      request_logging=true
+      cookie_secure=true
+      scope = "openid profile email"
+      cookie_refresh = "1m"
+      cookie_expire = "30m"
     
     
     #--allowed-role=<realm role name> // Optional, required realm role
