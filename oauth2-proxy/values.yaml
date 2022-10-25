@@ -23,7 +23,7 @@ oauth2-proxy:
   extraArgs: 
     provider: keycloak-oidc
     redirect-url: https://oauth.durp.info/oauth2/callback/
-    oidc-issuer-url: https://keycloak.durp.info/realms/durp
+    oidc-issuer-url: https://keycloak.durp.info/realms/master
 
   serviceAccount:
     enabled: true
