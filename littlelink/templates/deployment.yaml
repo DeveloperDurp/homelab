@@ -65,7 +65,7 @@ spec:
           - name : BIO
             value: Sup Nerd,
           - name : BUTTON_ORDER
-            value: GITHUB,GITLAB,TWITTER,REDDIT,WEBSITE,EMAIL
+            value: GITHUB,GITLAB,YOUTUBE,TWITTER,REDDIT,WEBSITE,EMAIL
           - name : TWITTER
             value: https://twitter.com/developerdurp                
           - name : GITHUB
