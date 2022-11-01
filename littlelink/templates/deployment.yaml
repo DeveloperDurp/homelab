@@ -74,6 +74,8 @@ spec:
             value: https://gitlab.com/developerdurp
           - name : REDDIT
             value: https://www.reddit.com/user/DeveloperDurp 
+          - name: YOUTUBE
+            value: https://www.youtube.com/channel/UC1rGa6s6kER_gLpIQsxeMVQ
           - name : EMAIL
             value: DeveloperDurp@durp.info
           - name : EMAIL_TEXT
