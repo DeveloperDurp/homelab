@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bitwarden
-        image: bitwardenrs/server:latest
+        image: docker.durp.info/vaultwarden/server:1.26.0
         imagePullPolicy: Always
         volumeMounts:
         - name: bitwarden-longhorn-pvc
