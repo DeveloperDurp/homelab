@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: littlelink
-        image: docker.durp.info/ghcr.io/techno-tim/littlelink-server:latest
+        image: ghcr.io/techno-tim/littlelink-server:latest
         imagePullPolicy: Always
         livenessProbe:
           httpGet:

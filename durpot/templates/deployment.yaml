@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: durpot
-        image: docker.durp.info/ghcr.io/developerdurp/durpot:latest
+        image: ghcr.io/developerdurp/durpot:latest
         imagePullPolicy: Always       
         envFrom:
         - secretRef:
