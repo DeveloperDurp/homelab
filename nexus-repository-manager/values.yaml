@@ -2,7 +2,7 @@ nexus-repository-manager:
   
   deploymentStrategy: Recreate
   image:
-    repository: docker.durp.info/sonatype/nexus3
+    repository: sonatype/nexus3
     tag: 3.42.0
     pullPolicy: IfNotPresent
   
