@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/DeveloperDurp/homelab.git
     targetRevision: main
     path: nfs-client
+    directory:
+      recurse: true
   destination:
     namespace: nfs-client
     name: in-cluster
