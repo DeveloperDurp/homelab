@@ -7,4 +7,4 @@ metadata:
 provisioner: durp.info/nfs
 parameters:
   archiveOnDelete: "false"
-  reclaimPolicy: Retain
+reclaimPolicy: Retain
