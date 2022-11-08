@@ -6,4 +6,4 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: durp.info/nfs
 parameters:
-  archiveOnDelete: "false"
+  archiveOnDelete: "true"
