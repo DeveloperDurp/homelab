@@ -18,7 +18,7 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
-          image: quay.io/external_storage/nfs-client-provisioner-arm:latest
+          image: quay.io/external_storage/nfs-client-provisioner:latest
           resources:
             requests:
               cpu: 500m
