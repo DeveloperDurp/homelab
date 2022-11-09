@@ -64,9 +64,6 @@ authentik:
         host: ""
         location: ""
         insecure_skip_verify: false
-    redis:
-      host: '{{ .Release.Name }}-redis-master'
-      password: "testpassword"
 
   blueprints: []
 
