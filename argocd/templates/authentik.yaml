@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/DeveloperDurp/homelab.git
     targetRevision: main
     path: authentik
-    directory:
-      recurese: true
   destination:
     namespace: authentik
     name: in-cluster
