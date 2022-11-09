@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: storage
 spec:
-  storageClassName: longhorn
+  storageClassName: nfs-storage
   accessModes:
     - ReadWriteMany
   resources:
