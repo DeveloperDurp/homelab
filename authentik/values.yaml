@@ -146,7 +146,7 @@ authentik:
       accessModes:
         - ReadWriteMany
   redis:
-    enabled: false
+    enabled: true
     architecture: standalone
     auth:
       enabled: false
