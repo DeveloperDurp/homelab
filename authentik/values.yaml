@@ -138,7 +138,7 @@ authentik:
   postgresql:
     enabled: true
     postgresqlUsername: "authentik"
-    # postgresqlPassword: ""
+    postgresqlPassword: "testpassword"
     postgresqlDatabase: "authentik"
     persistence:
       enabled: true
