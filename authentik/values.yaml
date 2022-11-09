@@ -136,7 +136,7 @@ authentik:
     updateInterval: 8
 
   postgresql:
-    enabled: false
+    enabled: true
     postgresqlUsername: "authentik"
     # postgresqlPassword: ""
     postgresqlDatabase: "authentik"
