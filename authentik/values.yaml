@@ -1,0 +1,153 @@
+authentik:
+
+  replicas: 1
+  priorityClassName:
+  securityContext: {}
+
+  worker:
+    replicas: 1
+    priorityClassName:
+    securityContext: {}
+
+  image:
+    repository: ghcr.io/goauthentik/server
+    pullPolicy: Always
+
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    annotations: 
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    labels: {}
+    hosts:
+      - host: authentik.durp.info
+        paths:
+          - path: "/"
+            pathType: Prefix
+    tls: 
+      - secretName: authentik-tls
+        hosts:
+          - authentik.durp.info
+ 
+
+  authentik:
+    log_level: info
+    secret_key: "A2dfUl0aqRCrlZS6EumjXsrWPRlm6+Ry7CTnfL0Xw1Jc/W2B"
+    geoip: /geoip/GeoLite2-City.mmdb
+    avatars: gravatar
+    email:
+      host: ""
+      port: 587
+      username: ""
+      password: ""
+      use_tls: false
+      use_ssl: false
+      timeout: 30
+      from: ""
+    outposts:
+      container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+    error_reporting:
+      enabled: false
+      environment: "k8s"
+      send_pii: false
+    postgresql:
+      host: '{{ .Release.Name }}-postgresql'
+      name: "authentik"
+      user: "authentik"
+      password: "testpassword"
+      port: 5432
+      s3_backup:
+        access_key: ""
+        secret_key: ""
+        bucket: ""
+        region: ""
+        host: ""
+        location: ""
+        insecure_skip_verify: false
+    redis:
+      host: '{{ .Release.Name }}-redis-master'
+      password: "testpassword"
+
+  blueprints: []
+
+  env: {}
+
+  envFrom: []
+
+  envValueFrom: {}
+
+  service:
+    enabled: true
+    type: ClusterIP
+    port: 80
+    name: http
+    protocol: TCP
+    labels: {}
+    annotations: {}
+
+  volumes: []
+
+  volumeMounts: []
+
+  affinity: {}
+
+  tolerations: []
+
+  nodeSelector: {}
+
+  resources:
+    server: {}
+    worker: {}
+
+  livenessProbe:
+    enabled: true
+    httpGet:
+      path: /-/health/live/
+      port: http
+    initialDelaySeconds: 50
+    periodSeconds: 10
+
+  readinessProbe:
+    enabled: true
+    httpGet:
+      path: /-/health/ready/
+      port: http
+    initialDelaySeconds: 50
+    periodSeconds: 10
+
+  serviceAccount:
+    create: true
+
+  prometheus:
+    serviceMonitor:
+      create: false
+      interval: 30s
+      scrapeTimeout: 3s
+    rules:
+      create: false
+
+  geoip:
+    enabled: false
+    accountId: ""
+    licenseKey: ""
+    editionIds: "GeoLite2-City"
+    image: maxmindinc/geoipupdate:v4.8
+    # -- number of hours between update runs
+    updateInterval: 8
+
+  postgresql:
+    enabled: false
+    postgresqlUsername: "authentik"
+    # postgresqlPassword: ""
+    postgresqlDatabase: "authentik"
+    persistence:
+      enabled: true
+      storageClass: nfs-storage
+      accessModes:
+        - ReadWriteMany
+  redis:
+    enabled: false
+    architecture: standalone
+    auth:
+      enabled: false
+

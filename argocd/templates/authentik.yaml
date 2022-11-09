@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authentik
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DeveloperDurp/homelab.git
+    targetRevision: main
+    path: authentik
+    directory:
+      recurese: true
+  destination:
+    namespace: authentik
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true  
+    syncOptions:
+      - CreateNamespace=true 
+
