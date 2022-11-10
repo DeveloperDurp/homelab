@@ -194,7 +194,7 @@ vault:
       # configure the ingress to point to the Vault active service.
       activeService: true
       hosts:
-        - host: chart-example.local
+        - host: vault.durp.info
           paths: []
       ## Extra paths to prepend to the host configuration. This is useful when working with annotation based services.
       extraPaths: []
@@ -206,8 +206,8 @@ vault:
       #         number: use-annotation
       tls: 
         - hosts: 
-          - bitwarden.durp.info
-          secretName: bitwarden-tls
+          - vault.durp.info
+          secretName: vault-tls
 
     route:
       enabled: false
