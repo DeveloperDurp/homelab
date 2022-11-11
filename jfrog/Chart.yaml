@@ -7,5 +7,5 @@ appVersion: "1.16.0"
 
 dependencies:
 - name: artifactory-jcr
-  repository: https://sonatype.github.io/helm3-charts/
+  repository: https://charts.jfrog.io
   version: 42.0.1
