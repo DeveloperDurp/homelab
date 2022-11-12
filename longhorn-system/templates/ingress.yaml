@@ -22,7 +22,7 @@ spec:
             name: longhorn-frontend
             port: 
               number: 80         
-      -path: /outpost.goauthentik.io
+      - path: /outpost.goauthentik.io
         backend:
           serviceName: ak-outpost-example-outpost
           servicePort: 9000
