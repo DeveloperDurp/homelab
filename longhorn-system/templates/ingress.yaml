@@ -24,8 +24,10 @@ spec:
               number: 80         
       - path: /outpost.goauthentik.io
         backend:
-          serviceName: ak-outpost
-          servicePort: 9100
+          service:
+            name: ak-outpost
+            port: 
+              number: 9100
   tls:
     - hosts: 
       - longhorn.internal.durp.info
