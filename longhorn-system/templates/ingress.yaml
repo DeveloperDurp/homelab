@@ -30,3 +30,13 @@ spec:
     - hosts: 
       - longhorn.internal.durp.info
       secretName: longhorn-tls
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ak-outpost
+spec:
+  type: ExternalName
+  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local
