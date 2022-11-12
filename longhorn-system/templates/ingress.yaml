@@ -24,7 +24,7 @@ spec:
               number: 80         
       - path: /outpost.goauthentik.io
         backend:
-          serviceName: ak-outpost-authentik-embedded-outpost
+          serviceName: ak-outpost
           servicePort: 9100
   tls:
     - hosts: 
