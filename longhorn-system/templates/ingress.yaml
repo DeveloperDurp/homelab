@@ -23,6 +23,7 @@ spec:
             port: 
               number: 80         
       - path: /outpost.goauthentik.io
+        pathType: Prefix
         backend:
           service:
             name: ak-outpost
