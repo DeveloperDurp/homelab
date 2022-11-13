@@ -32,7 +32,6 @@ authentik:
 
   authentik:
     log_level: info
-    secret_key: "A2dfUl0aqRCrlZS6EumjXsrWPRlm6+Ry7CTnfL0Xw1Jc/W2B"
     geoip: /geoip/GeoLite2-City.mmdb
     avatars: gravatar
     email:
@@ -54,7 +53,6 @@ authentik:
       host: '{{ .Release.Name }}-postgresql'
       name: "authentik"
       user: "authentik"
-      password: "testpassword"
       port: 5432
       s3_backup:
         access_key: ""
@@ -71,7 +69,15 @@ authentik:
 
   envFrom: []
 
-  envValueFrom: {}
+  envValueFrom: 
+    AUTHENTIK_POSTGRESQL__PASSWORD:
+      secretKeyRef:
+        key: db-pass
+        name: dbpass
+    AUTHENTIK_SECRET_KEY:
+      secretKeyRef:
+        key: db-pass
+        name: secretkey
 
   service:
     enabled: true
@@ -135,7 +141,6 @@ authentik:
   postgresql:
     enabled: true
     postgresqlUsername: "authentik"
-    postgresqlPassword: "testpassword"
     postgresqlDatabase: "authentik"
     persistence:
       enabled: true
