@@ -54,7 +54,7 @@ authentik:
       host: '{{ .Release.Name }}-postgresql'
       name: "authentik"
       user: "authentik"
-      password: "testpassword"
+      password: "testchangedpassword"
       port: 5432
       s3_backup:
         access_key: ""
@@ -135,7 +135,7 @@ authentik:
   postgresql:
     enabled: true
     postgresqlUsername: "authentik"
-    postgresqlPassword: "testpassword"
+    postgresqlPassword: "testchangedpassword"
     postgresqlDatabase: "authentik"
     persistence:
       enabled: true
