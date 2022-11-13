@@ -72,12 +72,12 @@ authentik:
   envValueFrom: 
     AUTHENTIK_POSTGRESQL__PASSWORD:
       secretKeyRef:
-        key: db-pass
-        name: dbpass
+        name: db-pass
+        key: dbpass
     AUTHENTIK_SECRET_KEY:
       secretKeyRef:
-        key: db-pass
-        name: secretkey
+        name: db-pass
+        key: secretkey
 
   service:
     enabled: true
