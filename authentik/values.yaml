@@ -142,6 +142,7 @@ authentik:
     enabled: true
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
+    existingSecret: authentik-postgresql1
     persistence:
       enabled: true
       storageClass: nfs-storage
