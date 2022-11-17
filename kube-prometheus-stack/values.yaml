@@ -78,17 +78,17 @@ kube-prometheus-stack:
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "<Client ID from above>"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "<Client Secret from above>"
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "a159ff105806a596e91dd18c8bc5cbcfdf9e684f"
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "f8df0696ae31a9be496769f1323327f10cdb16a16874d75b00b47823e5866de82ff5c775adf0d8365dfa4d177905bbd348c417a210367ebccc69c95f0b767ab6"
       GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
-      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.company/application/o/authorize/"
-      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.company/application/o/token/"
-      GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.company/application/o/userinfo/"
-      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.company/application/o/<Slug of the application from above>/end-session/"
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.durp.info/application/o/authorize/"
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.durp.info/application/o/token/"
+      GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.durp.info/application/o/userinfo/"
+      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.durp.info/application/o/grafana/end-session/"
       # Optionally enable auto-login (bypasses Grafana login screen)
-      GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+      #GF_AUTH_OAUTH_AUTO_LOGIN: "true"
       # Optionally map user groups to Grafana roles
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+      #GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
 
   kubeApiServer:
     enabled: true
