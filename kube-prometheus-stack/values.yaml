@@ -78,8 +78,8 @@ kube-prometheus-stack:
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "a159ff105806a596e91dd18c8bc5cbcfdf9e684f"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "f8df0696ae31a9be496769f1323327f10cdb16a16874d75b00b47823e5866de82ff5c775adf0d8365dfa4d177905bbd348c417a210367ebccc69c95f0b767ab6"
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "6a7eadea9bc68f7a59712a0365bd0822de9a6946"
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "c8105547137367e4fe0ba6b5c022ff322569a0b2ea93c9652b77762eb4a094558f9edf98f81aa7329ad724d569b126ff2e281989ebe289bbd7b855f5e80bad5d"
       GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
       GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.durp.info/application/o/authorize/"
       GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.durp.info/application/o/token/"
