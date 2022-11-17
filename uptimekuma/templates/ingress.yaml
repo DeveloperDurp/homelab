@@ -45,4 +45,20 @@ spec:
             name: service
             port:
               number: 3001
+      - path: /outpost.goauthentik.io
+        pathType: Prefix
+        backend:
+          service:
+            name: ak-outpost-authentik-embedded-outpost
+            port: 
+              number: 9000
 
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ak-outpost-authentik-embedded-outpost
+spec:
+  type: ExternalName
+  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local        
