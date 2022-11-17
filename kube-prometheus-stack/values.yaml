@@ -75,20 +75,17 @@ kube-prometheus-stack:
       - secretName: grafana-tls
         hosts:
         - grafana.durp.info      
-    env:
-      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
-      GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "6a7eadea9bc68f7a59712a0365bd0822de9a6946"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "c8105547137367e4fe0ba6b5c022ff322569a0b2ea93c9652b77762eb4a094558f9edf98f81aa7329ad724d569b126ff2e281989ebe289bbd7b855f5e80bad5d"
-      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
-      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.durp.info/application/o/authorize/"
-      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.durp.info/application/o/token/"
-      GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.durp.info/application/o/userinfo/"
-      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.durp.info/application/o/grafana/end-session/"
-      # Optionally enable auto-login (bypasses Grafana login screen)
-      #GF_AUTH_OAUTH_AUTO_LOGIN: "true"
-      # Optionally map user groups to Grafana roles
-      #GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+    grafana.ini:
+      server:
+        root_url: https://grafana.durp.info
+      auth.generic_oauth:
+          enabled: true
+          client_id: 6a7eadea9bc68f7a59712a0365bd0822de9a6946
+          client_secret: c8105547137367e4fe0ba6b5c022ff322569a0b2ea93c9652b77762eb4a094558f9edf98f81aa7329ad724d569b126ff2e281989ebe289bbd7b855f5e80bad5d
+          scopes: openid profile email
+          auth_url: https://authentik.durp.info/application/o/authorize/
+          token_url: https://authentik.durp.info/application/o/token/
+          api_url: https://authentik.durp.info/application/o/userinfo/
 
   kubeApiServer:
     enabled: true
