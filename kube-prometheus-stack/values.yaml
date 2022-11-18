@@ -84,9 +84,15 @@ kube-prometheus-stack:
           auth_url: https://authentik.durp.info/application/o/authorize/
           token_url: https://authentik.durp.info/application/o/token/
           api_url: https://authentik.durp.info/application/o/userinfo/
-    env:
-      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "6a7eadea9bc68f7a59712a0365bd0822de9a6946"
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "c8105547137367e4fe0ba6b5c022ff322569a0b2ea93c9652b77762eb4a094558f9edf98f81aa7329ad724d569b126ff2e281989ebe289bbd7b855f5e80bad5d"
+    envValueFrom:
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
+        configMapKeyRef:
+          name: grafana-oauth
+          key: GF_AUTH_GENERIC_OAUTH_CLIENT_ID      
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+        configMapKeyRef:
+          name: grafana-oauth
+          key: GF_AUTH_GENERIC_OAUTH_CLIENT_ID      
 
   kubeApiServer:
     enabled: true
