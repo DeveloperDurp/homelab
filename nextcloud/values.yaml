@@ -51,8 +51,7 @@ nextcloud:
       secretName: nextcloud-secret
       usernameKey: username
       passwordKey: password
-    extraSecurityContext:
-      runAsNonRoot: true
+    
     phpConfigs: {}
 
     configs:
@@ -61,6 +60,9 @@ nextcloud:
         $CONFIG = array (
           'overwriteprotocol' => 'https'
           );
+
+  extraSecurityContext:
+    runAsNonRoot: true
 
   internalDatabase:
     enabled: true
