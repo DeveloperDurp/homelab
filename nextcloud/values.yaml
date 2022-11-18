@@ -51,7 +51,8 @@ nextcloud:
       secretName: nextcloud-secret
       usernameKey: username
       passwordKey: password
-
+    extraSecurityContext:
+      runAsNonRoot: true
     phpConfigs: {}
 
     configs:
