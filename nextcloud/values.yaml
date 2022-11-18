@@ -95,7 +95,7 @@ nextcloud:
     primary:
       persistence:
         enabled: true
-        storageClass: "longhorn"  
+        storageClass: "nfs-storage"  
 
   defaultConfigs:
     .htaccess: true
