@@ -51,7 +51,12 @@ nextcloud:
       secretName: nextcloud-secret
       usernameKey: username
       passwordKey: password
-    
+
+    isecurityContext:
+      runAsUser: 0
+      fsGroup: 0
+      runAsNonRoot: false
+
     phpConfigs: {}
 
     configs:
@@ -69,16 +74,6 @@ nextcloud:
 
   postgresql:
     enabled: false
-    global:
-      postgresql:
-        auth:
-          username: nextcloud
-          password: changeme
-          database: nextcloud
-    primary:
-      persistence:
-        enabled: true
-        storageClass: "nfs-storage"  
 
   defaultConfigs:
     .htaccess: true
