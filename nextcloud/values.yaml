@@ -52,11 +52,6 @@ nextcloud:
       usernameKey: username
       passwordKey: password
 
-    extraSecurityContext:
-      runAsUser: 0
-      fsGroup: 0
-      runAsNonRoot: false
-
     phpConfigs: {}
 
     configs:
