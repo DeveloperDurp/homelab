@@ -61,8 +61,8 @@ nextcloud:
           'overwriteprotocol' => 'https'
           );
 
-  SecurityContext:
-    runAsNonRoot: true
+    SecurityContext:
+      runAsNonRoot: true
 
   internalDatabase:
     enabled: true
