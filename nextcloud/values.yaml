@@ -52,7 +52,7 @@ nextcloud:
       usernameKey: username
       passwordKey: password
 
-    securityContext:
+    extraSecurityContext:
       runAsUser: 0
       fsGroup: 0
       runAsNonRoot: false
