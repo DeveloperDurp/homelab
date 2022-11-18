@@ -61,9 +61,6 @@ nextcloud:
           'overwriteprotocol' => 'https'
           );
 
-    SecurityContext:
-      runAsNonRoot: true
-
   internalDatabase:
     enabled: true
 
@@ -95,7 +92,7 @@ nextcloud:
     enabled: true
     annotations: {}
     storageClass: "nfs-storage"
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 10Gi
 
   resources: 
