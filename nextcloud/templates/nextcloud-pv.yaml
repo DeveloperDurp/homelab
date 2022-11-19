@@ -6,7 +6,6 @@ metadata:
   finalizers:
   - kubernetes.io/pv-protection
   name: pvc-9f344c34-214d-4c7e-8706-431a8e6eaa09
-  resourceVersion: "6779866"
   uid: cf18eddd-3c3d-445d-8f10-250b3d86dbda
 spec:
   accessModes:
