@@ -145,9 +145,7 @@ authentik:
     existingSecret: authentik-postgresql1
     persistence:
       enabled: true
-      storageClass: nfs-storage
-      accessModes:
-        - ReadWriteMany
+      existingClaim: authentik-pvc
   redis:
     enabled: true
     architecture: standalone
