@@ -452,17 +452,7 @@ vault:
     # See https://www.vaultproject.io/docs/configuration/storage/index.html to know more
     dataStorage:
       enabled: true
-      # Size of the PVC created
-      size: 10Gi
-      # Location where the PVC will be mounted.
-      mountPath: "/vault/data"
-      # Name of the storage class to use.  If null it will use the
-      # configured default Storage Class.
-      storageClass: null
-      # Access Mode of the storage device being used for the PVC
-      accessMode: ReadWriteOnce
-      # Annotations to apply to the PVC
-      annotations: {}
+      existingClaim: nexus-pvc
 
     # This configures the Vault Statefulset to create a PVC for audit
     # logs.  Once Vault is deployed, initialized, and unsealed, Vault must
