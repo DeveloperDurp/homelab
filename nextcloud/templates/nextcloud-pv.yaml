@@ -14,7 +14,7 @@ spec:
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: nextcloud-pv
+    name: nextcloud-pvc
     namespace: nextcloud
   nfs:
     path: /mnt/user/k3s/nextcloud
