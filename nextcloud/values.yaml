@@ -93,6 +93,7 @@ nextcloud:
 
   persistence:
     enabled: true
+    existingClaim: pvc-48183da4-f37d-4029-9ed6-dbf57ca49cea
     annotations: {}
     storageClass: "nfs-storage"
     accessMode: ReadWriteMany
