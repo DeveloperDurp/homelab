@@ -93,7 +93,7 @@ nextcloud:
 
   persistence:
     enabled: true
-    existingClaim: nextcloud-nextcloud
+    existingClaim: nextcloud-pvc
 
   resources: 
     limits:
