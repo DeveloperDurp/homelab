@@ -452,7 +452,7 @@ vault:
     # See https://www.vaultproject.io/docs/configuration/storage/index.html to know more
     dataStorage:
       enabled: true
-      existingClaim: nexus-pvc
+      existingClaim: vault-pvc
 
     # This configures the Vault Statefulset to create a PVC for audit
     # logs.  Once Vault is deployed, initialized, and unsealed, Vault must
