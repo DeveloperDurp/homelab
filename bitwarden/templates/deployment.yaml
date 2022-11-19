@@ -20,7 +20,7 @@ spec:
         image: vaultwarden/server:1.26.0
         imagePullPolicy: Always
         volumeMounts:
-        - name: bitwarden-longhorn-pvc
+        - name: bitwarden-pvc
           mountPath: /data
           subPath: bitwaren-data              
         ports:
