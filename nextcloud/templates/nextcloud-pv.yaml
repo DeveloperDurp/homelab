@@ -5,8 +5,7 @@ metadata:
     pv.kubernetes.io/provisioned-by: durp.info/nfs
   finalizers:
   - kubernetes.io/pv-protection
-  name: pvc-9f344c34-214d-4c7e-8706-431a8e6eaa09
-  uid: cf18eddd-3c3d-445d-8f10-250b3d86dbda
+  name: nextcloud-pv
 spec:
   accessModes:
   - ReadWriteMany
@@ -15,12 +14,10 @@ spec:
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: nextcloud-nextcloud
+    name: nextcloud-pv
     namespace: nextcloud
-    resourceVersion: "6779861"
-    uid: 9f344c34-214d-4c7e-8706-431a8e6eaa09
   nfs:
-    path: /mnt/user/k3s/nextcloud-nextcloud-nextcloud-pvc-9f344c34-214d-4c7e-8706-431a8e6eaa09
+    path: /mnt/user/k3s/nextcloud
     server: 192.168.20.253
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-storage
