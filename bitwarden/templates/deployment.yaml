@@ -40,6 +40,6 @@ spec:
           - name: ROCKET_WORKERS
             value: "10"            
       volumes:
-      - name: bitwarden-longhorn-pvc
+      - name: bitwarden-pvc
         persistentVolumeClaim:
-          claimName: bitwarden-longhorn-pvc             
+          claimName: bitwarden-pvc             
