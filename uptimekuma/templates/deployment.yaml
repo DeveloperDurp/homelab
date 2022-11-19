@@ -39,4 +39,4 @@ spec:
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: storage
+            claimName: uptimekuma-pvc
