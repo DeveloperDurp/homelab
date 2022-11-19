@@ -137,9 +137,7 @@ nexus-repository-manager:
   
   persistence:
     enabled: true
-    accessMode: ReadWriteOnce
-    storageClass: "nfs-storage"
-    storageSize: 20Gi
+    existingClaim: nexus-pvc
 
   tolerations: []
   
