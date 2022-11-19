@@ -15,7 +15,7 @@ spec:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: nexus-pvc
-    namespace: nexus
+    namespace: nexus-repository-manager
   nfs:
     path: /mnt/user/k3s/nexus
     server: 192.168.20.253

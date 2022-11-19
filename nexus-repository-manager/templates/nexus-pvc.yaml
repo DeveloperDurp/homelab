@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/name: nexus
     helm.sh/chart: nexus-2.14.4
   name: nexus-pvc
-  namespace: nexus
+  namespace: nexus-repository-manager
 spec:
   accessModes:
     - ReadWriteMany
