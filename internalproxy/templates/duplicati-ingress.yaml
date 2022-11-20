@@ -55,7 +55,24 @@ spec:
             name: duplicati
             port: 
               number: 8200         
+      - path: /outpost.goauthentik.io
+        pathType: Prefix
+        backend:
+          service:
+            name: ak-outpost-authentik-embedded-outpost
+            port: 
+              number: 9000
   tls:
     - hosts: 
       - duplicati.internal.durp.info
       secretName: duplicati-tls
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ak-outpost-authentik-embedded-outpost
+spec:
+  type: ExternalName
+  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local        
