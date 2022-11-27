@@ -59,4 +59,4 @@ spec:
   tls:
     - hosts: 
       - switch01.internal.durp.info
-      secretName: overlord-tls
+      secretName: switch01-tls
