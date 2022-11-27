@@ -55,7 +55,24 @@ spec:
             name: switch01
             port: 
               number: 80         
+      - path: /outpost.goauthentik.io
+        pathType: Prefix
+        backend:
+          service:
+            name: ak-outpost-authentik-embedded-outpost
+            port: 
+              number: 9000              
   tls:
     - hosts: 
       - switch01.internal.durp.info
       secretName: switch01-tls
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ak-outpost-authentik-embedded-outpost
+spec:
+  type: ExternalName
+  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local   
