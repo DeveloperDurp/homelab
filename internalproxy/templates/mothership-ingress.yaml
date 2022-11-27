@@ -19,7 +19,7 @@ metadata:
   name: mothership
 subsets:
 - addresses:
-  - ip: 192.168.20.252
+  - ip: 192.168.21.253
   ports:
   - name: app
     port: 8006
