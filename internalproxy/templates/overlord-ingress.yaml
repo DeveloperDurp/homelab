@@ -19,7 +19,7 @@ metadata:
   name: overlord
 subsets:
 - addresses:
-  - ip: 192.168.20.254
+  - ip: 192.168.21.254
   ports:
   - name: app
     port: 8006
