@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn
+  name: longhorn-system
   namespace: argocd
 spec:
   project: default
@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: longhorn
   destination:
-    namespace: longhorn
+    namespace: longhorn-system
     name: in-cluster
   syncPolicy:
     automated:

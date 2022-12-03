@@ -3,7 +3,7 @@ kind: SealedSecret
 metadata:
   creationTimestamp: null
   name: longhorn-backup-token-secret
-  namespace: longhorn
+  namespace: longhorn-system
 spec:
   encryptedData:
     AWS_ACCESS_KEY_ID: AgBymd0rPV936HYhBzhVoS9+yyJUUnmvFR3Z8a69J5gYILnwwLYpTLNwrNt442S0/gqmsH6ndU2l3SoCxXGdv/yf4WUIA2v++IclJFhSGmvzxqv+UKM6KzLJ6ECaibVcBOhJxYbmwG+qkNjhTKn9CK2IJx5xN4p0WQL/aU8DZYnb3YB/bZscQlZVzJ+27QCeU0SDOIV3b7X56hz+075bo1awHnKc1uvnxe9uz+Lr5UipJhrSM/IHFfFhtl5SyPRyF6Tz0LGRrxd9uKPy1MAoEnYXO9MvoUJi1DEGtbZnp8QH1WCpu+Hl+gyKnkqJh+mmkdxcCqo36fTHbSA7acQ/rtzYYnJbLXg5vy3GxfN1MByVE5yg9CLiAu7CPl4hMwlR5WM/obEHiMEKl5ukzjTI4MN4eF/NZNwC/8kmGnoyNL2EQJHPFj1VpQk7CuKKNO/YDD2DGh0Hw1ysTiAXUV1u5sM6k5MzdmG16zddbK5jdZw09SfoprwMWxFDQrPFDRF1H0rbGurLf/1BxaRn34Klz+mAKDARtxZ5PyLn2WDbuoF79Odwt3dqHbXqXTGJvqb7A2wUe+2eDpcR0bv8ruwq8E4MfJLoDahgEH4NXYwvF/6OS0oUEpfQaHzA4C63y9Vs2w9kUopFwNRa/vRUlxXv8ZIHsIUVnWkQycrukE9fzO+5Dlp/uYT7yhltJjRgBWx8qzsXz9v3ebEnut1Smiv3LyaF
@@ -14,4 +14,4 @@ spec:
     metadata:
       creationTimestamp: null
       name: longhorn-backup-token-secret
-      namespace: longhorn
+      namespace: longhorn-system
