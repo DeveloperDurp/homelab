@@ -52,8 +52,15 @@ longhorn:
     reclaimPolicy: Retain
     migratable: false
     recurringJobSelector:
-      enable: false
-      jobList: []
+      enable: true
+      jobList: '[
+          {
+            "name":"backup", 
+            "task":"backup", 
+            "cron":"0 */6 * * *", 
+            "retain":24
+          }
+        ]'
     backingImage:
       enable: false
       name: ~
@@ -69,8 +76,8 @@ longhorn:
     snapshotterReplicaCount: ~
   
   defaultSettings:
-    backupTarget: ~
-    backupTargetCredentialSecret: ~
+    backupTarget: S3://longhorn@us-east-1/
+    backupTargetCredentialSecret: longhorn-backup-token-secret
     allowRecurringJobWhileVolumeDetached: ~
     createDefaultDiskLabeledNodes: ~
     defaultDataPath: ~
