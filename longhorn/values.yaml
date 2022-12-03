@@ -1,4 +1,4 @@
-longhorn-system: 
+longhorn: 
 
   # Default values for longhorn.
   # This is a YAML-formatted file.
