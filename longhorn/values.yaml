@@ -32,7 +32,7 @@ longhorn:
         repository: longhornio/csi-resizer
       snapshotter:
         repository: longhornio/csi-snapshotter
-    pullPolicy: always
+    pullPolicy: Always
   
   service:
     ui:
