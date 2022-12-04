@@ -137,7 +137,9 @@ nexus-repository-manager:
   
   persistence:
     enabled: true
-    existingClaim: nexus-pvc
+    accessMode: ReadWriteMany
+    storageClass: longhorn
+    storageSize: 20Gi
 
   tolerations: []
   
