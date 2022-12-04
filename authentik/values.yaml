@@ -151,7 +151,6 @@ authentik:
   redis:
     enabled: true
     architecture: standalone
-    storageClass: longhorn
     auth:
       enabled: false
 
