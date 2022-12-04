@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: bitwarden-pvc
 spec:
-  storageClassName: nfs-storage
+  storageClassName: longhorn
   accessModes:
     - ReadWriteMany
   resources:
