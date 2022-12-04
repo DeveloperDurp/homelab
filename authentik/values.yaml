@@ -145,7 +145,9 @@ authentik:
     existingSecret: authentik-postgresql1
     persistence:
       enabled: true
-      existingClaim: authentik-pvc
+      storageClass: longhorn
+      accessModes:
+        - ReadWriteMany
   redis:
     enabled: true
     architecture: standalone
