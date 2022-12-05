@@ -45,7 +45,7 @@ longhorn:
       loadBalancerSourceRanges: ""
   
   persistence:
-    defaultClass: false
+    defaultClass: true
     defaultFsType: ext4
     defaultClassReplicaCount: 1
     defaultDataLocality: disabled # best-effort otherwise
