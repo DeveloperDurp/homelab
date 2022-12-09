@@ -93,7 +93,10 @@ nextcloud:
 
   persistence:
     enabled: true
-    existingClaim: nextcloud-pvc
+    annotations: {}
+    storageClass: "longhorn"
+    accessMode: ReadWriteOnce
+    size: 50Gi    
 
   resources: 
     limits:
