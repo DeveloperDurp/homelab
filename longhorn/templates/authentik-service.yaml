@@ -6,6 +6,8 @@ metadata:
   name: ingress-auth
 spec:
   rules:
+  - host: kuma.durp.info
+    http:  
       - path: /outpost.goauthentik.io
         pathType: Prefix
         backend:
