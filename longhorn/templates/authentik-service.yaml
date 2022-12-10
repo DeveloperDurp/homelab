@@ -6,7 +6,7 @@ metadata:
   name: ingress-auth
 spec:
   rules:
-  - host: 
+  - host: longhorn.internal.durp.info
     http:
       paths:
       - path: /outpost.goauthentik.io
