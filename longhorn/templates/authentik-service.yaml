@@ -7,7 +7,8 @@ metadata:
 spec:
   rules:
   - host: 
-    http:  
+    http:
+      paths:
       - path: /outpost.goauthentik.io
         pathType: Prefix
         backend:
@@ -15,7 +16,6 @@ spec:
             name: ak-outpost-authentik-embedded-outpost
             port: 
               number: 9000
-
 
 ---
 
