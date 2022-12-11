@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: plex
+  name: deployment
+spec:
+  selector:
+    matchLabels:
+      component: plex
+  replicas: 1
+  strategy:
+    type: Recreate
+
+  template:
+    metadata:
+      labels:
+        component: plex
+    spec:
+      containers:
+        - env: 
+          - name: PUID
+            values: 99
+          - name: PGID
+            values: 100
+          - name: VERSION
+            values: docker  
+        - name: app
+          image: lscr.io/linuxserver/plex
+          ports:
+            - containerPort: 32400
+          volumeMounts:
+            - mountPath: /media
+              name: storage
+            - mountPath: /config
+              name: config              
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 32400
+              scheme: HTTPS
+
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: plex-nfs-pvc
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-pvc            
