@@ -22,29 +22,3 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-storage
   volumeMode: Filesystem
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  annotations:
-    pv.kubernetes.io/provisioned-by: longhorn
-  finalizers:
-  - kubernetes.io/pv-protection
-  - external-attacher/driver-longhorn-io
-  name: plex-pv
-spec:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 10Gi
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: plex-pvc
-    namespace: plex
-    fsType: ext4
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: longhorn
-  volumeMode: Filesystem
