@@ -25,7 +25,7 @@ spec:
             value: 100
           - name: VERSION
             value: docker  
-        - name: app
+          name: plex
           image: lscr.io/linuxserver/plex
           ports:
             - containerPort: 32400
