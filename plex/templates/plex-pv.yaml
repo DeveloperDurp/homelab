@@ -28,8 +28,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: longhorn
   finalizers:
   - kubernetes.io/pv-protection
+  - external-attacher/driver-longhorn-io
   name: plex-pv
 spec:
   accessModes:
