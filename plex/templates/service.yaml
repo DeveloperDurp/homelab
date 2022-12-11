@@ -4,7 +4,7 @@ metadata:
   name: plex
 spec:
   selector:    
-    component: plex
+    component: deployment
   type: ClusterIP
   ports:  
   - name: https
