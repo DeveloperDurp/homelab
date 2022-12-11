@@ -25,6 +25,8 @@ spec:
             value: "100"
           - name: VERSION
             value: docker  
+          - name: PLEX_CLAIM
+            value: claim-2FtooDeCEaSDL4vf_Q8W
           name: plex
           image: lscr.io/linuxserver/plex
           ports:
