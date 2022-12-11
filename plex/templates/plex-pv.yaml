@@ -43,9 +43,6 @@ spec:
     kind: PersistentVolumeClaim
     name: plex-pvc
     namespace: plex
-  nfs:
-    path: /mnt/user/plex
-    server: 192.168.20.253
   persistentVolumeReclaimPolicy: Retain
   storageClassName: longhorn
   volumeMode: Filesystem
