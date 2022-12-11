@@ -28,8 +28,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  annotations:
-    pv.kubernetes.io/provisioned-by: durp.info/nfs
   finalizers:
   - kubernetes.io/pv-protection
   name: plex-pv
