@@ -20,11 +20,11 @@ spec:
       containers:
         - env: 
           - name: PUID
-            values: 99
+            value: 99
           - name: PGID
-            values: 100
+            value: 100
           - name: VERSION
-            values: docker  
+            value: docker  
         - name: app
           image: lscr.io/linuxserver/plex
           ports:
