@@ -24,7 +24,9 @@ spec:
           - name: PGID
             value: "100"
           - name: VERSION
-            value: docker          
+            value: docker  
+          - name: PLEX_CLAIM
+            value: claim-eycC9Rs7fzNma6zuza6c
           name: plex
           image: lscr.io/linuxserver/plex
           ports:
