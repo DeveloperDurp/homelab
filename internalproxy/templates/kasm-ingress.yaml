@@ -17,7 +17,7 @@ metadata:
   name: kasm
 subsets:
 - addresses:
-  - ip: 192.168.20.110
+  - ip: 192.168.20.100
   ports:
   - name: app
     port: 443
