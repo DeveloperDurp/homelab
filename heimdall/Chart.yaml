@@ -8,4 +8,4 @@ appVersion: 0.0.1
 dependencies:
 - name: heimdall
   repository: https://djjudas21.github.io/charts/
-
+  version: 8.5.2
