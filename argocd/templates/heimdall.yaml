@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/DeveloperDurp/homelab.git
     targetRevision: main
-    path: heimdall
+    path: littlelink
     directory:
       recurse: true
   destination:
