@@ -25,11 +25,11 @@ spec:
           volumeMounts:
             - mountPath: /app/data
               name: storage
-          livenessProbe:
-            exec:
-              command:
-                - node
-                - extra/healthcheck.js
+          #livenessProbe:
+            #exec:
+              #command:
+                #- node
+                #- extra/healthcheck.js
           readinessProbe:
             httpGet:
               path: /
