@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
   - name: app
-    port: 80
+    port: 443
     protocol: TCP
-    targetPort: 80
+    targetPort: 443
   clusterIP: None
   type: ClusterIP
 
@@ -19,10 +19,10 @@ metadata:
   name: switch01
 subsets:
 - addresses:
-  - ip: 192.168.21.3
+  - ip: 192.168.30.3
   ports:
   - name: app
-    port: 80
+    port: 443
     protocol: TCP
 
 ---    
@@ -35,16 +35,6 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-production 
     nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    #nginx.ingress.kubernetes.io/configuration-snippet: |
-    #      more_set_headers "X-Forwarded-For $http_x_forwarded_for";    
-    #nginx.ingress.kubernetes.io/auth-url: |-
-    #    http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-    #nginx.ingress.kubernetes.io/auth-signin: |-
-    #    https://switch01.internal.durp.info/outpost.goauthentik.io/start?rd=$escaped_request_uri
-    #nginx.ingress.kubernetes.io/auth-response-headers: |-
-    #    Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-    #nginx.ingress.kubernetes.io/auth-snippet: |
-    #    proxy_set_header X-Forwarded-Host $http_host;
 spec:
   rules:
   - host: switch01.internal.durp.info
@@ -56,14 +46,7 @@ spec:
           service:
             name: switch01
             port: 
-              number: 80         
-      - path: /outpost.goauthentik.io
-        pathType: Prefix
-        backend:
-          service:
-            name: ak-outpost-authentik-embedded-outpost
-            port: 
-              number: 9000
+              number: 443         
   tls:
     - hosts: 
       - switch01.internal.durp.info
