@@ -31,4 +31,4 @@ metadata:
   name: argocd
 spec:
   type: ExternalName
-  externalName: argocd-server.argocd.svc.cluster.local   
+  externalName: argocd-server.argocd.svc.cluster.local  
