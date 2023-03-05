@@ -138,8 +138,8 @@ nexus-repository-manager:
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
-    storageClass: longhorn
-    storageSize: 20Gi
+    storageClass: nfs-storage
+    storageSize: 60Gi
 
   tolerations: []
   
