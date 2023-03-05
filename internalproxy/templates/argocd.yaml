@@ -16,10 +16,19 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: argocd-server.argocd
+            name: argocd
             port: 
               number: 443         
   tls:
     - hosts: 
       - argocd.internal.durp.info
       secretName: pfsense-tls
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: argocd
+spec:
+  type: ExternalName
+  externalName: argocd-server.argocd.svc.cluster.local   
