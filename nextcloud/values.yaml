@@ -94,7 +94,7 @@ nextcloud:
   persistence:
     enabled: true
     annotations: {}
-    storageClass: "longhorn"
+    storageClass: "nfs-storage"
     accessMode: ReadWriteOnce
     size: 50Gi    
 
