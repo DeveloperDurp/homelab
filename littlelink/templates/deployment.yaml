@@ -87,9 +87,9 @@ spec:
           - name: CUSTOM_BUTTON_URL
             value: https://developerdurp.durp.info/,https://www.buymeacoffee.com/DeveloperDurp
           - name: CUSTOM_BUTTON_COLOR
-            value: '#000000','#000000'
+            value: #000000,#000000
           - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#ffffff','#000000'
+            value: #ffffff,#000000
           - name: CUSTOM_BUTTON_ALT_TEXT
             value: Tech documentation site for my videos and more,support
           - name: CUSTOM_BUTTON_NAME
