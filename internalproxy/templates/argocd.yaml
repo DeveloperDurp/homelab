@@ -22,7 +22,7 @@ spec:
   tls:
     - hosts: 
       - argocd.internal.durp.info
-      secretName: pfsense-tls
+      secretName: argocd-tls
 ---
 
 kind: Service
