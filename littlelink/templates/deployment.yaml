@@ -83,19 +83,19 @@ spec:
           - name : FOOTER
             value: DeveloperDurp © 2022         
           - name: CUSTOM_BUTTON_TEXT
-            value: Website
+            value: Website,BuyMeACoffee
           - name: CUSTOM_BUTTON_URL
-            value: https://developerdurp.durp.info/
+            value: https://developerdurp.durp.info/,https://www.buymeacoffee.com/DeveloperDurp
           - name: CUSTOM_BUTTON_COLOR
-            value: '#000000'
+            value: '#000000','#000000'
           - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#ffffff'
+            value: '#ffffff','#000000'
           - name: CUSTOM_BUTTON_ALT_TEXT
-            value: Tech documentation site for my videos and more
+            value: Tech documentation site for my videos and more,support
           - name: CUSTOM_BUTTON_NAME
-            value: WEBSITE
+            value: WEBSITE,BuyMeACoffee
           - name: CUSTOM_BUTTON_ICON
-            value: fas file-alt                        
+            value: fas file-alt,fas file-alt                        
         ports:
         - name: http
           containerPort: 3000          
