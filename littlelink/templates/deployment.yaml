@@ -95,7 +95,7 @@ spec:
           - name: CUSTOM_BUTTON_NAME
             value: COFFEE
           - name: CUSTOM_BUTTON_ICON
-            value: fa-light fa-cup-togo                       
+            value: fa-solid fa-cup-togo
         ports:
         - name: http
           containerPort: 3000          
