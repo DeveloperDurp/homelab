@@ -87,7 +87,7 @@ spec:
           - name: CUSTOM_BUTTON_URL
             value: https://www.buymeacoffee.com/DeveloperDurp
           - name: CUSTOM_BUTTON_COLOR
-            value: '#000000'          
+            value: '#ffdd00'          
           - name: CUSTOM_BUTTON_TEXT_COLOR
             value: '#ffffff'
           - name: CUSTOM_BUTTON_ALT_TEXT
@@ -95,7 +95,7 @@ spec:
           - name: CUSTOM_BUTTON_NAME
             value: COFFEE
           - name: CUSTOM_BUTTON_ICON
-            value: fas file-alt                       
+            value: fa-light fa-cup-togo                       
         ports:
         - name: http
           containerPort: 3000          
