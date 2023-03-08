@@ -65,7 +65,7 @@ spec:
           - name : BIO
             value: Sup Nerd,
           - name : BUTTON_ORDER
-            value: GITHUB,GITLAB,YOUTUBE,TWITTER,REDDIT,WEBSITE,EMAIL,BuyMeACoffee
+            value: GITHUB,GITLAB,YOUTUBE,TWITTER,REDDIT,WEBSITE,EMAIL,COFFEE
           - name : TWITTER
             value: https://twitter.com/developerdurp                
           - name : GITHUB
@@ -83,19 +83,18 @@ spec:
           - name : FOOTER
             value: DeveloperDurp © 2022         
           - name: CUSTOM_BUTTON_TEXT
-            value: Website,BuyMeACoffee
+            value: BuyMeACoffee
           - name: CUSTOM_BUTTON_URL
-            value: https://developerdurp.durp.info/,https://www.buymeacoffee.com/DeveloperDurp
+            value: https://www.buymeacoffee.com/DeveloperDurp
           - name: CUSTOM_BUTTON_COLOR
-            value: #000000,#000000
-          - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: #ffffff,#000000
+            value: #000000          - name: CUSTOM_BUTTON_TEXT_COLOR
+            value: #ffffff
           - name: CUSTOM_BUTTON_ALT_TEXT
-            value: Tech documentation site for my videos and more,support
+            value: Tsupport
           - name: CUSTOM_BUTTON_NAME
-            value: WEBSITE,BuyMeACoffee
+            value: COFFEE
           - name: CUSTOM_BUTTON_ICON
-            value: fas file-alt,fas file-alt                        
+            value: fas file-alt                       
         ports:
         - name: http
           containerPort: 3000          
