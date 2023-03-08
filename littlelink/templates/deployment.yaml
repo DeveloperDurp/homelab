@@ -87,7 +87,8 @@ spec:
           - name: CUSTOM_BUTTON_URL
             value: https://www.buymeacoffee.com/DeveloperDurp
           - name: CUSTOM_BUTTON_COLOR
-            value: #000000          - name: CUSTOM_BUTTON_TEXT_COLOR
+            value: #000000          
+          - name: CUSTOM_BUTTON_TEXT_COLOR
             value: #ffffff
           - name: CUSTOM_BUTTON_ALT_TEXT
             value: Tsupport
