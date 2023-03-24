@@ -36,6 +36,11 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production 
     nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600s"
+    nginx.ingress.kubernetes.io/proxy_read_timeout: "3600s"
+    nginx.ingress.kubernetes.io/proxy_send_timeout: "3600s"
+    nginx.ingress.kubernetes.io/client_max_body_size: "0"
 spec:
   rules:
   - host: mothership.internal.durp.info
