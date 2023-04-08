@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: durpapi
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DeveloperDurp/homelab.git
+    targetRevision: main
+    path: durpapi
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: durpapi
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true  
+
