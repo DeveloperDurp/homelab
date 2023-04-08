@@ -1,27 +1,28 @@
-apiVersion: v1
-data:
-  config.yaml: "_format_version: \"2.1\"\n\nservices:\n  - name: random-cats\n    url:
-    https://aws.random.cat/meow\n    routes:\n      - name: random-cats-route\n        paths:\n
-    \         - /random-cats\n\n  - name: urban-dictionary\n    url: https://api.urbandictionary.com\n
-    \   routes:\n      - name: urban-dictionary\n        paths:\n          - /urban-dictionary\n\n
-    \ - name: cat-facts\n    url: https://catfact.ninja/\n    routes:\n      - name:
-    cat-facts\n        paths:\n          - /cat-facts\n\n  - name: random-meme\n    url:
-    https://meme-api.herokuapp.com/gimme\n    routes:\n      - name: random-meme-route\n
-    \       paths:\n          - /random-meme    \n\n  - name: yomama\n    url: https://api.yomomma.info/\n
-    \   routes:\n      - name: yomama-route\n        paths:\n          - /yomama        \n\n
-    \ - name: dadjoke\n    url: https://icanhazdadjoke.com/\n    routes:\n      -
-    name: dadjoke\n        paths:\n          - /dadjoke    \n\n  - name: random-dogs\n
-    \   url: https://dog.ceo/api/breeds/image/random\n    routes:\n      - name: random-dogs\n
-    \       paths:\n          - /random-dogs   \n\n  - name: geekjoke\n    url: https://geek-jokes.sameerkumar.website/api?format=json\n
-    \   routes:\n      - name: geekjoke\n        paths:\n          - /geekjoke     \n
-    \           \n  - name: ronswanson\n    url: https://ron-swanson-quotes.herokuapp.com/v2/quotes\n
-    \   routes:\n      - name: ronswanson\n        paths:\n          - /ronswanson
-    \      \n\n  - name: foaas\n    url: http://foaas.com/\n    routes:\n      - name:
-    foaas\n        paths:\n          - /foaas  \n\n  - name: dnmss\n    url: http://192.168.1.120:30985\n
-    \   routes:\n      - name: dotnet-microservices-services\n        paths:\n          -
-    /dnmss  \n\n\n\n          \n"
-kind: ConfigMap
-metadata:
-  creationTimestamp: "2022-04-15T02:44:07Z"
-  name: kongconfig
-  namespace: kong
+#apiVersion: v1
+#data:
+#  config.yaml: "_format_version: \"2.1\"\n\nservices:\n  - name: random-cats\n    url:
+#    https://aws.random.cat/meow\n    routes:\n      - name: random-cats-route\n        paths:\n
+#    \         - /random-cats\n\n  - name: urban-dictionary\n    url: https://api.urbandictionary.com\n
+#    \   routes:\n      - name: urban-dictionary\n        paths:\n          - /urban-dictionary\n\n
+#    \ - name: cat-facts\n    url: https://catfact.ninja/\n    routes:\n      - name:
+#    cat-facts\n        paths:\n          - /cat-facts\n\n  - name: random-meme\n    url:
+#    https://meme-api.herokuapp.com/gimme\n    routes:\n      - name: random-meme-route\n
+#    \       paths:\n          - /random-meme    \n\n  - name: yomama\n    url: https://api.yomomma.info/\n
+#    \   routes:\n      - name: yomama-route\n        paths:\n          - /yomama        \n\n
+#    \ - name: dadjoke\n    url: https://icanhazdadjoke.com/\n    routes:\n      -
+#    name: dadjoke\n        paths:\n          - /dadjoke    \n\n  - name: random-dogs\n
+#    \   url: https://dog.ceo/api/breeds/image/random\n    routes:\n      - name: random-dogs\n
+#    \       paths:\n          - /random-dogs   \n\n  - name: geekjoke\n    url: https://geek-jokes.sameerkumar.website/api?format=json\n
+#    \   routes:\n      - name: geekjoke\n        paths:\n          - /geekjoke     \n
+#    \           \n  - name: ronswanson\n    url: https://ron-swanson-quotes.herokuapp.com/v2/quotes\n
+#    \   routes:\n      - name: ronswanson\n        paths:\n          - /ronswanson
+#    \      \n\n  - name: foaas\n    url: http://foaas.com/\n    routes:\n      - name:
+#    foaas\n        paths:\n          - /foaas  \n\n  - name: dnmss\n    url: http://192.168.1.120:30985\n
+#    \   routes:\n      - name: dotnet-microservices-services\n        paths:\n          -
+#    /dnmss  \n\n\n\n          \n"
+#kind: ConfigMap
+#metadata:
+#  creationTimestamp: "2022-04-15T02:44:07Z"
+#  name: kongconfig
+#  namespace: kong
+#
