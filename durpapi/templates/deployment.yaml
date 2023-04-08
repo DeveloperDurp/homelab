@@ -19,6 +19,9 @@ spec:
       - name: durpapi
         image: ghcr.io/developerdurp/durpapi:latest
         imagePullPolicy: Always       
+        ports:
+        - name: http
+          containerPort: 8080
         envFrom:
         - secretRef:
             name: durpapi-secret
