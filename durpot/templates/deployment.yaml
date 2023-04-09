@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: durpot
-        image: ghcr.io/developerdurp/durpot:latest
+        image: registry.gitlab.com/developerdurp/durpot
         imagePullPolicy: Always       
         envFrom:
         - secretRef:
