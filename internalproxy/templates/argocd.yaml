@@ -33,28 +33,3 @@ metadata:
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local  
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: bitwarden-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-spec:
-  rules:
-  - host: bitwarden.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bitwarden
-            port: 
-              number: 80         
-  tls:
-    - hosts: 
-      - bitwarden.durp.info
-      secretName: bitwarden-tls
