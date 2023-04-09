@@ -7,6 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production 
     #nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
     #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    traefik.ingress.kubernetes.io/protocol: "https"
 spec:
   rules:
   - host: argocd.internal.durp.info
@@ -32,3 +33,28 @@ metadata:
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local  
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bitwarden-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-production 
+spec:
+  rules:
+  - host: bitwarden.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bitwarden
+            port: 
+              number: 80         
+  tls:
+    - hosts: 
+      - bitwarden.durp.info
+      secretName: bitwarden-tls
