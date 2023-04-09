@@ -35,7 +35,7 @@ metadata:
     traefik.ingress.kubernetes.io/protocol: "https"
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
   - match: Host(`argocd.internal.durp.info`)
     kind: Rule
