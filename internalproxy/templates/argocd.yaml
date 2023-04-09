@@ -5,8 +5,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    #nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+    #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
   - host: argocd.internal.durp.info
