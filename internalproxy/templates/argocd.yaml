@@ -23,26 +23,50 @@
 #    - hosts: 
 #      - argocd.internal.durp.info
 #      secretName: argocd-tls
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: argocd-ingress
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-production 
 spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`argocd.internal.durp.info`)
-    kind: Rule
-    services:
-    - name: argocd
-      port: 443
-      scheme: https
+  rules:
+  - host: argocd.durp.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd
+            port: 
+              number: 80         
   tls:
-    secretName: argocd-tls  
----
+    - hosts: 
+      - argocd.durp.info
+      secretName: argocd-tls
+
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: IngressRoute
+#metadata:
+#  name: argocd-ingress
+#  annotations:
+#    cert-manager.io/cluster-issuer: letsencrypt-production
+#spec:
+#  entryPoints:
+#    - websecure
+#  routes:
+#  - match: Host(`argocd.internal.durp.info`)
+#    kind: Rule
+#    services:
+#    - name: argocd
+#      port: 443
+#      scheme: https
+#  tls:
+#    secretName: argocd-tls  
+#---
 
 kind: Service
 apiVersion: v1
