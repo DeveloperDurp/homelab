@@ -38,8 +38,8 @@ spec:
     kind: Rule
     services:
     - name: argocd-server
-      port: 80
-      scheme: http
+      port: 443
+      scheme: https
   tls:
     secretName: argocd-tls  
 #---
