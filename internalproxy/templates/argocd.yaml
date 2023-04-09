@@ -44,8 +44,8 @@ spec:
     certResolver: letsencrypt
     domains:
     - main: argocd.internal.durp.info
-      # Replace with your TLS Secret name
-      tls: argocd-tls      
+      sans:
+      - www.argocd.internal.durp.info     
 ---
 
 kind: Service
