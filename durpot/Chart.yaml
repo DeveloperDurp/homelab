@@ -1,7 +1,11 @@
 apiVersion: v2
-name: durpot
+name: durpapi
 description: A Helm chart for Kubernetes
 type: application
+version: 0.0.1
+appVersion: 0.0.1
 
-version: 0.1.0
-appVersion: "0.1.0"
+dependencies:
+- name: durpot
+  repository: https://gitlab.com/api/v4/projects/45025485/packages/helm/stable
+  version: 1.0.0

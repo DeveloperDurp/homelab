@@ -9,15 +9,12 @@ spec:
     repoURL: https://github.com/DeveloperDurp/homelab.git
     targetRevision: main
     path: durpot
-    directory:
-      recurse: true
   destination:
-    server: https://kubernetes.default.svc
     namespace: durpot
+    name: in-cluster
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: true  
     syncOptions:
-      - CreateNamespace=true  
-
+      - CreateNamespace=true 
