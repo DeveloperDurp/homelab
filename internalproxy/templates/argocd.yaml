@@ -32,15 +32,14 @@ metadata:
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    traefik.ingress.kubernetes.io/protocol: "https"
 spec:
   routes:
   - match: Host(`argocd.internal.durp.info`)
     kind: Rule
     services:
     - name: argocd-server
-      port: 443
-      scheme: https
+      port: 80
+      scheme: http
   tls:
     secretName: argocd-tls  
 #---
