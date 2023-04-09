@@ -43,11 +43,7 @@ spec:
     middlewares:
       - name: default-headers
   tls:
-    certResolver: letsencrypt
-    domains:
-    - main: argocd.internal.durp.info
-      sans:
-      - www.argocd.internal.durp.info     
+    secretname: argocd-tls  
 ---
 
 kind: Service
