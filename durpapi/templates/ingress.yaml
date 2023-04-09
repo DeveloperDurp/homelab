@@ -1,23 +1,23 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: durpapi-ingress
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production
-spec:
-  rules:
-  - host: durpapi.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: durpapi
-            port: 
-              number: 8080         
-  tls:
-    - hosts: 
-      - durpapi.durp.info
-      secretName: durpapi-tls
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: durpapi-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production
+#spec:
+#  rules:
+#  - host: durpapi.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: durpapi
+#            port: 
+#              number: 8080         
+#  tls:
+#    - hosts: 
+#      - durpapi.durp.info
+#      secretName: durpapi-tls
