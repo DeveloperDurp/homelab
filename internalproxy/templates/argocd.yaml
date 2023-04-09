@@ -45,8 +45,7 @@ spec:
     domains:
     - main: argocd.internal.durp.info
       # Replace with your TLS Secret name
-      tls:
-        secretName: argocd-tls      
+      tls: argocd-tls      
 ---
 
 kind: Service
