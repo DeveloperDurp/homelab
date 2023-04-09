@@ -5,7 +5,7 @@ traefik:
     repository: traefik
     # defaults to appVersion
     tag: ""
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   #
   # Configure integration with Traefik Hub
@@ -109,7 +109,7 @@ traefik:
   # Create a default IngressClass for Traefik
   ingressClass:
     enabled: true
-    isDefaultClass: true
+    isDefaultClass: false
 
   # Enable experimental features
   experimental:
