@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: durpapi
-        image: ghcr.io/developerdurp/durpapi:latest
+        image: registry.gitlab.com/developerdurp/durpapi
         imagePullPolicy: Always       
         ports:
         - name: http
