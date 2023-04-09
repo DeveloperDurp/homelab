@@ -34,8 +34,6 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/protocol: "https"
 spec:
-  entryPoints:
-    - websecure
   routes:
   - match: Host(`argocd.internal.durp.info`)
     kind: Rule
