@@ -45,7 +45,7 @@ spec:
   tls:
     - hosts: 
       - argocd.durp.info
-      secretName: bitwarden-tls
+      secretName: argocd-tls
 
 #---
 #apiVersion: traefik.containo.us/v1alpha1
