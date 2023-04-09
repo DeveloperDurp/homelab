@@ -29,10 +29,11 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: argocd-ingress
-  namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
+  entryPoints:
+    - websecure
   routes:
   - match: Host(`argocd.internal.durp.info`)
     kind: Rule
@@ -42,12 +43,12 @@ spec:
       scheme: https
   tls:
     secretName: argocd-tls  
-#---
-#
-#kind: Service
-#apiVersion: v1
-#metadata:
-#  name: argocd
-#spec:
-#  type: ExternalName
-#  externalName: argocd-server.argocd.svc.cluster.local  
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: argocd
+spec:
+  type: ExternalName
+  externalName: argocd-server.argocd.svc.cluster.local  
