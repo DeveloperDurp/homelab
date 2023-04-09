@@ -48,7 +48,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: argocd
+  name: argocd-server
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local  
