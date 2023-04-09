@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/DeveloperDurp/homelab.git
+    repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
     path: uptimekuma
     directory:
