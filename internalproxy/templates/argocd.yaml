@@ -40,6 +40,8 @@ spec:
     - name: argocd
       port: 443
       scheme: https
+    middlewares:
+      - name: default-headers
   tls:
     certResolver: letsencrypt
     domains:
