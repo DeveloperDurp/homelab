@@ -82,15 +82,15 @@ spec:
     - websecure
   routes:
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
+    middlewares:
+    - name: authentik
+      namespace: traefik  
     kind: Rule
     services:
     - name: duplicati
       port: 8200
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
-    middlewares:
-    - name: authentik
-      namespace: traefik
     services:
     - name: ak-outpost-authentik-embedded-outpost
       port: 80
