@@ -93,6 +93,9 @@ spec:
     services:
     - name: ak-outpost-authentik-embedded-outpost
       port: 9000
+    middlewares:
+    - name: authentik
+      namespace: traefik        
   tls:
     secretName: duplicati-tls
 
