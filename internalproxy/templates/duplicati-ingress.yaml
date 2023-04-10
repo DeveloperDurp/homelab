@@ -86,8 +86,7 @@ spec:
     kind: Rule
     services:
     - name: duplicati
-      port:
-        name: http
+      port: 8200
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     middlewares:
@@ -95,8 +94,7 @@ spec:
     - name: auth-redirect
     services:
     - name: ak-outpost-authentik-embedded-outpost
-      port:
-        name: http
+      port: 80
   tls:
     secretName: duplicati-tls
 
