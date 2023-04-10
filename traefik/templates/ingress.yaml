@@ -14,5 +14,4 @@ spec:
     - name: api@internal
       kind: TraefikService
   tls:
-    certificatesResolvers: letsencrypt-production
     secretName: traefik-tls  
