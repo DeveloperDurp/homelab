@@ -90,8 +90,8 @@ spec:
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     middlewares:
-    - name: default-auth
-    - name: auth-redirect
+    - name: authentik
+      namespace: traefik
     services:
     - name: ak-outpost-authentik-embedded-outpost
       port: 80
