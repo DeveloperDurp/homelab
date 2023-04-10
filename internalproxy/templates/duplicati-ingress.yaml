@@ -75,7 +75,8 @@ metadata:
   name: duplicati-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    traefik.ingress.kubernetes.io/auth-type: forward
+    #traefik.ingress.kubernetes.io/router.middlewares: default-auth@duplicati,auth-redirect@duplicati
+    #traefik.ingress.kubernetes.io/auth-type: forward
 spec:
   entryPoints:
     - websecure
@@ -85,16 +86,14 @@ spec:
     services:
     - name: duplicati
       port: 8200
-    middlewares:
-    - name: authentik
-      namespace: traefik       
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
+    middlewares:
+    - name: authentik
+      namespace: traefik
     services:
-      - kind: Service
-        name: authentik
-        namespace: authentik
-        port: 80    
+    - name: ak-outpost-authentik-embedded-outpost
+      port: 80
   tls:
     secretName: duplicati-tls
 
