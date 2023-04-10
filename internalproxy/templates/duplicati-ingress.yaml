@@ -53,13 +53,3 @@ spec:
       port: 9000
   tls:
     secretName: duplicati-tls
-
----
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: ak-outpost-authentik-embedded-outpost
-spec:
-  type: ExternalName
-  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local        
