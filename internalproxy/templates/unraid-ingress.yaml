@@ -67,8 +67,6 @@ spec:
     services:
     - name: unraid
       port: 443
-      scheme: https
-    middlewares:
-      - name: default-headers      
+      scheme: https    
   tls:
     secretName: unraid-tls  

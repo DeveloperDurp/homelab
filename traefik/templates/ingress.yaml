@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`traefik.internal.durp.info`)
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
+    middlewares:
+      - name: default-headers      
+  tls:
+    secretName: traefik-tls  

@@ -40,8 +40,6 @@ spec:
     - name: argocd-server
       port: 443
       scheme: https
-    middlewares:
-      - name: default-headers      
   tls:
     secretName: argocd-tls  
 ---
