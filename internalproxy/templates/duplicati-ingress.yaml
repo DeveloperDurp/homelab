@@ -93,7 +93,7 @@ spec:
     kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
-      port: 9000
+      port: 80
   tls:
     secretName: duplicati-tls
 
