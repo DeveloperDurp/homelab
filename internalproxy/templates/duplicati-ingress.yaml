@@ -25,47 +25,105 @@ subsets:
     port: 8200
     protocol: TCP
 
----    
+#---    
+#
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: duplicati-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+#    nginx.ingress.kubernetes.io/auth-url: |-
+#        http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+#    nginx.ingress.kubernetes.io/auth-signin: |-
+#        https://duplicati.internal.durp.info/outpost.goauthentik.io/start?rd=$escaped_request_uri
+#    nginx.ingress.kubernetes.io/auth-response-headers: |-
+#        Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+#    nginx.ingress.kubernetes.io/auth-snippet: |
+#        proxy_set_header X-Forwarded-Host $http_host;
+#spec:
+#  rules:
+#  - host: duplicati.internal.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: duplicati
+#            port: 
+#              number: 8200         
+#      - path: /outpost.goauthentik.io
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: ak-outpost-authentik-embedded-outpost
+#            port: 
+#              number: 9000
+#  tls:
+#    - hosts: 
+#      - duplicati.internal.durp.info
+#      secretName: duplicati-tls
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: duplicati-ingress
+  namespace: default
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    nginx.ingress.kubernetes.io/auth-url: |-
-        http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-    nginx.ingress.kubernetes.io/auth-signin: |-
-        https://duplicati.internal.durp.info/outpost.goauthentik.io/start?rd=$escaped_request_uri
-    nginx.ingress.kubernetes.io/auth-response-headers: |-
-        Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-    nginx.ingress.kubernetes.io/auth-snippet: |
-        proxy_set_header X-Forwarded-Host $http_host;
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.middlewares: default-auth@duplicati,auth-redirect@duplicati
+    traefik.ingress.kubernetes.io/auth-type: forward
 spec:
-  rules:
-  - host: duplicati.internal.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: duplicati
-            port: 
-              number: 8200         
-      - path: /outpost.goauthentik.io
-        pathType: Prefix
-        backend:
-          service:
-            name: ak-outpost-authentik-embedded-outpost
-            port: 
-              number: 9000
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: duplicati
+      port:
+        name: http
+  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+    kind: Rule
+    middlewares:
+    - name: default-auth
+    - name: auth-redirect
+    services:
+    - name: ak-outpost-authentik-embedded-outpost
+      port:
+        name: http
   tls:
-    - hosts: 
-      - duplicati.internal.durp.info
-      secretName: duplicati-tls
+    secretName: duplicati-tls
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth-duplicati-middleware
+spec:
+  plugin:
+    auth:
+      forward:
+        address: http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+      responseHeaders:
+        - X-authentik-username
+        - X-authentik-groups
+        - X-authentik-email
+        - X-authentik-name
+        - X-authentik-uid
+      authResponseHeaders:
+        - Set-Cookie
+      authHeaderName: X-Authentik-User
+      authResponseHeaderName: X-Authentik-User
+      successStatusCode: 200
+      failureStatusCode: 401
+      signoutRedirectURL: https://duplicati.internal.durp.info/outpost.goauthentik.io/start?rd=$escaped_request_uri
 
 ---
 
