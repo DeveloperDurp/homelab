@@ -3,7 +3,7 @@ kind: IngressRoute
 metadata:
   name: traefik-ingress
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
+    #cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   entryPoints:
     - websecure
@@ -14,4 +14,5 @@ spec:
     - name: api@internal
       kind: TraefikService
   tls:
+    certificatesResolvers: letsencrypt-production
     secretName: traefik-tls  
