@@ -39,7 +39,7 @@ spec:
   routes:
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
     middlewares:
-    - name: authentik
+    - name: authentik-proxy-provider
       namespace: traefik  
     kind: Rule
     services:
