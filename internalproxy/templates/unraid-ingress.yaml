@@ -27,28 +27,48 @@ subsets:
 
 ---    
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: unraid-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#spec:
+#  rules:
+#  - host: unraid.internal.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: unraid
+#            port: 
+#              number: 443         
+#  tls:
+#    - hosts: 
+#      - unraid.internal.durp.info
+#      secretName: unraid-tls
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: unraid-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: unraid.internal.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: unraid
-            port: 
-              number: 443         
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`unraid.internal.durp.info`)
+    kind: Rule
+    services:
+    - name: unraid
+      port: 443
+      scheme: https
+    middlewares:
+      - name: default-headers      
   tls:
-    - hosts: 
-      - unraid.internal.durp.info
-      secretName: unraid-tls
+    secretName: unraid-tls  
