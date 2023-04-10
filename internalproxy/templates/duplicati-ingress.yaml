@@ -75,7 +75,6 @@ metadata:
   name: duplicati-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    traefik.ingress.kubernetes.io/router.middlewares: default-auth@duplicati,auth-redirect@duplicati
     traefik.ingress.kubernetes.io/auth-type: forward
 spec:
   entryPoints:
