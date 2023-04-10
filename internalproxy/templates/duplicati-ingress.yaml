@@ -85,11 +85,11 @@ spec:
     services:
     - name: duplicati
       port: 8200
-  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
-    kind: Rule
     middlewares:
     - name: authentik
-      namespace: traefik
+      namespace: traefik       
+  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+    kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
       port: 80
