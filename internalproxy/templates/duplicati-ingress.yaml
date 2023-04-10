@@ -82,9 +82,9 @@ spec:
   entryPoints:
     - websecure
   routes:
-      middlewares:
-      - name: authentik
-        namespace: traefik
+    middlewares:
+    - name: authentik
+      namespace: traefik
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
