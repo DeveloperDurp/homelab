@@ -82,6 +82,9 @@ spec:
   entryPoints:
     - websecure
   routes:
+      middlewares:
+    - name: authentik
+      namespace: traefik
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
@@ -89,9 +92,6 @@ spec:
       port: 8200
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
-    middlewares:
-    - name: default-auth
-    - name: auth-redirect
     services:
     - name: ak-outpost-authentik-embedded-outpost
       port: 80
@@ -99,29 +99,27 @@ spec:
     secretName: duplicati-tls
 
 ---
-
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: auth-duplicati-middleware
+    name: authentik
+    namespace: traefik
 spec:
-  plugin:
-    auth:
-      forward:
-        address: http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-      responseHeaders:
-        - X-authentik-username
-        - X-authentik-groups
-        - X-authentik-email
-        - X-authentik-name
-        - X-authentik-uid
-      authResponseHeaders:
-        - Set-Cookie
-      authHeaderName: X-Authentik-User
-      authResponseHeaderName: X-Authentik-User
-      successStatusCode: 200
-      failureStatusCode: 401
-      signoutRedirectURL: https://duplicati.internal.durp.info/outpost.goauthentik.io/start?rd=$escaped_request_uri
+    forwardAuth:
+        address: http://ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/traefik
+        trustForwardHeader: true
+        authResponseHeaders:
+            - X-authentik-username
+            - X-authentik-groups
+            - X-authentik-email
+            - X-authentik-name
+            - X-authentik-uid
+            - X-authentik-jwt
+            - X-authentik-meta-jwks
+            - X-authentik-meta-outpost
+            - X-authentik-meta-provider
+            - X-authentik-meta-app
+            - X-authentik-meta-version
 
 ---
 
