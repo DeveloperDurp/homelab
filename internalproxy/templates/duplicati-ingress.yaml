@@ -73,7 +73,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: duplicati-ingress
-  namespace: default
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.middlewares: default-auth@duplicati,auth-redirect@duplicati
