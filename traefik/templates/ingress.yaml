@@ -14,5 +14,9 @@ spec:
     - name: api@internal
       kind: TraefikService
   tls:
-    certificatesResolvers: letsencrypt-production
+    certResolver: my-resolver
+    domains:
+      - main: traefik.internal.durp.info
+        sans:
+          - traefik.internal.durp.info
     secretName: traefik-tls  
