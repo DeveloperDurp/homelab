@@ -19,3 +19,15 @@ spec:
       - X-authentik-meta-provider
       - X-authentik-meta-app
       - X-authentik-meta-version
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whitelist
+  namespace: traefik
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 192.168.0.0/16

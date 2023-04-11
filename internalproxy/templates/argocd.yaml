@@ -8,6 +8,9 @@ spec:
   entryPoints:
     - websecure
   routes:
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
   - match: Host(`argocd.internal.durp.info`)
     kind: Rule
     services:

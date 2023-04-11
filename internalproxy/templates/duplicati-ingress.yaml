@@ -39,6 +39,8 @@ spec:
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik  
+    - name: whitelist
+      namespace: traefik
     kind: Rule
     services:
     - name: duplicati
