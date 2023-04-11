@@ -31,8 +31,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: duplicati-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   entryPoints:
     - websecure
@@ -60,7 +58,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: duplicati-tls
-  namespace: duplicati
 spec:
   secretName: duplicati-tls
   issuerRef:
