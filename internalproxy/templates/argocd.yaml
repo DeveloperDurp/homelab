@@ -16,6 +16,7 @@ spec:
       scheme: https
   tls:
     secretName: argocd-tls  
+
 ---
 
 kind: Service
@@ -25,3 +26,19 @@ metadata:
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-tls
+  namespace: argocd
+spec:
+  secretName: argocd-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "argocd.internal.durp.info"
+  dnsNames:
+  - "argocd.internal.durp.info"  
