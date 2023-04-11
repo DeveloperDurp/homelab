@@ -53,3 +53,19 @@ spec:
       port: 9000
   tls:
     secretName: duplicati-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: duplicati-tls
+  namespace: duplicati
+spec:
+  secretName: duplicati-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "duplicati.internal.durp.info"
+  dnsNames:
+  - "duplicati.internal.durp.info"  
