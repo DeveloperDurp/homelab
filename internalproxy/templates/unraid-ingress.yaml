@@ -27,31 +27,6 @@ subsets:
 
 ---    
 
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: unraid-ingress
-#  annotations:
-#    kubernetes.io/ingress.class: nginx
-#    cert-manager.io/cluster-issuer: letsencrypt-production 
-#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-#spec:
-#  rules:
-#  - host: unraid.internal.durp.info
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: unraid
-#            port: 
-#              number: 443         
-#  tls:
-#    - hosts: 
-#      - unraid.internal.durp.info
-#      secretName: unraid-tls
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -63,6 +38,9 @@ spec:
     - websecure
   routes:
   - match: Host(`unraid.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
     kind: Rule
     services:
     - name: unraid
@@ -70,3 +48,18 @@ spec:
       scheme: https    
   tls:
     secretName: unraid-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: unraid-tls
+spec:
+  secretName: unraid-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "unraid.internal.durp.info"
+  dnsNames:
+  - "unraid.internal.durp.info"  
