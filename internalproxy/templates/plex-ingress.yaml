@@ -68,7 +68,7 @@ spec:
     kind: Rule
     services:
     - name: plex
-      port: 443
+      port: 32400
       scheme: https
   tls:
     secretName: plex-tls  
