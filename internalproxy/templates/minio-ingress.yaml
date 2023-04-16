@@ -72,7 +72,7 @@ spec:
     services:
     - name: minio
       port: 9769
-      scheme: https
+      scheme: http
   tls:
     secretName: minio-tls  
 
