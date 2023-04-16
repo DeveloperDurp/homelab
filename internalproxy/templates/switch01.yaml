@@ -25,30 +25,69 @@ subsets:
     port: 443
     protocol: TCP
 
+#---    
+#
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: switch01-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#spec:
+#  rules:
+#  - host: switch01.internal.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: switch01
+#            port: 
+#              number: 443         
+#  tls:
+#    - hosts: 
+#      - switch01.internal.durp.info
+#      secretName: switch01-tls
+
 ---    
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: switch01-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: switch01.internal.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: switch01
-            port: 
-              number: 443         
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`switch01.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: switch01
+      port: 443
+      scheme: https
   tls:
-    - hosts: 
-      - switch01.internal.durp.info
-      secretName: switch01-tls
+    secretName: switch01-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: switch01-tls
+spec:
+  secretName: switch01-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "switch01.internal.durp.info"
+  dnsNames:
+  - "switch01.internal.durp.info"  
