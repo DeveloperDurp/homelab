@@ -31,3 +31,4 @@ spec:
   ipWhiteList:
     sourceRange:
       - 192.168.30.0/24
+      - 192.168.130.0/24
