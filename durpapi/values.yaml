@@ -1,3 +1,8 @@
 durpapi:
   deployment: 
     tag: 1.35.832240116
+
+  service:
+    type: ClusterIP
+    port: 8080
+    targetport: 8080
