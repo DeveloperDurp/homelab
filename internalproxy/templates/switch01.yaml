@@ -74,6 +74,9 @@ spec:
     - name: switch01
       port: 443
       scheme: https
+    tls:
+      options:
+        ssl-min-version: TLSv1.1
   tls:
     secretName: switch01-tls  
 
@@ -91,13 +94,3 @@ spec:
   commonName: "switch01.internal.durp.info"
   dnsNames:
   - "switch01.internal.durp.info"  
-
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: TLSOption
-metadata:
-  name: mintls11
-
-spec:
-  minVersion: VersionTLS11
