@@ -1,23 +1,54 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: littlelink-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production
+#spec:
+#  rules:
+#  - host: durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: littlelink
+#            port: 
+#              number: 80          
+#  tls:
+#    - hosts: 
+#      - durp.info
+#      secretName: links-durp-tls      
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: littlelink-ingress
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: littlelink
-            port: 
-              number: 80          
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: littlelink
+      port: 80
   tls:
-    - hosts: 
-      - durp.info
-      secretName: links-durp-tls      
+    secretName: littlelink-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: littlelink-tls
+spec:
+  secretName: littlelink-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "durp.info"
+  dnsNames:
+  - "durp.info"  
