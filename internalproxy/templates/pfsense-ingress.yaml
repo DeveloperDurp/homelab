@@ -25,30 +25,69 @@ subsets:
     port: 443
     protocol: TCP
 
+#---    
+#
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: pfsense-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#spec:
+#  rules:
+#  - host: pfsense.internal.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: pfsense
+#            port: 
+#              number: 443         
+#  tls:
+#    - hosts: 
+#      - pfsense.internal.durp.info
+#      secretName: pfsense-tls
+
 ---    
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: pfsense-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: pfsense.internal.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: pfsense
-            port: 
-              number: 443         
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`pfsense.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: pfsense
+      port: 443
+      scheme: https
   tls:
-    - hosts: 
-      - pfsense.internal.durp.info
-      secretName: pfsense-tls
+    secretName: pfsense-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pfsense-tls
+spec:
+  secretName: pfsense-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "pfsense.internal.durp.info"
+  dnsNames:
+  - "pfsense.internal.durp.info"  
