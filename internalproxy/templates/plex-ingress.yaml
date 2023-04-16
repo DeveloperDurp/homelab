@@ -25,29 +25,65 @@ subsets:
     port: 32400
     protocol: TCP
 
+#---    
+#
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: plex-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#spec:
+#  rules:
+#  - host: plex.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: plex
+#            port: 
+#              number: 32400         
+#  tls:
+#    - hosts: 
+#      - plex.durp.info
+#      secretName: plex-tls
+
 ---    
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: plex-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: plex.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: plex
-            port: 
-              number: 32400         
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`plex.internal.durp.info`)
+    kind: Rule
+    services:
+    - name: plex
+      port: 443
+      scheme: https
   tls:
-    - hosts: 
-      - plex.durp.info
-      secretName: plex-tls
+    secretName: plex-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: plex-tls
+spec:
+  secretName: plex-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "plex.internal.durp.info"
+  dnsNames:
+  - "plex.internal.durp.info"  
