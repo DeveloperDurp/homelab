@@ -34,19 +34,7 @@ kube-prometheus-stack:
     fullnameOverride: alertmanager
     enabled: true
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        kubernetes.io/ingress.class: traefik
-        nginx.ingress.kubernetes.io/auth-response-headers: Authorization     
-      hosts:
-        - alertmanager.durp.info
-      paths: 
-        - /
-      tls: 
-      - secretName: alertmanager-tls
-        hosts:
-        - alertmanager.durp.info
+      enabled: false
   grafana:
     enabled: true
     fullnameOverride: grafana
@@ -63,18 +51,7 @@ kube-prometheus-stack:
       userKey: admin-user
       passwordKey: admin-password
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        kubernetes.io/ingress.class: traefik
-      hosts:
-        - grafana.durp.info
-      paths: 
-        - /
-      tls: 
-      - secretName: grafana-tls
-        hosts:
-        - grafana.durp.info      
+      enabled: false   
     grafana.ini:
       server:
         root_url: https://grafana.durp.info

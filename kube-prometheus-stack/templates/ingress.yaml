@@ -1,0 +1,68 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`grafana.durp.info`) && PathPrefix(`/`) 
+    kind: Rule
+    services:
+    - name: grafana
+      port: 80
+  tls:
+    secretName: grafana-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-tls
+spec:
+  secretName: grafana-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "grafana.durp.info"
+  dnsNames:
+  - "grafana.durp.info"  
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alertmanager-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`alertmanager.durp.info`) && PathPrefix(`/`) 
+    middlewares:
+    - name: whitelist
+      namespace: traefik
+    - name: authentik-proxy-provider
+      namespace: traefik    
+    kind: Rule
+    services:
+    - name: prometheus-alertmanager
+      port: 9093
+  tls:
+    secretName: alertmanager-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: alertmanager-tls
+spec:
+  secretName: alertmanager-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "alertmanager.durp.info"
+  dnsNames:
+  - "alertmanager.durp.info"  
