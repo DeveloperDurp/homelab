@@ -25,29 +25,68 @@ subsets:
     port: 9769
     protocol: TCP
 
----    
+#---    
+#
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: minio-ingress
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: letsencrypt-production 
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+#spec:
+#  rules:
+#  - host: minio.internal.durp.info
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: minio
+#            port: 
+#              number: 9769         
+#  tls:
+#    - hosts: 
+#      - minio.internal.durp.info
+#      secretName: minio-tls
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: minio-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-production 
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
-  rules:
-  - host: minio.internal.durp.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: minio
-            port: 
-              number: 9769         
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`minio.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: minio
+      port: 9769
+      scheme: https
   tls:
-    - hosts: 
-      - minio.internal.durp.info
-      secretName: minio-tls
+    secretName: minio-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: minio-tls
+spec:
+  secretName: minio-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "minio.internal.durp.info"
+  dnsNames:
+  - "minio.internal.durp.info"  
