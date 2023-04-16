@@ -14,7 +14,7 @@ authentik:
     pullPolicy: Always
 
   ingress:
-    enabled: true
+    enabled: false
     ingressClassName: "traefik"
     annotations: 
       cert-manager.io/cluster-issuer: letsencrypt-production
