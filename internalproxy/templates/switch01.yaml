@@ -91,3 +91,13 @@ spec:
   commonName: "switch01.internal.durp.info"
   dnsNames:
   - "switch01.internal.durp.info"  
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: TLSOption
+metadata:
+  name: mintls11
+
+spec:
+  minVersion: VersionTLS11
