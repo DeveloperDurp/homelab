@@ -109,7 +109,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "kasm.internal.durp.info"
+  commonName: "kasm.durp.info"
   dnsNames:
-  - "kasm.internal.durp.info"        
+  - "kasm.durp.info"        
 
