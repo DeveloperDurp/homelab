@@ -90,7 +90,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`kasm.durp.durp.info`) && PathPrefix(`/`)
+  - match: Host(`kasm.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: kasm
