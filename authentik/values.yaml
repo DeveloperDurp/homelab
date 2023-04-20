@@ -150,7 +150,8 @@ authentik:
         - ReadWriteMany
   redis:
     enabled: true
-    imageRegistry: registry.durp.info/bitnami/redis
+    global:
+      imageRegistry: registry.durp.info/bitnami/redis
     architecture: standalone
     auth:
       enabled: false
