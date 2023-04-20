@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker
+spec:
+  ports:
+  - name: app
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: docker
+subsets:
+- addresses:
+  - ip: 192.168.20.253
+  ports:
+  - name: app
+    port: 5000
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`docker.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: docker
+      port: 5000
+  tls:
+    secretName: docker-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: docker-tls
+spec:
+  secretName: docker-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "docker.durp.info"
+  dnsNames:
+  - "docker.durp.info"  
