@@ -140,6 +140,10 @@ authentik:
 
   postgresql:
     enabled: true
+    image:
+      registry: registry.durp.info
+      repository: bitnami/postgresql
+      pullPolicy: Always
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
     existingSecret: authentik-postgresql1
