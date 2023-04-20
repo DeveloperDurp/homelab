@@ -1,3 +1,4 @@
 durpapi:
   deployment: 
     tag: ""
+    image: registry.durp.info/developerdurp/durpapi
