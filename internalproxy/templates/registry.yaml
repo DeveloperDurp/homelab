@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: docker
+  name: registry
 spec:
   ports:
   - name: app
@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: docker
+  name: registry
 subsets:
 - addresses:
   - ip: 192.168.20.253
@@ -30,30 +30,30 @@ subsets:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: docker-ingress
+  name: registry-ingress
 spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`docker.durp.info`) && PathPrefix(`/`)
+  - match: Host(`registry.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
-    - name: docker
+    - name: registry
       port: 5000
   tls:
-    secretName: docker-tls
+    secretName: registry-tls
 
 ---
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: docker-tls
+  name: registry-tls
 spec:
-  secretName: docker-tls
+  secretName: registry-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "docker.durp.info"
+  commonName: "registry.durp.info"
   dnsNames:
-  - "docker.durp.info"  
+  - "registry.durp.info"  
