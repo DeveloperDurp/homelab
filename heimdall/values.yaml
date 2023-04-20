@@ -1,8 +1,9 @@
 heimdall:
 
   image:
+    registry: registry.durp.info
     repository: linuxserver/heimdall
-    pullPolicy: Always
+    pullPolicy: Always    
 
   env:
     TZ: UTC
