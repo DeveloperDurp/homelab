@@ -1,4 +1,7 @@
 cert-manager:
+  image:
+    registry: registry.durp.info
+    pullPolicy: Always
   installCRDs: true
   replicaCount: 3
   extraArgs:
@@ -9,3 +12,11 @@ cert-manager:
     nameservers:
       - "1.1.1.1"
       - "1.0.0.1"
+  webhook:
+    image:
+      registry: registry.durp.info
+      pullPolicy: Always  
+  cainjector:
+    image:
+      registry: registry.durp.info
+      pullPolicy: Always
