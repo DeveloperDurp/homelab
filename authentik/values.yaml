@@ -151,7 +151,7 @@ authentik:
   redis:
     enabled: true
     image: 
-      name: registry.durp.info/bitnami/redis
+      imageRegistry: registry.durp.info/bitnami/redis
     architecture: standalone
     auth:
       enabled: false
