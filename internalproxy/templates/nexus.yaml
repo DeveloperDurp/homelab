@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus
+spec:
+  ports:
+  - name: app
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: nexus
+subsets:
+- addresses:
+  - ip: 192.168.20.253
+  ports:
+  - name: app
+    port: 8081
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nexus-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`nexus.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: nexus
+      port: 8081
+  tls:
+    secretName: nexus-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nexus-tls
+spec:
+  secretName: nexus-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "nexus.durp.info"
+  dnsNames:
+  - "nexus.durp.info"  
