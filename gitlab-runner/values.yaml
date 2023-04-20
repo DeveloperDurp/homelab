@@ -1,5 +1,9 @@
 gitlab-runner:
 
+  image:
+    registry: registry.durp.info
+    image: gitlab-org/gitlab-runner
+
   imagePullPolicy: Always
   gitlabUrl: https://gitlab.com/
   unregisterRunner: true
