@@ -10,7 +10,7 @@ authentik:
     securityContext: {}
 
   image:
-    repository: ghcr.io/goauthentik/server
+    repository: registry.durp.info/goauthentik/server:2023.4.1
     pullPolicy: Always
 
   ingress:
@@ -44,7 +44,7 @@ authentik:
       timeout: 30
       from: ""
     outposts:
-      container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+      container_image_base: registry.durp.info/goauthentik/%(type)s:%(version)s
     error_reporting:
       enabled: false
       environment: "k8s"
