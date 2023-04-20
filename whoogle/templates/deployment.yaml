@@ -26,7 +26,7 @@ spec:
         - name: whoogle
           securityContext:
             runAsUser: 0
-          image: "benbusby/whoogle-search:0.7.2"
+          image: "registry.durp.info/benbusby/whoogle-search:0.8.2"
           imagePullPolicy: Always
           resources:
             limits:
