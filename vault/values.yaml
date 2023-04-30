@@ -1,8 +1,6 @@
 vault:
 
   global:
-      replicas: 1
-      port: 8080
 
     # image sets the repo and tag of the vault-k8s image to use for the injector.
     image:
