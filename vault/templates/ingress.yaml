@@ -16,7 +16,7 @@ spec:
     services:
     - name: vault
       port: 8200
-      scheme: https
+      scheme: http
   tls:
     secretName: vault-tls  
 
