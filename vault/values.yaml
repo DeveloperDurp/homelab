@@ -1,0 +1,43 @@
+vault:
+
+  global:
+      replicas: 1
+      port: 8080
+
+    # image sets the repo and tag of the vault-k8s image to use for the injector.
+    image:
+      repository: "hashicorp/vault-k8s"
+      tag: "1.2.1"
+      pullPolicy: Always
+
+    agentImage:
+      repository: "hashicorp/vault"
+      tag: "1.13.1"
+
+  server:
+    enabled: "-"
+    image:
+      repository: "hashicorp/vault"
+      tag: "1.13.1"
+      pullPolicy: Always
+
+    resources: {}
+    # resources:
+    #   requests:
+    #     memory: 256Mi
+    #     cpu: 250m
+    #   limits:
+    #     memory: 256Mi
+    #     cpu: 250m
+
+    dataStorage:
+      enabled: true
+      size: 10Gi
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+
+  ui:
+    enabled: true
+    externalPort: 8200
+    targetPort: 8200
+
