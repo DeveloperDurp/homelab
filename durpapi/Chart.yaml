@@ -8,5 +8,5 @@ appVersion: 0.0.1
 dependencies:
 - name: durpapi
   repository: https://gitlab.com/api/v4/projects/45025483/packages/helm/stable
-  version: 1.29.859828148
+  version: 1.27.859837005
 
