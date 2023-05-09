@@ -1,4 +1,4 @@
-durpapi:
+external-secrets:
   replicaCount: 3
 
   # -- Specifies the amount of historic ReplicaSets k8s should keep (see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy)
