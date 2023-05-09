@@ -1,5 +1,5 @@
 durpapi:
-  replicaCount: 1
+  replicaCount: 3
 
   # -- Specifies the amount of historic ReplicaSets k8s should keep (see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy)
   revisionHistoryLimit: 10
@@ -33,7 +33,7 @@ durpapi:
 
   # -- If true, external-secrets will perform leader election between instances to ensure no more
   # than one instance of external-secrets operates at a time.
-  leaderElect: false
+  leaderElect: true
 
   # -- If set external secrets will filter matching
   # Secret Stores with the appropriate controller values.
