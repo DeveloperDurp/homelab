@@ -1,21 +1,3 @@
-#apiVersion: bitnami.com/v1alpha1
-#kind: SealedSecret
-#metadata:
-#  creationTimestamp: null
-#  name: db-pass
-#  namespace: authentik
-#spec:
-#  encryptedData:
-#    dbpass: AgAJHtXFCuVoAvhojzA0B2ZK9b/axudFNR38YDIcS+DGHcDlWk7aGV7LIA7JRsYitmiUBlduublPuLGUlgf065DMUPAbDto7Zysin9RNofn4d8lP5v25W6/yT4IfvM7vzsrADF5WvTucwTX1hVFtoRNwBUAnHzWMnH5w6d/lyAYSoX7VXoVS5UdhbbRybW6EO3T9I8QhzzTzVjPIZ6uaHbwBsCjpN5qxA6xy+Xyc0YtD2ZS1PthZznLxkNVrp+gv1DdrJxTD1+7GctzHyT7lVhhuewnpU+Hyfvo3Aq+So0qpp+o64A4hswQiHYlAm/tiyg6yv8e50hIcnEfOX4q4PwLG7uRODIPqwGUumwb2Kh5zLNcBsLdZUFtG8+tVKcwF3U54PJnIDr+VS8R5/tdG8KDbDI1EYClEkrdgbfDZrMP2sLFpqaBo2NKYmiDwMwKxIArS/5LpImd3sl9WJHoAqx29tNmRgrSUCNxu3/N3lRskjY5P5JscIZowtjAl1txSkgZ4wFxbkZjp3UE6vzGCAErUiTYrLHpw1AGKjHOVP8vtiHm97aWwlWETcNWP5rD7BgVQO5kklg9Q/1B1qLwpUcNKXCXlyoOM598I9RoixZxmxD+p54RVsBmKWEK6fB78qJIwnGcMKh6no/czk0koOFs5ACikyhoCS/IP0Gsy1v8bujs25SWy3kQ/Vi0N0GZYtIxcRty4walOXjcRtVI=
-#    secretkey: AgB4s+1FZWNm+L69SXf9NG2pEXtKfyVGY6cRMcLezrjRBppeR4HLGO/fG47XwThUIh19fser39GTueWTmNb6p6XRewAC9StUOdugAM2UBoH/6JXyMJe1Yxjgpos2g7H9nShsVgd4q5CRF7SSrFxmecarmY7aHDR5vHvqhSxX071QVVZMM1ZWXdrNXuluJiBkYw1o/mIX3ZI2ca2WJvSITw7XP+5pbvBKmatonzxVb4l3IPtKQGJnEs5OGMuLb7G46DEw3HvNBvn3fkiSKmm2e/JCof6edafGaqATH2RdbHOs7xYkRYNJMZSlySQ2V+pCP2vT5Hn3tSz4t2iTcdJ0LPhMe5p/lPDswf8MsK14PkKR9xIORMBNvEgNFzOxajHV3Kku9Qi7vpCYsgk8238LFn8SYntqa7s1UqlMBR8P4X+x3efvuSMnGNyj/7qrIl7nBBvPuhAlelNWlriQi/UT/ED35ti/cNk6lNp2WJZa7d9LLMggh61Ju/XRDxBNR0RfBh6o3ckZjgseWRYQQccjWQ9mDjJv30A+HpZrsFDvojasun3o+M2F95cR6e6s0t0PSf02Y87E3/97he/M/JykNj1CWNY9PK4SZLmOG6zd1WW2Vu08pleZb8nsptvjJY9eaQ+TNQZOibYuR7of2xH1n9qCGcYG2iyERf7jwCRLjNQ4QbMenBuZAfXu/xMYOguwjPY8X/JeFDta/Fyq5EnCymO7ZXywSLjwhp6hwkOkWhb+7RwM70kqTJjGK4FDb7TgYLI=
-#  template:
-#    metadata:
-#      creationTimestamp: null
-#      name: db-pass
-#      namespace: authentik
-#
----
-
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
