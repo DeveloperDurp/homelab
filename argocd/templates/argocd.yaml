@@ -9,8 +9,6 @@ spec:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
     path: argocd
-    directory:
-      recurse: true
   destination:
     namespace: argocd
     name: in-cluster
@@ -19,4 +17,4 @@ spec:
       prune: true
       selfHeal: true  
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=true 
