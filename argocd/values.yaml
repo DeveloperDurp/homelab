@@ -1,4 +1,4 @@
-argo-cd:
+argocd:
   ## Argo CD configuration
   ## Ref: https://github.com/argoproj/argo-cd
   ##
