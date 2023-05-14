@@ -25,6 +25,7 @@ argo-cd:
 
   dex:
     enabled: true
+    servicePortHttpName: tcp
       #extraArgs:
       #  - --disable-tls
     image:
