@@ -7,6 +7,8 @@ argo-cd:
       imagePullPolicy: Always
 
   server:
+    extraArgs:
+      --dex-server-plaintext
     # oidc.config: |
     #   name: AzureAD
     #   issuer: https://login.microsoftonline.com/TENANT_ID/v2.0
