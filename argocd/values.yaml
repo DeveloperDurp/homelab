@@ -49,7 +49,7 @@ argo-cd:
       # app: argo-cd
 
     # -- Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
-    revisionHistoryLimit: 3
+    revisionHistoryLimit: 1
 
     # Default image used by all components
     image:
