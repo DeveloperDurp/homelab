@@ -9,7 +9,7 @@ argo-cd:
   server:
     extraArgs:
       - --dex-server-plaintext
-      - --dex-server="http://argocd-dex-server"
+      - --dex-server="argocd-dex-server:5556"
     # oidc.config: |
     #   name: AzureAD
     #   issuer: https://login.microsoftonline.com/TENANT_ID/v2.0
