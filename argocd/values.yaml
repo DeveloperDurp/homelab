@@ -11,7 +11,6 @@ argo-cd:
       create: true
       annotations: {}
       url: https://argocd.internal.durp.info
-      oidc.tls.insecure.skip.verify: "true"
       dex.config: |
         connectors:
           - config:
