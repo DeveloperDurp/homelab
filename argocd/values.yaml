@@ -10,7 +10,7 @@ argo-cd:
     cm:
       create: true
       annotations: {}
-      url: https://argocd.internal.durp.info
+      url: http://argocd-dex-server
       dex.config: |
         connectors:
           - config:
