@@ -7,9 +7,9 @@ argo-cd:
       imagePullPolicy: Always
 
   server:
-    extraArgs:
-      - --dex-server-plaintext
-      - --dex-server=argocd-dex-server:5556
+    #extraArgs:
+    #  - --dex-server-plaintext
+    #  - --dex-server=argocd-dex-server:5556
     # oidc.config: |
     #   name: AzureAD
     #   issuer: https://login.microsoftonline.com/TENANT_ID/v2.0
@@ -25,8 +25,8 @@ argo-cd:
 
   dex:
     enabled: true
-    extraArgs:
-      - --disable-tls
+      #extraArgs:
+      #  - --disable-tls
     image:
       repository: registry.durp.info/dexidp/dex
       imagePullPolicy: Always
