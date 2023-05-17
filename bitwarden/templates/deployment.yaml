@@ -28,9 +28,9 @@ spec:
           containerPort: 80
         env:
           - name: SIGNUPS_ALLOWED
-            value: "TRUE"
+            value: "FALSE"
           - name: INVITATIONS_ALLOWED
-            value: "TRUE"                      
+            value: "FALSE"                      
           - name: WEBSOCKET_ENABLED
             value: "TRUE"          
           - name: ROCKET_ENV
@@ -38,7 +38,12 @@ spec:
           - name: ROCKET_PORT
             value: "80"            
           - name: ROCKET_WORKERS
-            value: "10"            
+            value: "10"
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: bitwarden-secret
+                key: ADMIN_TOKEN
       volumes:
       - name: bitwarden-pvc
         persistentVolumeClaim:
