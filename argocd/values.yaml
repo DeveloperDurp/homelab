@@ -25,9 +25,6 @@ argo-cd:
 
   dex:
     enabled: true
-    servicePortHttpName: https
-      #extraArgs:
-      #  - --disable-tls
     image:
       repository: registry.durp.info/dexidp/dex
       imagePullPolicy: Always
@@ -36,7 +33,7 @@ argo-cd:
     cm:
       create: true
       annotations: {}
-      url: https://argocd.internal.durp.info
+      url: https://argocd-server
       oidc.tls.insecure.skip.verify: "true"
       dex.config: |
         connectors:
