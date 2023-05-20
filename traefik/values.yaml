@@ -179,7 +179,7 @@ traefik:
   providers:
     kubernetesCRD:
       enabled: true
-      allowCrossNamespace: false
+      allowCrossNamespace: true
       allowExternalNameServices: false
       allowEmptyServices: false
       # ingressClass: traefik-internal
