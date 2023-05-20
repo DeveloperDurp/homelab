@@ -1,4 +1,3 @@
 durpapi:
   deployment: 
-    tag: ""
     image: registry.gitlab.com/developerdurp/durpapi
