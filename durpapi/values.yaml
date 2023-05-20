@@ -3,4 +3,4 @@ durpapi:
     image: registry.gitlab.com/developerdurp/durpapi
     resources:
       requests:
-        memory: "256Mi"
+        memory: ""
