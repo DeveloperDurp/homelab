@@ -35,7 +35,7 @@ gitlab-runner:
           namespace = "{{.Release.Namespace}}"
           image = "ubuntu:22.04"
           privileged = true
-          volumes = ["/certs/client", "/cache"]'
+          volumes = ["/certs/client", "/cache"]
 
     executor: kubernetes
     name: "k3s"
