@@ -1,6 +1,3 @@
 durpapi:
   deployment: 
     image: registry.gitlab.com/developerdurp/durpapi
-    resources:
-      requests:
-        memory: ""
