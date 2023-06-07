@@ -8,4 +8,4 @@ appVersion: 0.0.1
 dependencies:
 - name: durpot
   repository: https://gitlab.com/api/v4/projects/45025485/packages/helm/stable
-  version: 0.1.0-dev0035
+  version: 0.1.0-dev0038
