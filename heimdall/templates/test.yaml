@@ -3,7 +3,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: whoami-external-dns
-  namespace: whoami
   annotations:
     external-dns.alpha.kubernetes.io/hostname: whoami.macrossplusinc.com
 spec:
