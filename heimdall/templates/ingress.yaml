@@ -49,4 +49,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
 spec:
   type: ExternalName
-  externalName: home.durp.info
+  externalName: durp.info

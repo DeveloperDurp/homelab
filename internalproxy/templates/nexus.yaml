@@ -68,4 +68,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: nexus.durp.info
 spec:
   type: ExternalName
-  externalName: home.durp.info
+  externalName: durp.info
