@@ -1,0 +1,12 @@
+external-dns:
+  global:
+    imageRegistry: "registry.durp.info"
+
+  image:
+    pullPolicy: Always
+
+  sources: []
+  provider: cloudflare
+  cloudflare:
+    secretName : "external-dns"
+    proxied: true
