@@ -7,3 +7,4 @@ metadata:
     external-dns.alpha.kubernetes.io/target: home.durp.info
 spec:
   type: ExternalName
+  externalName: home.durp.info
