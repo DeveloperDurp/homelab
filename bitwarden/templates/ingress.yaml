@@ -39,4 +39,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: bitwarden.durp.info
 spec:
   type: ExternalName
-  externalName: home.durp.info
+  externalName: durp.info
