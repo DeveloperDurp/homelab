@@ -12,6 +12,9 @@ heimdall:
 
   service:
     main:
+      annotations:
+          - external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
+          - external-dns.alpha.kubernetes.io/target: home.durp.info
       ports:
         http:
           port: 80
