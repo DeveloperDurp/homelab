@@ -31,3 +31,15 @@ spec:
   commonName: "kuma.durp.info"
   dnsNames:
   - "kuma.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: heimdall-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: kuma.durp.info
+spec:
+  type: ExternalName
+  externalName: home.durp.info
