@@ -15,7 +15,7 @@ kind: ConfigMap
 metadata:
   name: my-config
 data:
-  IP_ADDRESS: $(external-secrets:my-secret.ip-address)
+  IP_ADDRESS: ""
 
 
 ---
