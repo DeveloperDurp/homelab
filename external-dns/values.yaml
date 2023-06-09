@@ -5,7 +5,9 @@ external-dns:
   image:
     pullPolicy: Always
 
-  sources: []
+  sources:
+    - ingress
+    
   provider: cloudflare
   cloudflare:
     secretName : "external-dns"
