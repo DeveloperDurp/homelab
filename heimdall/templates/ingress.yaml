@@ -1,6 +1,9 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
+    external-dns.alpha.kubernetes.io/target: home.durp.info
   name: heimdall-ingress
 spec:
   entryPoints:
