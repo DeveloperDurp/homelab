@@ -40,3 +40,15 @@ spec:
   commonName: "heimdall.durp.info"
   dnsNames:
   - "heimdall.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: heimdall-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
+spec:
+  type: ExternalName
+  externalName: heimdall.durp.info
