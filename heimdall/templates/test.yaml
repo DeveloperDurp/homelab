@@ -6,10 +6,17 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: whoami.durp.info
 spec:
   type: ExternalName
-  externalName: 
-    secretKeyRef:
-      name: my-secret
-      key: ip-address
+  externalName: $(IP_ADDRESS)
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  IP_ADDRESS: $(external-secrets:my-secret.ip-address)
+
 
 ---
 
