@@ -6,7 +6,7 @@ external-dns:
     pullPolicy: Always
 
   sources:
-    - ingress
+    - service
     
   provider: cloudflare
   cloudflare:
