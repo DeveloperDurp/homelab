@@ -28,3 +28,15 @@ spec:
   commonName: "whoogle.durp.info"
   dnsNames:
   - "whoogle.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoogle-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: whoogle.durp.info
+spec:
+  type: ExternalName
+  externalName: home.durp.info  

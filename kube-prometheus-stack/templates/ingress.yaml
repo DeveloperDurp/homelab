@@ -66,3 +66,15 @@ spec:
   commonName: "alertmanager.durp.info"
   dnsNames:
   - "alertmanager.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: grafana-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: grafana.durp.info
+spec:
+  type: ExternalName
+  externalName: home.durp.info  
