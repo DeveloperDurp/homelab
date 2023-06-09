@@ -63,7 +63,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: heimdall-external-dns
+  name: registry-external-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: registry.durp.info
 spec:

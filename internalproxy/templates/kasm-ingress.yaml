@@ -60,7 +60,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: heimdall-external-dns
+  name: kasm-external-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: kasm.durp.info
 spec:
