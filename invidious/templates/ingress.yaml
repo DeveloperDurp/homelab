@@ -28,6 +28,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "invidious.internal.durp.info"
+  commonName: "invidious.durp.info"
   dnsNames:
   - "invidious.durp.info"  
