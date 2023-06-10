@@ -42,7 +42,7 @@ spec:
     kind: Rule
     services:
     - name: blueiris
-      port: 8200
+      port: 81
   tls:
     secretName: blueiris-tls
 
