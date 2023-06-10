@@ -7,9 +7,6 @@ spec:
     - websecure
   routes:
   - match: Host(`invidious.durp.info`) && PathPrefix(`/`)
-    middlewares:
-    - name: whitelist
-      namespace: traefik
     kind: Rule
     services:
     - name: invidious-invidious
