@@ -140,7 +140,7 @@ kong:
     # Enable creating a Kubernetes service for the admin API
     # Disabling this is recommended for most ingress controller configurations
     # Enterprise users that wish to use Kong Manager with the controller should enable this
-    enabled: false
+    enabled: true
     type: NodePort
     loadBalancerClass:
     # To specify annotations or labels for the admin service, add them to the respective
@@ -593,7 +593,7 @@ kong:
     #     memory: 128Mi
 
     konnect:
-      enabled: false
+      enabled: true
 
       # Specifies a Konnect Runtime Group's ID that the controller will push its data-plane config to.
       runtimeGroupID: ""
