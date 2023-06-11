@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: durpapi
+  name: kong
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: durpapi
+    path: kong
   destination:
-    namespace: durpapi
+    namespace: kong
     name: in-cluster
   syncPolicy:
     automated:
