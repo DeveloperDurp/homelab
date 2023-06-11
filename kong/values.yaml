@@ -593,7 +593,7 @@ kong:
     #     memory: 128Mi
 
     konnect:
-      enabled: true
+      enabled: false
 
       # Specifies a Konnect Runtime Group's ID that the controller will push its data-plane config to.
       runtimeGroupID: ""
