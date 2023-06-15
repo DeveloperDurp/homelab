@@ -1,0 +1,42 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`kong.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: kong-kong-proxy
+      port: 443
+  tls:
+    secretName: kong-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kong-tls
+spec:
+  secretName: kong-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "kong.durp.info"
+  dnsNames:
+  - "kong.durp.info"        
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kong-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: kong.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
