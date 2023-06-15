@@ -26,3 +26,6 @@ kong:
   ingressController:
     enabled: false
     installCRDs: false
+
+  proxy:
+    type: ClusterIP
