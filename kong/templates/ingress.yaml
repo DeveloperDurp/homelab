@@ -1,21 +1,3 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: kong-ingress
-spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`kong.durp.info`) && PathPrefix(`/`)
-    kind: Rule
-    services:
-    - name: kong-kong-proxy
-      port: 443
-  tls:
-    secretName: kong-tls
-
----
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -40,3 +22,106 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-kong-admin
+  namespace: kong
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`kong.durp.info`) && PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: kong-kong-admin
+          port: 8444
+  tls:
+    secretName: kong-tls
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-kong-manager
+  namespace: kong
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`kong.durp.info`)
+      kind: Rule
+      services:
+        - name: kong-kong-manager
+          port: 8445
+  tls:
+    secretName: kong-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kong-developer-tls
+spec:
+  secretName: kong-developer-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "developer.durp.info"
+  dnsNames:
+  - "developer.durp.info"        
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kong-developer-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: developer.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-kong-portal
+  namespace: kong
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`developer.durp.info`)
+      kind: Rule
+      services:
+        - name: kong-kong-portal
+          port: 8446
+  tls:
+    secretName: kong-developer-tls
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-kong-portalapi
+  namespace: kong
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`developer.durp.info`) && PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: kong-kong-portalapi
+          port: 8447
+  tls:
+    secretName: kong-developer-tls
