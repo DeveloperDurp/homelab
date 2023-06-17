@@ -1,35 +1,4 @@
 kong:
-# image:
-#   repository: registry.durp.info/kong/kong-gateway
-#   tag: "3.3"
-# 
-# secretVolumes:
-# - kong-cluster-cert
-# 
-# admin:
-#   enabled: false
-# 
-# env:
-#   role: data_plane
-#   database: "off"
-#   cluster_mtls: pki
-#   cluster_control_plane: a0791ed975.us.cp0.konghq.com:443
-#   cluster_server_name: a0791ed975.us.cp0.konghq.com
-#   cluster_telemetry_endpoint: a0791ed975.us.tp0.konghq.com:443
-#   cluster_telemetry_server_name: a0791ed975.us.tp0.konghq.com
-#   cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
-#   cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
-#   lua_ssl_trusted_certificate: system
-#   konnect_mode: "on"
-#   vitals: "off"
-# 
-# ingressController:
-#   enabled: false
-#   installCRDs: false
-# 
-# proxy:
-#   type: ClusterIP
-
   admin:
     annotations:
       konghq.com/protocol: https
@@ -245,6 +214,11 @@ kong:
   postgresql:
     enabled: true
     auth:
+      existingSecret: kong-config-secret
+      secretKeys:
+        adminPasswordKey: password
+        userPasswordKey: password
+        replicationPasswordKey: password
       database: kong
       username: kong
   proxy:
@@ -264,7 +238,7 @@ kong:
       containerPort: 8443
       enabled: true
       hostPort: 443
-    type: LoadBalancer
+    type: ClusterIP
   replicaCount: 1
   secretVolumes: []
   status:
