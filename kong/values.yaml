@@ -64,15 +64,15 @@ kong:
       enabled: true
     admin:
       enabled: true
-      commonName: kong.127-0-0-1.nip.io
+      commonName: kong.durp.info
     portal:
       enabled: true
-      commonName: developer.127-0-0-1.nip.io
+      commonName: developer.durp.info
     proxy:
       enabled: true
-      commonName: 127-0-0-1.nip.io
+      commonName: durp.info
       dnsNames:
-      - '*.127-0-0-1.nip.io'
+      - '*.durp.info'
   cluster:
     enabled: true
     labels:
@@ -109,13 +109,13 @@ kong:
       enabled: true
   env:
     admin_access_log: /dev/stdout
-    admin_api_uri: https://kong.127-0-0-1.nip.io/api
+    admin_api_uri: https://kong.durp.info/api
     admin_error_log: /dev/stdout
     admin_gui_access_log: /dev/stdout
     admin_gui_error_log: /dev/stdout
-    admin_gui_host: kong.127-0-0-1.nip.io
+    admin_gui_host: kong.durp.info
     admin_gui_protocol: https
-    admin_gui_url: https://kong.127-0-0-1.nip.io/
+    admin_gui_url: https://kong.durp.info/
     cluster_data_plane_purge_delay: 60
     cluster_listen: 0.0.0.0:8005
     cluster_telemetry_listen: 0.0.0.0:8006
@@ -141,14 +141,14 @@ kong:
     portal: true
     portal_api_access_log: /dev/stdout
     portal_api_error_log: /dev/stdout
-    portal_api_url: https://developer.127-0-0-1.nip.io/api
+    portal_api_url: https://developer.durp.info/api
     portal_auth: basic-auth
     portal_cors_origins: '*'
     portal_gui_access_log: /dev/stdout
     portal_gui_error_log: /dev/stdout
-    portal_gui_host: developer.127-0-0-1.nip.io
+    portal_gui_host: developer.durp.info
     portal_gui_protocol: https
-    portal_gui_url: https://developer.127-0-0-1.nip.io/
+    portal_gui_url: https://developer.durp.info/
     portal_session_conf:
       valueFrom:
         secretKeyRef:
