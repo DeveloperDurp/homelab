@@ -4,7 +4,7 @@ metadata:
   name: durpapi
   namespace: durpapi
 spec:
-  ingressClassName: kong
+  ingressClassName: traefik
   rules:
   - http:
       paths:
