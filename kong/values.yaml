@@ -42,9 +42,9 @@ kong:
         konghq.com/protocols: https
         konghq.com/strip-path: "true"
         kubernetes.io/ingress.class: default
-        nginx.ingress.kubernetes.io/app-root: /
-        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-        nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
+        #nginx.ingress.kubernetes.io/app-root: /
+        #nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        #nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
       enabled: true
       hostname: kong.127-0-0-1.nip.io
       path: /api
@@ -133,7 +133,7 @@ kong:
     database: postgres
     log_level: debug
     lua_package_path: /opt/?.lua;;
-    nginx_worker_processes: "2"
+    #nginx_worker_processes: "2"
     password:
       valueFrom:
         secretKeyRef:
@@ -209,7 +209,7 @@ kong:
       annotations:
         konghq.com/https-redirect-status-code: "301"
         kubernetes.io/ingress.class: default
-        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        #nginx.ingress.kubernetes.io/backend-protocol: HTTPS
       enabled: true
       hostname: kong.127-0-0-1.nip.io
       path: /
@@ -265,7 +265,7 @@ kong:
         konghq.com/protocols: https
         konghq.com/strip-path: "true"
         kubernetes.io/ingress.class: default
-        nginx.ingress.kubernetes.io/app-root: /
+        #nginx.ingress.kubernetes.io/app-root: /
       enabled: true
       hostname: developer.127-0-0-1.nip.io
       path: /api
