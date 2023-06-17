@@ -118,7 +118,7 @@ traefik:
     plugins:
       enabled: false
     kubernetesGateway:
-      enabled: true
+      enabled: false
       gateway:
         enabled: true
       # certificate:
