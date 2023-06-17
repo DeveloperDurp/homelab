@@ -39,6 +39,7 @@ spec:
       services:
         - name: kong-kong-admin
           port: 8444
+          scheme: https
   tls:
     secretName: kong-tls
 
@@ -58,6 +59,7 @@ spec:
       services:
         - name: kong-kong-manager
           port: 8445
+          scheme: https
   tls:
     secretName: kong-tls
 
@@ -104,6 +106,7 @@ spec:
       services:
         - name: kong-kong-portal
           port: 8446
+          scheme: https
   tls:
     secretName: kong-developer-tls
 
@@ -123,5 +126,6 @@ spec:
       services:
         - name: kong-kong-portalapi
           port: 8447
+          scheme: https
   tls:
     secretName: kong-developer-tls
