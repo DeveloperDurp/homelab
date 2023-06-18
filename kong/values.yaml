@@ -165,7 +165,7 @@ kong:
       servicePort: 8002
     ingress:
       enabled: false
-    tls::w
+    tls:
       containerPort: 8445
       enabled: true
       parameters:
