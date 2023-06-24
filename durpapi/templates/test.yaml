@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
     protocol: TCP
   selector:
     app: test
@@ -20,9 +20,9 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
-    targetPort: 80
+    targetPort: 8080
   clusterIP: None
   type: ClusterIP
 
@@ -37,5 +37,5 @@ subsets:
   - ip: 192.168.130.2
   ports:
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
