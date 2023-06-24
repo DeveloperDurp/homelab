@@ -1,3 +1,13 @@
 durpapi:
   deployment: 
     image: registry.gitlab.com/developerdurp/durpapi
+  postgresql:
+    enabled: true
+    auth:
+      existingSecret: durpapi-secret
+      secretKeys:
+        adminPasswordKey: db_pass
+        userPasswordKey: db_pass
+        replicationPasswordKey: db_pass
+      database: postgres
+      username: postgres
