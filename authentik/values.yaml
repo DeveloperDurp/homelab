@@ -147,6 +147,10 @@ authentik:
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
     existingSecret: db-pass
+    secretKeys:
+      adminPasswordKey: dbpass
+      userPasswordKey: dbpass
+      replicationPasswordKey: dbpass    
     persistence:
       enabled: true
       storageClass: longhorn
