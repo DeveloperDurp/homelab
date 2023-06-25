@@ -146,7 +146,7 @@ authentik:
       pullPolicy: Always
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
-    existingSecret: authentik-postgresql1
+    existingSecret: db-pass
     persistence:
       enabled: true
       storageClass: longhorn
