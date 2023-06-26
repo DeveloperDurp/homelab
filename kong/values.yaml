@@ -50,7 +50,7 @@ kong:
       containerPort: 8005
       enabled: true
       servicePort: 8005
-    type: LoadBalancer
+    type: ClusterIP
   clustertelemetry:
     enabled: true
     tls:
