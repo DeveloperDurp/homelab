@@ -50,7 +50,7 @@ kong:
       containerPort: 8005
       enabled: true
       servicePort: 8005
-    type: ClusterIP
+    type: loadbalancer
   clustertelemetry:
     enabled: true
     tls:
@@ -154,7 +154,7 @@ kong:
       repository: docker.io/kong/kubernetes-ingress-controller
       tag: "2.10"
     ingressClass: default
-    installCRDs: false
+    installCRDs: true
   manager:
     annotations:
       konghq.com/protocol: https
