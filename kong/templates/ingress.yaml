@@ -36,9 +36,21 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
+  name: developer-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: developer.durp.info
+spec:
+  type: ExternalName
+  externalName: a89ff7f4357c.us.portal.konghq.com
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
   name: kong-external-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: kong.durp.info
 spec:
   type: ExternalName
-  externalName: a89ff7f4357c.us.portal.konghq.com
+  externalName: durp.info
