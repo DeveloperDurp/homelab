@@ -54,3 +54,50 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api-tls
+spec:
+  secretName: api-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "api.durp.info"
+  dnsNames:
+  - "api.durp.info"        
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kong-api-proxy
+  namespace: kong
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`api.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: kong-kong-proxy
+          port: 443
+          scheme: https
+  tls:
+    secretName: kong-tls
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: api.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
