@@ -11,3 +11,6 @@ durpapi:
         replicationPasswordKey: db_pass
       database: postgres
       username: postgres
+
+  ingress:
+    host: api.durp.info/durpapi
