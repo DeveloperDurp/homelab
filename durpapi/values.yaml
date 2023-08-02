@@ -13,4 +13,4 @@ durpapi:
       username: postgres
 
   ingress:
-    host: api.durp.info/durpapi
+    #host: api.durp.info/durpapi
