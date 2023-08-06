@@ -13,4 +13,4 @@ spec:
           email: developerdurp@durp.info
           apiTokenSecretRef:
             name: cloudflare-api-token-secret
-            key: api-token
+            key: cloudflare-api-token-secret
