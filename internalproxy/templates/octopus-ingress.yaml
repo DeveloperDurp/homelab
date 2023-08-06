@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: octopus
+spec:
+  ports:
+  - name: app
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: octopus
+subsets:
+- addresses:
+  - ip: 192.168.20.14
+  ports:
+  - name: app
+    port: 443
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: octopus-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`octopus.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: octopus
+      port: 443
+      scheme: https    
+  tls:
+    secretName: octopus-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: octopus-tls
+spec:
+  secretName: octopus-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "octopus.internal.durp.info"
+  dnsNames:
+  - "octopus.internal.durp.info"  
