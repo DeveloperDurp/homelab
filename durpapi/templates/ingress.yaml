@@ -6,13 +6,13 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("api.durp.info/durpapi") && PathPrefix(`/`)
+  - match: Host("api.durp.info") && PathPrefix(`/durpapi`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik
     kind: Rule
     services:
-    - name: "{{ .Chart.Name }}-service"
+    - name: durpapi-service.durpapi.traefik.mesh
       port: 80     
   tls:
    secretName: durpapi-tls
