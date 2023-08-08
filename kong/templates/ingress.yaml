@@ -22,7 +22,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`kong.durp.info`) && PathPrefix(`/durpapi`)
+    - match: Host(`kong.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: kong-kong-proxy
