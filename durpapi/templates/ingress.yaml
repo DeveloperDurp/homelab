@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("{{ .Values.ingress.host }}") && PathPrefix(`/`)
+  - match: Host("api.durp.info") && PathPrefix(`/durpapi`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik
@@ -28,6 +28,6 @@ spec:
   issuerRef:
     name: {{ .Values.ingress.clusterissuer }}
     kind: ClusterIssuer
-  commonName: {{ .Values.ingress.host }}
+  commonName: api.durp.info
   dnsNames:
-  - {{ .Values.ingress.host }}
+  - api.durp.info
