@@ -1,0 +1,33 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("{{ .Values.ingress.host }}") && PathPrefix(`/`)
+    middlewares:
+    - name: authentik-proxy-provider
+      namespace: traefik
+    kind: Rule
+    services:
+    - name: "{{ .Chart.Name }}-service"
+      port: {{ .Values.service.port }}      
+  tls:
+   secretName: {{ .Values.ingress.tls }}
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.ingress.tls }}
+spec:
+  secretName: {{ .Values.ingress.tls }}
+  issuerRef:
+    name: {{ .Values.ingress.clusterissuer }}
+    kind: ClusterIssuer
+  commonName: {{ .Values.ingress.host }}
+  dnsNames:
+  - {{ .Values.ingress.host }}
