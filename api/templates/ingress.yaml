@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("api.durp.info") && Path(`/`)
+  - match: Host("api.durp.info") && PathPrefix(`/`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik
