@@ -10,6 +10,7 @@ spec:
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik
+    - name: durpapi-stripprefix
     kind: Rule
     services:
     - name: durpapi-service
@@ -31,3 +32,14 @@ spec:
   commonName: api.durp.info
   dnsNames:
   - api.durp.info
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: durpapi-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /durpapi
