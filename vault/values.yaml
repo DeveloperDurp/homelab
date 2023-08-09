@@ -54,7 +54,7 @@ vault:
       storageClass: longhorn
       accessMode: ReadWriteOnce
     auditStorage:
-      enabled: true
+      enabled: false
       size: 10Gi
       mountPath: "/vault/audit"
       storageClass: longhorn
