@@ -52,7 +52,7 @@ vault:
       enabled: true
       size: 10Gi
       storageClass: longhorn
-      accessMode: ReadWriteMany
+      accessMode: ReadWriteOnce
 
   ui:
     enabled: false
