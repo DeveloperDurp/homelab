@@ -36,7 +36,9 @@ vault:
       repository: "registry.durp.info/hashicorp/vault"
       tag: "1.13.1"
       pullPolicy: Always
-
+    ha:
+      enabled: true
+      replicas: 3
     resources: {}
     # resources:
     #   requests:
