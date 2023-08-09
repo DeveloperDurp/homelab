@@ -53,7 +53,12 @@ vault:
       size: 10Gi
       storageClass: longhorn
       accessMode: ReadWriteOnce
-
+    auditStorage:
+      enabled: true
+      size: 10Gi
+      mountPath: "/vault/audit"
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
   ui:
     enabled: false
     externalPort: 8200
