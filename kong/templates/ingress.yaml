@@ -91,7 +91,7 @@ spec:
           port: 443
           scheme: https
   tls:
-    secretName: kong-tls
+    secretName: api-tls
 
 ---
 
