@@ -18,7 +18,7 @@ spec:
       volumes:
       - name: krakend-secret
         secret:
-          secretName: config
+          secretName: krakend-secret
       containers:
       - name: krakend
         image: registry.durp.info/devopsfaith/krakend:2.4.3-watch
@@ -36,5 +36,5 @@ spec:
           containerPort: 8080          
         volumeMounts:
         - name: krakend-secret
-          mountPath: /etc/krakend/
+          mountPath: /etc/krakend/config
           subPath: krakend.json
