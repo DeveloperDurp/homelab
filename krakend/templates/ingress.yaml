@@ -16,8 +16,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: kong-api-proxy
-  namespace: kong
+  name: krakend-ingress
 spec:
   entryPoints:
     - websecure
