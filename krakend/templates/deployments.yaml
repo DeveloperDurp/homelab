@@ -18,7 +18,7 @@ spec:
       volumes:
       - name: krakend-secret
         secret:
-          secretName: krakend.json
+          secretName: config
       containers:
       - name: krakend
         image: registry.durp.info/devopsfaith/krakend:2.4.3-watch
