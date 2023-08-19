@@ -6,6 +6,10 @@ metadata:
   labels:
     app: krakend
 spec:
+  volumes:
+  - name: krakend-secret
+    secret:
+      secretName: krakend.json
   selector:
     matchLabels:
       app: krakend
@@ -15,10 +19,7 @@ spec:
       labels:
         app: krakend
     spec:
-      volumes:
-      - name: krakend-secret
-        secret:
-          secretName: krakend.json
+
       containers:
       - name: krakend
         image: registry.durp.info/devopsfaith/krakend:2.4.3-watch
