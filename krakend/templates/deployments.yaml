@@ -35,5 +35,5 @@ spec:
         - name: http
           containerPort: 8080          
         volumeMounts:
-        - name: krakend.json
+        - name: krakend-secret
           mountPath: /etc/krakend/
