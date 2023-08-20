@@ -22,9 +22,6 @@ spec:
     - websecure
   routes:
     - match: Host(`api.durp.info`) && PathPrefix(`/`)
-      middlewares:
-      - name: authentik-proxy-provider
-        namespace: traefik
       kind: Rule
       services:
         - name: krakend-service
