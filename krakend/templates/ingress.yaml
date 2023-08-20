@@ -44,3 +44,13 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-developer-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: developer.durp.info
+spec:
+  type: ExternalName
+  externalName: developerdurp.github.io
