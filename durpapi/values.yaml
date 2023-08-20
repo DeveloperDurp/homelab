@@ -1,6 +1,6 @@
 durpapi:
   deployment: 
-    image: registry.gitlab.com/developerdurp/durpapi
+    image: registry.durp.info/developerdurp/durpapi
     tag: "0.1.0-dev0109"
     secretfile: durpapi-secret
   postgresql:
