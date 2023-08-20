@@ -10,7 +10,3 @@ dependencies:
   repository: https://gitlab.com/api/v4/projects/48282809/packages/helm/stable
   version: 0.1.0-dev0004
   alias: durpapi
-- name: DurpAPI
-  repository: https://gitlab.com/api/v4/projects/48282809/packages/helm/stable
-  version: 0.1.0-dev0004
-  alias: durpapi2
