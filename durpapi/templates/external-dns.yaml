@@ -1,9 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: durpapi-external-dns
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: durpapi.durp.info
-spec:
-  type: ExternalName
-  externalName: durp.info
