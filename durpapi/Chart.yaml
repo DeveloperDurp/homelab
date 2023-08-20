@@ -6,7 +6,8 @@ version: 0.0.1
 appVersion: 0.0.1
 
 dependencies:
-- name: durpapi
+- name: DurpAPI
   repository: https://gitlab.com/api/v4/projects/45025483/packages/helm/stable
-  version: 0.1.0-dev0109
+  version: 0.1.0-dev0002
+  alias: durpapi
 

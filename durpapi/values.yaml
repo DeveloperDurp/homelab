@@ -1,6 +1,8 @@
 durpapi:
   deployment: 
     image: registry.gitlab.com/developerdurp/durpapi
+    tag: "0.1.0-dev0109"
+    secretfile: durpapi-secret
   postgresql:
     enabled: true
     auth:
@@ -12,7 +14,3 @@ durpapi:
       database: postgres
       username: postgres
 
-  ingress:
-    host: api.durp.info/durpapi
-    clusterissuer: letsencrypt-production
-    tls: durpapi-tls
