@@ -45,6 +45,8 @@ spec:
   type: ExternalName
   externalName: durp.info
 
+---
+
 kind: Service
 apiVersion: v1
 metadata:
