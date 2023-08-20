@@ -13,3 +13,10 @@ durpapi:
         replicationPasswordKey: db_pass
       database: postgres
       username: postgres
+durpapi2:
+  deployment: 
+    image: registry.durp.info/developerdurp/durpapi
+    tag: "0.1.0-dev0109"
+    secretfile: durpapi-secret
+  postgresql:
+    enabled: false
