@@ -50,6 +50,7 @@ metadata:
   name: api-developer-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: developer.durp.info
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
 spec:
   type: ExternalName
   externalName: developerdurp.github.io
