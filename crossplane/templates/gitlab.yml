@@ -55,4 +55,4 @@ spec:
   # a reference to a Kubernetes secret to which the controller will write the runnersToken
   writeConnectionSecretToRef:
     name: gitlab-project-example-project
-    namespace: crossplane-system
+    namespace: crossplane
