@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: octopus
+  name: crossplane
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: octopus
+    path: crossplane
   destination:
-    namespace: octopus
+    namespace: crossplane
     name: in-cluster
   syncPolicy:
     automated:
