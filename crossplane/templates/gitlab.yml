@@ -46,7 +46,7 @@ metadata:
 spec:
   forProvider:
     # If not set, metadata.name will be used instead.
-    name: "Example Project"
+    name: "WSLConfig"
     description: "example project description"
   providerConfigRef:
     name: gitlab-provider
