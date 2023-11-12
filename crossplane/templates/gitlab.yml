@@ -47,7 +47,7 @@ spec:
   deletionPolicy: Orphan
   forProvider:
     # If not set, metadata.name will be used instead.
-    name: "WSLConfig"
+    name: "Example Project"
     description: "example project description"
   providerConfigRef:
     name: gitlab-provider
