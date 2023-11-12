@@ -44,7 +44,6 @@ kind: Project
 metadata:
   name: example-project
 spec:
-  managementPolicies: ["Observe"]
   deletionPolicy: Orphan
   forProvider:
     # If not set, metadata.name will be used instead.
@@ -52,7 +51,3 @@ spec:
     description: "example project description"
   providerConfigRef:
     name: gitlab-provider
-  # a reference to a Kubernetes secret to which the controller will write the runnersToken
-  writeConnectionSecretToRef:
-    name: gitlab-project-example-project
-    namespace: crossplane
