@@ -48,7 +48,6 @@ spec:
   forProvider:
     # If not set, metadata.name will be used instead.
     name: "Example Project"
-    namespaceId: 52096109
     description: "example project description"
     namespaceIdRef:
       name: example-project
