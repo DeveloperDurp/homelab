@@ -49,7 +49,5 @@ spec:
     # If not set, metadata.name will be used instead.
     name: "Example Project"
     description: "example project description"
-    namespaceIdRef:
-      name: example-project
   providerConfigRef:
     name: gitlab-provider
