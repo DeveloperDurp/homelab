@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mothership
+  name: tdarr
 spec:
   ports:
   - name: app
-    port: 8006
+    port: 8265
     protocol: TCP
-    targetPort: 8006
+    targetPort: 8265
   clusterIP: None
   type: ClusterIP
 
@@ -16,13 +16,13 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: mothership
+  name: tdarr
 subsets:
 - addresses:
-  - ip: 192.168.21.253
+  - ip: 192.168.20.253
   ports:
   - name: app
-    port: 8006
+    port: 8265
     protocol: TCP
 
 ---
@@ -30,36 +30,36 @@ subsets:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: mothership-ingress
+  name: tdarr-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`mothership.internal.durp.info`)
+  - match: Host(`tdarr.internal.durp.info`)
     middlewares:
     - name: whitelist
       namespace: traefik  
     kind: Rule
     services:
-    - name: mothership
-      port: 8006
-      scheme: https
+    - name: tdarr
+      port: 8265
+      scheme: http
   tls:
-    secretName: mothership-tls  
+    secretName: tdarr-tls  
 
 ---
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: mothership-tls
+  name: tdarr-tls
 spec:
-  secretName: mothership-tls
+  secretName: tdarr-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "mothership.internal.durp.info"
+  commonName: "tdarr.internal.durp.info"
   dnsNames:
-  - "mothership.internal.durp.info"  
+  - "tdarr.internal.durp.info"  
