@@ -39,19 +39,19 @@ spec:
 
 ---
 
-apiVersion: projects.gitlab.crossplane.io/v1alpha1
-kind: Project
-metadata:
-  name: example-project
-spec:
-  deletionPolicy: Orphan
-  forProvider:
-    # If not set, metadata.name will be used instead.
-    name: "Example Project"
-    description: "example project description"
-  providerConfigRef:
-    name: gitlab-provider
-  # a reference to a Kubernetes secret to which the controller will write the runnersToken
-  writeConnectionSecretToRef:
-    name: gitlab-project-example-project
-    namespace: crossplane
+#apiVersion: projects.gitlab.crossplane.io/v1alpha1
+#kind: Project
+#metadata:
+#  name: example-project
+#spec:
+#  deletionPolicy: Orphan
+#  forProvider:
+#    # If not set, metadata.name will be used instead.
+#    name: "Example Project"
+#    description: "example project description"
+#  providerConfigRef:
+#    name: gitlab-provider
+#  # a reference to a Kubernetes secret to which the controller will write the runnersToken
+#  writeConnectionSecretToRef:
+#    name: gitlab-project-example-project
+#    namespace: crossplane
