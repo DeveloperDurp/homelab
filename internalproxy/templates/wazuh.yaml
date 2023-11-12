@@ -57,3 +57,15 @@ spec:
   commonName: "wazuh.durp.info"
   dnsNames:
   - "wazuh.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: registry-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: wazuh.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
