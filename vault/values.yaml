@@ -9,7 +9,7 @@ vault:
 
     agentImage:
       repository: "registry.durp.info/hashicorp/vault"
-      tag: "1.13.1"
+      tag: "1.15.2"
 
   injector:
     enabled: "-"
