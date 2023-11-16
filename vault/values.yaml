@@ -28,13 +28,13 @@ vault:
 
     agentImage:
       repository: "registry.durp.info/hashicorp/vault"
-      tag: "1.13.1"
+      tag: "1.15.2"
 
   server:
     enabled: "-"
     image:
       repository: "registry.durp.info/hashicorp/vault"
-      tag: "1.13.1"
+      tag: "1.15.2"
       pullPolicy: Always
     ha:
       enabled: false
