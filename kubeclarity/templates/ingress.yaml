@@ -1,0 +1,35 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubeclarity-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`kubeclarity.durp.info`) && PathPrefix(`/`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik
+    - name: authentik-proxy-provider
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: kubeclarity-kubeclarity
+      port: 8080
+  tls:
+    secretName: kubeclarity-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kubeclarity-tls
+spec:
+  secretName: kubeclarity-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "kubeclarity.durp.info"
+  dnsNames:
+  - "kubeclarity.durp.info"  
