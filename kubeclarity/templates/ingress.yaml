@@ -33,3 +33,15 @@ spec:
   commonName: "kubeclarity.durp.info"
   dnsNames:
   - "kubeclarity.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubeclarity-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: kubeclarity.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
