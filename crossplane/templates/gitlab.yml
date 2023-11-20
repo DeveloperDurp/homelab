@@ -53,5 +53,5 @@ spec:
   providerConfigRef:
     name: gitlab-provider
     policy:
-      resolution: optional
-      resolve: always
+      resolution: Optional
+      resolve: Always
