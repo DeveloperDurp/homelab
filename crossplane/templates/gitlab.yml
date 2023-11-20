@@ -47,8 +47,8 @@ metadata:
     crossplane.io/external-name: "example-project"
 spec:
   deletionPolicy: Orphan
-  forProvider: {}
-    #    name: "Example Project"
-    #    description: "example project description"
+  forProvider:
+    name: "Example Project"
+    description: "example project description"
   providerConfigRef:
     name: gitlab-provider
