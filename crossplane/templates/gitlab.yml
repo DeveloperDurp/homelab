@@ -39,15 +39,15 @@ spec:
 
 ---
 
-#apiVersion: projects.gitlab.crossplane.io/v1alpha1
-#kind: Project
-#metadata:
-#  name: example-project
-#spec:
-#  managementPolicies: ["Observe"]
-#  deletionPolicy: Orphan
-#  forProvider:
-#    name: "Example Project"
-#    description: "example project description"
-#  providerConfigRef:
-#    name: gitlab-provider
+apiVersion: projects.gitlab.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: example-project
+spec:
+  managementPolicies: ["Observe"]
+  deletionPolicy: Orphan
+  forProvider:
+    name: "Example Project"
+    description: "example project description"
+  providerConfigRef:
+    name: gitlab-provider
