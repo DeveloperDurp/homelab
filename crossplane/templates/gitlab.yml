@@ -53,6 +53,6 @@ spec:
     namespaceIdRef:
       name: test
       policy:
-        resolve: always
+        resolve: Always
   providerConfigRef:
     name: gitlab-provider
