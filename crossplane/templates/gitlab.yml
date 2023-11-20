@@ -46,6 +46,7 @@ metadata:
   annotations:
     crossplane.io/external-name: "example-project"
 spec:
+  managementPolicies: ["Observe"]
   deletionPolicy: Orphan
   forProvider:
     name: "Example Project"
