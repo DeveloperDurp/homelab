@@ -43,8 +43,6 @@ apiVersion: projects.gitlab.crossplane.io/v1alpha1
 kind: Project
 metadata:
   name: example-project
-  annotations:
-    crossplane.io/external-name: "example-project"
 spec:
   deletionPolicy: Orphan
   forProvider:
