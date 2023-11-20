@@ -44,7 +44,7 @@ kind: Project
 metadata:
   name: example-project
   annotations:
-    crossplane.io/external-name: "Example Project"
+    crossplane.io/external-name: "external-project"
 spec:
   deletionPolicy: Orphan
   forProvider:
