@@ -47,6 +47,7 @@ spec:
   deletionPolicy: Orphan
   forProvider:
     name: "Example Project"
+    namespaceId: 52096282
     description: "example project description"
   providerConfigRef:
     name: gitlab-provider
