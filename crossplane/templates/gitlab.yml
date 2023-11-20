@@ -44,15 +44,11 @@ kind: Project
 metadata:
   name: example-project
   annotations:
-    crossplane.io/external-name: "external-project"
+    crossplane.io/external-name: "example-project"
 spec:
   deletionPolicy: Orphan
-  forProvider:
-    name: "Example Project"
-    description: "example project description"
-    namespaceIdRef:
-      name: test
-      policy:
-        resolve: Always
+  forProvider: {}
+    #    name: "Example Project"
+    #    description: "example project description"
   providerConfigRef:
     name: gitlab-provider
