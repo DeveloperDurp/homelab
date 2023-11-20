@@ -9,5 +9,5 @@ appVersion: "1.16.0"
 
 dependencies:
 - name: octopus-deploy
-  repository: oci://registry-1.docker.io/octopusdeploy/octopusdeploy-helm
+  repository: oci://registry-1.docker.io/octopusdeploy/octopusdeploy-helm 
   version: 2023.2.12482
