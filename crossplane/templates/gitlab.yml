@@ -44,7 +44,6 @@ kind: Project
 metadata:
   name: example-project
 spec:
-  managementPolicies: ["Observe"]
   deletionPolicy: Orphan
   forProvider:
     name: "Example Project"
