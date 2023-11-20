@@ -52,6 +52,7 @@ spec:
     description: "example project description"
     namespaceIdRef:
       policy:
+        name: test
         resolve: always
   providerConfigRef:
     name: gitlab-provider
