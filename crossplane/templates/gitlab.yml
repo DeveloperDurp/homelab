@@ -50,5 +50,8 @@ spec:
   forProvider:
     name: "Example Project"
     description: "example project description"
+    namespaceIdRef:
+      policy:
+        resolve: always
   providerConfigRef:
     name: gitlab-provider
