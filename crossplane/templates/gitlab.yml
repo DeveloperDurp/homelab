@@ -46,10 +46,12 @@ metadata:
   annotations:
     crossplane.io/external-name: "example-project"
 spec:
-  managementPolicies: ["Observe"]
   deletionPolicy: Orphan
   forProvider:
     name: "Example Project"
     description: "example project description"
   providerConfigRef:
     name: gitlab-provider
+    policy:
+      resolution: optional
+      resolve: always
