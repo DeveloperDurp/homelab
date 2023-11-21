@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octopus-tentacle
+  labels:
+    app: octopus-tentacle
+spec:
+  selector:
+    matchLabels:
+      app: octopus-tentacle
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: octopus-tentacle
+    spec:
+      containers:
+      - name: octopus-tentacle
+        image: registry.durp.info/octopusdeploy/tentacle:latest
+        imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: true
+        ports:
+        - name: http
+          containerPort: 10933
+        env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: ListeningPort
+            value: "10933"                      
+          - name: TargetEnvironment
+            value: "Development"          
+          - name: ServerUrl
+            value: "https://octopus.internal.durp.info"              
+          - name: TargetRole
+            value: "k3s"              
+          - name: ServerApiKey
+            valueFrom:
+              secretKeyRef:
+                name: octopus-tentacle-secret
+                key: key
+      volumes:
+      - name: octopus-tentacle-pvc
+        persistentVolumeClaim:
+          claimName: octopus-tentacle-pvc             
