@@ -19,7 +19,7 @@ metadata:
   name: octopus
 subsets:
 - addresses:
-  - ip: 192.168.20.14
+  - ip: 192.168.20.103
   ports:
   - name: app
     port: 443
