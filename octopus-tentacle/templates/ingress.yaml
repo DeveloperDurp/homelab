@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: octopus-tentacle-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`octopus-tentacle.internal.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: octopus-tentacle
+      port: 10933
+  tls:
+    secretName: octopus-tentacle-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: octopus-tentacle-tls
+spec:
+  secretName: octopus-tentacle-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "octopus-tentacle.internal.durp.info"
+  dnsNames:
+  - "octopus-tentacle.internal.durp.info"  
