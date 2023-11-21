@@ -20,6 +20,7 @@ spec:
         imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: true
+          privileged: true 
         ports:
         - name: http
           containerPort: 10933
@@ -34,6 +35,8 @@ spec:
             value: "https://octopus.internal.durp.info"              
           - name: TargetRole
             value: "k3s"              
+          - name: TargetWorkerPool
+            value: "Default Worker Pool"              
           - name: CustomPublicHostName
             value: "192.168.20.131"              
           - name: PublicHostNameConfiguration
