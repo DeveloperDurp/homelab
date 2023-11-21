@@ -39,7 +39,3 @@ spec:
               secretKeyRef:
                 name: octopus-tentacle-secret
                 key: key
-      volumes:
-      - name: octopus-tentacle-pvc
-        persistentVolumeClaim:
-          claimName: octopus-tentacle-pvc             
