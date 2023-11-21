@@ -34,8 +34,10 @@ spec:
             value: "https://octopus.internal.durp.info"              
           - name: TargetRole
             value: "k3s"              
-          - name: PublicHostNameConfiguration
+          - name: CustomPublicHostName
             value: "octopus-tentacle.internal.durp.info"              
+          - name: PublicHostNameConfiguration
+            value: "Custom"              
           - name: ServerApiKey
             valueFrom:
               secretKeyRef:
