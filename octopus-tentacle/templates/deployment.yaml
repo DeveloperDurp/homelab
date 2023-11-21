@@ -29,7 +29,7 @@ spec:
           - name: ListeningPort
             value: "10933"                      
           - name: TargetEnvironment
-            value: "Development"          
+            value: "Development,Production"          
           - name: ServerUrl
             value: "https://octopus.internal.durp.info"              
           - name: TargetRole
@@ -38,6 +38,8 @@ spec:
             value: "192.168.20.131"              
           - name: PublicHostNameConfiguration
             value: "Custom"              
+          - name: TargetName
+            value: "k3s"              
           - name: ServerApiKey
             valueFrom:
               secretKeyRef:
