@@ -33,8 +33,6 @@ spec:
             value: "Development,Production"          
           - name: ServerUrl
             value: "https://octopus.internal.durp.info"              
-          - name: TargetRole
-            value: "k3s"              
           - name: TargetWorkerPool
             value: "Default Worker Pool"              
           - name: CustomPublicHostName
