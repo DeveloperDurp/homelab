@@ -8,5 +8,6 @@ spec:
     port: 10933
     targetPort: 10933
     protocol: TCP
+  type: LoadBalancer
   selector:
     app: octopus-tentacle
