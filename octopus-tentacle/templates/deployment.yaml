@@ -29,8 +29,6 @@ spec:
             value: "Y"
           - name: ListeningPort
             value: "10933"                      
-          - name: TargetEnvironment
-            value: "Development,Production"          
           - name: ServerUrl
             value: "https://octopus.internal.durp.info"              
           - name: TargetWorkerPool
