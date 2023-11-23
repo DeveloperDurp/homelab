@@ -24,32 +24,32 @@ spec:
 
 ---
 
-apiVersion: gitlab.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: gitlab-provider
-spec:
-  baseURL: https://gitlab.com/
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane
-      name: gitlab-secret
-      key: accesstoken
-
----
-
-apiVersion: projects.gitlab.crossplane.io/v1alpha1
-kind: Project
-metadata:
-  name: example-project
-spec:
-  deletionPolicy: Orphan
-  forProvider:
-    name: "Example Project"
-    description: "example project description"
-  providerConfigRef:
-    name: gitlab-provider
-    policy:
-      resolution: Optional
-      resolve: Always
+#apiVersion: gitlab.crossplane.io/v1beta1
+#kind: ProviderConfig
+#metadata:
+#  name: gitlab-provider
+#spec:
+#  baseURL: https://gitlab.com/
+#  credentials:
+#    source: Secret
+#    secretRef:
+#      namespace: crossplane
+#      name: gitlab-secret
+#      key: accesstoken
+#
+#---
+#
+#apiVersion: projects.gitlab.crossplane.io/v1alpha1
+#kind: Project
+#metadata:
+#  name: example-project
+#spec:
+#  deletionPolicy: Orphan
+#  forProvider:
+#    name: "Example Project"
+#    description: "example project description"
+#  providerConfigRef:
+#    name: gitlab-provider
+#    policy:
+#      resolution: Optional
+#      resolve: Always
