@@ -2,10 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bitwarden
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: bitwarden.durp.info
 spec:
-  externalName: durp.info
   ports:
   - name: http
     port: 80
