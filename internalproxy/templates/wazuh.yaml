@@ -1,65 +1,65 @@
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: wazuh
-#spec:
-#  ports:
-#  - name: app
-#    port: 443
-#    protocol: TCP
-#    targetPort: 443
-#  clusterIP: None
-#  type: ClusterIP
-#
-#---
-#
-#apiVersion: v1
-#kind: Endpoints
-#metadata:
-#  name: wazuh
-#subsets:
-#- addresses:
-#  - ip: 192.168.20.102
-#  ports:
-#  - name: app
-#    port: 443
-#    protocol: TCP
-#
-#---    
-#
-#apiVersion: traefik.containo.us/v1alpha1
-#kind: IngressRoute
-#metadata:
-#  name: wazuh-ingress
-#spec:
-#  entryPoints:
-#    - websecure
-#  routes:
-#  - match: Host(`wazuh.durp.info`) && PathPrefix(`/`)
-#    kind: Rule
-#    services:
-#    - name: wazuh
-#      port: 443
-#  tls:
-#    secretName: wazuh-tls
-#
-#---
-#
-#apiVersion: cert-manager.io/v1
-#kind: Certificate
-#metadata:
-#  name: wazuh-tls
-#spec:
-#  secretName: wazuh-tls
-#  issuerRef:
-#    name: letsencrypt-production
-#    kind: ClusterIssuer
-#  commonName: "wazuh.durp.info"
-#  dnsNames:
-#  - "wazuh.durp.info"  
-#
-#---
-#
+apiVersion: v1
+kind: Service
+metadata:
+  name: wazuh
+spec:
+  ports:
+  - name: app
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: wazuh
+subsets:
+- addresses:
+  - ip: 192.168.20.102
+  ports:
+  - name: app
+    port: 443
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wazuh-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`wazuh.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: wazuh
+      port: 443
+  tls:
+    secretName: wazuh-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wazuh-tls
+spec:
+  secretName: wazuh-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "wazuh.durp.info"
+  dnsNames:
+  - "wazuh.durp.info"  
+
+---
+
 kind: Service
 apiVersion: v1
 metadata:
