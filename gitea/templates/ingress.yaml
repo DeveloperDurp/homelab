@@ -1,19 +1,19 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  annotations:
-  name: gitea-ingress
-spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`gitea.durp.info`) && PathPrefix(`/`)
-    kind: Rule
-    services:
-    - name: gitea-http
-      port: 3000
-  tls:
-    secretName: gitea-tls
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: IngressRoute
+#metadata:
+#  annotations:
+#  name: gitea-ingress
+#spec:
+#  entryPoints:
+#    - websecure
+#  routes:
+#  - match: Host(`gitea.durp.info`) && PathPrefix(`/`)
+#    kind: Rule
+#    services:
+#    - name: gitea-http
+#      port: 3000
+#  tls:
+#    secretName: gitea-tls
 
 ---
 
