@@ -14,22 +14,22 @@
 #      port: 3000
 #  tls:
 #    secretName: gitea-tls
-
----
-
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: gitea-tls
-spec:
-  secretName: gitea-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: "gitea.durp.info"
-  dnsNames:
-  - "gitea.durp.info"  
-
+#
+#---
+#
+#apiVersion: cert-manager.io/v1
+#kind: Certificate
+#metadata:
+#  name: gitea-tls
+#spec:
+#  secretName: gitea-tls
+#  issuerRef:
+#    name: letsencrypt-production
+#    kind: ClusterIssuer
+#  commonName: "gitea.durp.info"
+#  dnsNames:
+#  - "gitea.durp.info"  
+#
 ---
 
 kind: Service
