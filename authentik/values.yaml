@@ -1,11 +1,11 @@
 authentik:
 
-  replicas: 1
+  replicas: 3
   priorityClassName:
   securityContext: {}
 
   worker:
-    replicas: 1
+    replicas: 3
     priorityClassName:
     securityContext: {}
 
