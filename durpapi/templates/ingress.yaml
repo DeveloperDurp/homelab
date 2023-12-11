@@ -1,0 +1,33 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("{{test.durp.info}}") && PathPrefix(`/`)
+    middlewares:
+    - name: authentik-proxy-provider
+      namespace: traefik
+    kind: Rule
+    services:
+    - name: "{{ .Chart.Name }}-service"
+      port: {{ .Values.service.port }}      
+  tls:
+    secretName: durpapi-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: durpapi-tls
+spec:
+  secretName: durpapi-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "test.durp.info"
+  dnsNames:
+  - "test.durp.info"  
