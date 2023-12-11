@@ -10,7 +10,7 @@ spec:
     kind: Rule
     services:
     - name: "durpapi-service"
-      port: 8080
+      port: 80
   tls:
     secretName: durpapi-tls
 
