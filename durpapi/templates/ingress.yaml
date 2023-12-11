@@ -7,9 +7,6 @@ spec:
     - websecure
   routes:
   - match: Host("test.durp.info") && PathPrefix(`/`)
-    middlewares:
-    - name: authentik-proxy-provider
-      namespace: traefik
     kind: Rule
     services:
     - name: "durpapi-service"
