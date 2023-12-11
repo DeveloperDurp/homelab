@@ -116,7 +116,10 @@ traefik:
     v3:
       enabled: false
     plugins:
-      enabled: false
+      enabled: true
+      jwt:
+        moduleName: github.com/Brainwave/jwt-middleware
+        version: v1.1.5
     kubernetesGateway:
       enabled: false
       gateway:
