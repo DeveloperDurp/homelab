@@ -116,7 +116,6 @@ traefik:
     v3:
       enabled: false
     plugins:
-      enabled: true
       jwt:
         moduleName: github.com/Brainwave/jwt-middleware
         version: v1.1.5
