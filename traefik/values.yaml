@@ -116,9 +116,7 @@ traefik:
     v3:
       enabled: false
     plugins:
-      jwt:
-        moduleName: github.com/Brainwave/jwt-middleware
-        version: v1.1.5
+      enabled: true
     kubernetesGateway:
       enabled: false
       gateway:
@@ -502,7 +500,8 @@ traefik:
   additionalArguments: 
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
-
+    - "--experimental.plugins.jwt.modulename=github.com/Brainnwave/jwt-middleware"
+    - "--experimental.plugins.jwt.version=v1.1.5"
   # Environment variables to be passed to Traefik's binary
   env: []
   # - name: SOME_VAR
@@ -574,6 +573,7 @@ traefik:
       # Port Redirections
       # Added in 2.2, you can make permanent redirects via entrypoints.
       # https://docs.traefik.io/routing/entrypoints/#redirection
+      redirectTo: websecure
       #
       # Trust forwarded  headers information (X-Forwarded-*).
       # forwardedHeaders:
