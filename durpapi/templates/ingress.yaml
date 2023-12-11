@@ -8,6 +8,8 @@ spec:
   routes:
   - match: Host("test.durp.info") && PathPrefix(`/`)
     kind: Rule
+    middlewares:
+      - name: jwt
     services:
     - name: "durpapi-service"
       port: 80
@@ -28,3 +30,15 @@ spec:
   commonName: "test.durp.info"
   dnsNames:
   - "test.durp.info"  
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: jwt
+spec:
+  plugin:
+    jwt:
+      issuers: 
+        - https://authentik.durp.info/application/o/api/
