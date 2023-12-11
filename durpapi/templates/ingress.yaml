@@ -41,5 +41,5 @@ spec:
   plugin:
     jwt:
       issuers: 
-        - https://authentik.durp.info/application/o/api/
+        - https://authentik.durp.info/application/o/api
       secret: 
