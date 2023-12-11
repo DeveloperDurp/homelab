@@ -41,4 +41,4 @@ spec:
   plugin:
     jwt:
       Keys: 
-        - https://authentik.durp.info/application/o/api/
+        - https://authentik.durp.info/application/o/api/jwks
