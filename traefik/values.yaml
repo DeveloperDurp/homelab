@@ -501,7 +501,7 @@ traefik:
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
     - "--experimental.plugins.jwt.modulename=github.com/DeveloperDurp/jwt-middleware"
-    - "--experimental.plugins.jwt.version=v1.0.0"
+    - "--experimental.plugins.jwt.version=v1.0.1"
   # Environment variables to be passed to Traefik's binary
   env: []
   # - name: SOME_VAR
