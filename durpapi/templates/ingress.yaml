@@ -13,7 +13,7 @@ spec:
     kind: Rule
     services:
     - name: "{{ .Chart.Name }}-service"
-      port: {{ .Values.service.port }}      
+      port: 8080
   tls:
     secretName: durpapi-tls
 
