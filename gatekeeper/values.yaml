@@ -46,7 +46,7 @@ gatekeeper:
     repository: openpolicyagent/gatekeeper
     crdRepository: openpolicyagent/gatekeeper-crds
     release: v3.15.0-beta.0
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     pullSecrets: []
   preInstall:
     crdRepository:
