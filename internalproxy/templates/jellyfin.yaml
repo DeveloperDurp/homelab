@@ -40,9 +40,9 @@ spec:
   - match: Host(`jellyfin.durp.info`)
     kind: Rule
     services:
-    - name: jellyfin
+    - name: app
       port: 8096
-      scheme: https
+      scheme: http
   tls:
     secretName: jellyfin-tls  
 
