@@ -42,7 +42,7 @@ spec:
       namespace: traefik 
     services:
     - name: speedtest
-      port: 8081
+      port: 6580
   tls:
     secretName: speedtest-tls
 
