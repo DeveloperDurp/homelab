@@ -40,5 +40,6 @@ metadata:
 spec:
   plugin:
     jwt:
-      Keys: 
+      Required: true
+      Keys:
         - https://authentik.durp.info/application/o/api/jwks
