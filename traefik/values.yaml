@@ -500,7 +500,7 @@ traefik:
   additionalArguments: 
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
-    - --experimental.plugins.jwt.moduleName=github.com/team-carepay/traefik-jwt-plugin
+    - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
     - --experimental.plugins.jwt.version=v0.0.11
 
 
