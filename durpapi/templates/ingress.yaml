@@ -8,8 +8,8 @@ spec:
   routes:
   - match: Host("test.durp.info") && PathPrefix(`/`)
     kind: Rule
-    middlewares:
-      - name: jwt
+    #middlewares:
+     # - name: jwt
     services:
     - name: "durpapi-service"
       port: 80
