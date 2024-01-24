@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`durp.info`) && PathPrefix(`/`)
+  - match: Host(`links.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: littlelink
@@ -27,4 +27,4 @@ spec:
     kind: ClusterIssuer
   commonName: "durp.info"
   dnsNames:
-  - "durp.info"  
+  - "links.durp.info"  
