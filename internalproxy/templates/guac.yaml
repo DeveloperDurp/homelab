@@ -7,3 +7,65 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: guac
+spec:
+  ports:
+  - name: app
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: guac
+subsets:
+- addresses:
+  - ip: 192.168.20.253
+  ports:
+  - name: app
+    port: 8082
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: guac-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`guac.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: guac
+      port: 8082
+  tls:
+    secretName: guac-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: guac-tls
+spec:
+  secretName: guac-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "guac.durp.info"
+  dnsNames:
+  - "guac.durp.info"  
