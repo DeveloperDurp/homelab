@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: octopus-tentacle
-        image: registry.durp.info/octopusdeploy/tentacle:latest
+        image: registry.internal.durp.info/octopusdeploy/tentacle:latest
         imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: true

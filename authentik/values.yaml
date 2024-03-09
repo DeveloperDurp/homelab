@@ -10,7 +10,7 @@ authentik:
     securityContext: {}
 
   image:
-    repository: registry.durp.info/goauthentik/server
+    repository: registry.internal.durp.info/goauthentik/server
     pullPolicy: Always
 
   ingress:
@@ -44,7 +44,7 @@ authentik:
       timeout: 30
       from: ""
     outposts:
-      container_image_base: registry.durp.info/goauthentik/%(type)s:%(version)s
+      container_image_base: registry.internal.durp.info/goauthentik/%(type)s:%(version)s
     error_reporting:
       enabled: false
       environment: "k8s"
@@ -141,7 +141,7 @@ authentik:
   postgresql:
     enabled: true
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: bitnami/postgresql
       pullPolicy: Always
     postgresqlUsername: "authentik"
@@ -155,7 +155,7 @@ authentik:
   redis:
     enabled: true
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: bitnami/redis
       pullPolicy: Always
     architecture: standalone

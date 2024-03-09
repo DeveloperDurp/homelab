@@ -2,7 +2,7 @@ durpapi:
   ingress:
     enabled: false
   deployment: 
-    image: registry.durp.info/developerdurp/durpapi
+    image: registry.internal.durp.info/developerdurp/durpapi
     tag: "0.1.0-dev0109"
     secretfile: durpapi-secret
   postgresql:

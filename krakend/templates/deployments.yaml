@@ -21,7 +21,7 @@ spec:
           secretName: krakend-secret
       containers:
       - name: krakend
-        image: registry.durp.info/devopsfaith/krakend:2.4.3
+        image: registry.internal.durp.info/devopsfaith/krakend:2.4.3
         imagePullPolicy: Always
         livenessProbe:
           httpGet:

@@ -1,6 +1,6 @@
 cert-manager:
   image:
-    registry: registry.durp.info
+    registry: registry.internal.durp.info
     repository: jetstack/cert-manager-controller
     pullPolicy: Always
   installCRDs: true
@@ -15,11 +15,11 @@ cert-manager:
       - "1.0.0.1"
   webhook:
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: jetstack/cert-manager-webhook
       pullPolicy: Always  
   cainjector:
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: jetstack/cert-manager-cainjector
       pullPolicy: Always

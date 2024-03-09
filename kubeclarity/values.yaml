@@ -2,13 +2,13 @@ kubeclarity:
   global:
     databasePassword: kubeclarity
     docker:
-      registry: "registry.durp.info/openclarity"
+      registry: "registry.internal.durp.info/openclarity"
       tag: "latest"
       imagePullPolicy: Always
 
   curl:
     image:
-      registry: "registry.durp.info"
+      registry: "registry.internal.durp.info"
       repository: curlimages/curl
       tag: 7.87.0
 
@@ -116,7 +116,7 @@ kubeclarity:
     enabled: true
 
     docker:
-      imageRepo: "registry.durp.info/openclarity"
+      imageRepo: "registry.internal.durp.info/openclarity"
       imageTag: "v0.6.0"
       imagePullPolicy: Always
 
@@ -137,7 +137,7 @@ kubeclarity:
 
     ## Docker Image values.
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: aquasec/trivy
       tag: 0.44.1
       pullPolicy: Always
@@ -188,7 +188,7 @@ kubeclarity:
     enabled: true
 
     image:
-      registry: registry.durp.info
+      registry: registry.internal.durp.info
       repository: bitnami/postgresql
       tag: 14.6.0-debian-11-r31
 

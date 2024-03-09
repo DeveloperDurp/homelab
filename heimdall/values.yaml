@@ -2,7 +2,7 @@ heimdall:
 
   image:
     registry: 
-    repository: registry.durp.info/linuxserver/heimdall
+    repository: registry.internal.durp.info/linuxserver/heimdall
     pullPolicy: Always    
 
   env:
