@@ -7,6 +7,6 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 dependencies:
-- name: kong
+- name: ingress 
   repository: https://charts.konghq.com
-  version: 2.23.0
+  version: 0.12.0
