@@ -38,7 +38,7 @@ spec:
   - match: Host(`registry.internal.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
-    - name: registry
+    - name: registry-internal
       port: 5001
   tls:
     secretName: registry-tls
