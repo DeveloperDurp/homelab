@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: kong
   destination:
-    namespace: kong
+    namespace: kong-ingress
     name: in-cluster
   syncPolicy:
     automated:
