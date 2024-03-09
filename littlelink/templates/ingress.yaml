@@ -28,3 +28,15 @@ spec:
   commonName: "links.durp.info"
   dnsNames:
   - "links.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: links-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: links.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
