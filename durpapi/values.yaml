@@ -3,7 +3,7 @@ durpapi:
     enabled: false
   deployment: 
     image: registry.internal.durp.info/developerdurp/durpapi
-    tag: "0.1.0-dev0109"
+    tag: "0.1.0-dev0120"
     secretfile: durpapi-secret
   postgresql:
     enabled: true
