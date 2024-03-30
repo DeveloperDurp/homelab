@@ -1,7 +1,7 @@
 authentik:
   global:
     env: 
-      - name: AUTHENTIK_POSTGRESQL_PASSWORD
+      - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
           secretKeyRef:
             name: db-pass
@@ -18,6 +18,11 @@ authentik:
   authentik:
     outposts:
       container_image_base: registry.internal.durp.info/goauthentik/%(type)s:%(version)s
+    postgresql:
+      host: '{{ .Release.Name }}-postgresql'
+      name: "authentik"
+      user: "authentik"
+      port: 5432
   server:
     name: server
     replicas: 3
