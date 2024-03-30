@@ -1,15 +1,5 @@
 authentik:
   global:
-    revisionHistoryLimit: 1
-    image:
-      repository: registry.internal.durp.info/goauthentik/server
-      pullPolicy: Always
-  authentik:
-    outposts:
-      container_image_base: registry.internal.durp.info/goauthentik/%(type)s:%(version)s
-  server:
-    name: server
-    replicas: 3
     env: 
       - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
@@ -21,6 +11,16 @@ authentik:
           secretKeyRef:
             name: db-pass
             key: secretkey
+    revisionHistoryLimit: 1
+    image:
+      repository: registry.internal.durp.info/goauthentik/server
+      pullPolicy: Always
+  authentik:
+    outposts:
+      container_image_base: registry.internal.durp.info/goauthentik/%(type)s:%(version)s
+  server:
+    name: server
+    replicas: 3
   worker:
     name: worker
     replicas: 3
