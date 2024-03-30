@@ -140,8 +140,6 @@ authentik:
 
   postgresql:
     enabled: true
-    diagnosticMode:
-        enabled: true
     image:
       registry: registry.internal.durp.info
       repository: bitnami/postgresql
