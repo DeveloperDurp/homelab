@@ -19,7 +19,7 @@ authentik:
     outposts:
       container_image_base: registry.internal.durp.info/goauthentik/%(type)s:%(version)s
     postgresql:
-      host: '{{ .Release.Name }}-postgresql'
+      host: '{{ .Release.Name }}-postgresql-hl'
       name: "authentik"
       user: "authentik"
       port: 5432
