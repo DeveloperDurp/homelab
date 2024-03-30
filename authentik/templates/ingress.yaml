@@ -9,7 +9,7 @@ spec:
   - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
-    - name: authentik
+    - name: authentik-service
       port: 80
   tls:
     secretName: authentik-tls
