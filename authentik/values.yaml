@@ -140,10 +140,13 @@ authentik:
 
   postgresql:
     enabled: true
+    diagnosticMode:
+        enabled: true
     image:
       registry: registry.internal.durp.info
       repository: bitnami/postgresql
       pullPolicy: Always
+      tag: 15.2.0-debian-11-r26
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
     existingSecret: db-pass 
