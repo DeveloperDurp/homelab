@@ -28,7 +28,7 @@ authentik:
     replicas: 3
   worker:
     name: worker
-    replicas: 3
+    replicas: 1
   postgresql:
     enabled: true
     image:
