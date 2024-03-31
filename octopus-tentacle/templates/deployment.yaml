@@ -34,7 +34,7 @@ spec:
           - name: TargetWorkerPool
             value: "Default Worker Pool"              
           - name: CustomPublicHostName
-            value: "192.168.20.131"              
+            value: "192.168.20.132"              
           - name: PublicHostNameConfiguration
             value: "Custom"              
           - name: TargetName
