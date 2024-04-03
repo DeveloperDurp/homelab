@@ -2,7 +2,6 @@ ingress:
   enabled: false
 deployment: 
   image: registry.internal.durp.info/developerdurp/durpapi
-  tag: "0.1.0-dev0142"
   secretfile: durpapi-secret
   imagePullPolicy: Always
   hpa:
