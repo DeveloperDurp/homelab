@@ -18,6 +18,24 @@ spec:
 
 ---
 
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("test.durp.info") && PathPrefix(`/swagger`)
+    kind: Rule
+    services:
+    - name: "durpapi-service"
+      port: 80
+  tls:
+    secretName: durpapi-tls
+
+---
+
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
