@@ -1,11 +1,11 @@
 version: 
+type: application
+dependencies:
+- version: 0.1.0-dev0004
+  alias: durpapi
+  repository: https://gitlab.com/api/v4/projects/48282809/packages/helm/stable
+  name: DurpAPI
+appVersion: 0.0.1
 description: A Helm chart for Kubernetes
 name: durpapi
-appVersion: 0.0.1
-dependencies:
-- repository: https://gitlab.com/api/v4/projects/48282809/packages/helm/stable
-  version: 0.1.0-dev0004
-  alias: durpapi
-  name: DurpAPI
 apiVersion: v2
-type: application
