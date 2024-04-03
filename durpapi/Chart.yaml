@@ -1,4 +1,4 @@
-version: 
+version: 1.0
 type: application
 dependencies:
 - version: 0.1.0-dev0004
