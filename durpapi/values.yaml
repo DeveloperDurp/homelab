@@ -12,24 +12,23 @@ durpapi:
     probe:
       readiness:  
         httpGet:
-          path: /api/health/getHealth
+          path: /api/health/gethealth
           port: 8080
       liveness: 
         httpGet:
-          path: /api/health/getHealth
+          path: /api/health/gethealth
           port: 8080
       startup: 
         httpGet:
-          path: /api/health/getHealth
+          path: /api/health/gethealth
           port: 8080
+  service:
+    type: ClusterIP
+    port: 80
+    targetport: 8080
 
-service:
-  type: ClusterIP
-  port: 80
-  targetport: 8080
-
-swagger:
-  host: api.durp.info
+  swagger:
+    host: api.durp.info
   postgresql:
     enabled: true
     auth:
