@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  replicas: {{ .Values.deployment.hpa.minReplicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: api
+        image: "{{ .Values.deployment.image }}:{{ default .Chart.Version .Values.deployment.tag }}"
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}   
+        readinessProbe:
+          {{- toYaml .Values.deployment.probe.readiness | nindent 12 }}
+        livenessProbe:
+          {{- toYaml .Values.deployment.probe.liveness | nindent 12 }}
+        startupProbe:
+          {{- toYaml .Values.deployment.probe.startup | nindent 12 }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.service.targetport }}
+        env:
+          - name: host
+            value: {{ .Values.swagger.host }}
+          - name: version
+            value: {{ default .Chart.Version .Values.deployment.tag }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.deployment.secretfile }} 

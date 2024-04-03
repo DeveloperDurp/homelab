@@ -5,6 +5,31 @@ durpapi:
     image: registry.internal.durp.info/developerdurp/durpapi
     tag: "0.1.0-dev0141"
     secretfile: durpapi-secret
+    imagePullPolicy: Always
+    hpa:
+      minReplicas: 3
+      maxReplicas: 10
+    probe:
+      readiness:  
+        httpGet:
+          path: /api/health/getHealth
+          port: 8080
+      liveness: 
+        httpGet:
+          path: /api/health/getHealth
+          port: 8080
+      startup: 
+        httpGet:
+          path: /api/health/getHealth
+          port: 8080
+
+service:
+  type: ClusterIP
+  port: 80
+  targetport: 8080
+
+swagger:
+  host: api.durp.info
   postgresql:
     enabled: true
     auth:
