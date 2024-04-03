@@ -13,8 +13,6 @@ spec:
     services:
     - name: "durpapi-service"
       port: 80
-  tls:
-    secretName: durpapi-tls
 
 ---
 
@@ -26,28 +24,11 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("test.durp.info") && PathPrefix(`/swagger`)
+  - match: Host("api.durp.info") && PathPrefix(`/swagger`)
     kind: Rule
     services:
     - name: "durpapi-service"
       port: 80
-  tls:
-    secretName: durpapi-tls
-
----
-
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: durpapi-tls
-spec:
-  secretName: durpapi-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: "test.durp.info"
-  dnsNames:
-  - "test.durp.info"  
 
 ---
 
