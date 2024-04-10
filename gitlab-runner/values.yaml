@@ -31,6 +31,7 @@ gitlab-runner:
   runners:
     config: |
       [[runners]]
+        shell = "powershell"
         [runners.kubernetes]
           namespace = "{{.Release.Namespace}}"
           image = "ubuntu:22.04"
