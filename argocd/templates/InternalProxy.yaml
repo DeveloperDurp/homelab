@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
-    targetRevision: main
+    targetRevision: dev
     path: internalproxy
     directory:
       recurse: true
