@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
+  - match: Host(`authentik.dev.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
     - name: authentik-server
@@ -25,9 +25,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "authentik.durp.info"
+  commonName: "authentik.dev.durp.info"
   dnsNames:
-  - "authentik.durp.info" 
+  - "authentik.dev.durp.info" 
 
 ---
 

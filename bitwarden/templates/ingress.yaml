@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`bitwarden.durp.info`) && PathPrefix(`/`)
+  - match: Host(`bitwarden.dev.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: bitwarden
@@ -25,9 +25,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "bitwarden.durp.info"
+  commonName: "bitwarden.dev.durp.info"
   dnsNames:
-  - "bitwarden.durp.info"  
+  - "bitwarden.dev.durp.info"  
 
 ---
 

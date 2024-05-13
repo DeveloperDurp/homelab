@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`vault.internal.durp.info`)
+  - match: Host(`vault.internal.dev.durp.info`)
     middlewares:
     - name: whitelist
       namespace: traefik  
@@ -31,7 +31,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "vault.internal.durp.info"
+  commonName: "vault.internal.dev.durp.info"
   dnsNames:
-  - "vault.internal.durp.info"  
+  - "vault.internal.dev.durp.info"  
 

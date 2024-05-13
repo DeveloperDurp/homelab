@@ -1,9 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: gitea-external-dns
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: gitea.durp.info
-spec:
-  type: ExternalName
-  externalName: durp.info
