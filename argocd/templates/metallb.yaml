@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: methallb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/developerdurp/homelab.git
+    targetRevision: dev
+    path: methallb
+  destination:
+    namespace: methallb
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true  
+    syncOptions:
+      - CreateNamespace=true 
+
