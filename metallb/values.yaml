@@ -177,7 +177,7 @@ metallb:
       failureThreshold: 30
       periodSeconds: 5
     frr:
-      enabled: true
+      enabled: false
       image:
         repository: quay.io/frrouting/frr
         tag: 9.0.2
