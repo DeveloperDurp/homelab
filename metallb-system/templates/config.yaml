@@ -1,19 +1,19 @@
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  namespace: metallb
-#  name: config
-#data:
-#  config: |
-#    address-pools:
-#    - name: default
-#      protocol: layer2
-#      addresses:
-#      - 192.168.10.130-192.168.10.140
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: cheap
-spec:
-  addresses:
-  - 192.168.10.0/24
+  namespace: metallb
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.10.130-192.168.10.140
+        #apiVersion: metallb.io/v1beta1
+        #kind: IPAddressPool
+        #metadata:
+        #  name: cheap
+        #spec:
+        #  addresses:
+        #  - 192.168.10.0/24
