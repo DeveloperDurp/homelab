@@ -6,7 +6,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
   - match: Host(`argocd.dev.durp.info`)
     middlewares:
@@ -17,8 +17,8 @@ spec:
     - name: argocd-server
       port: 443
       scheme: https
-        #tls:
-        #  secretName: argocd-tls  
+  tls:
+    secretName: argocd-tls  
 
 ---
 
@@ -39,7 +39,7 @@ metadata:
 spec:
   secretName: argocd-tls
   issuerRef:
-    name: letsencrypt-production
+    name: selfsigned-cluster-issuer
     kind: ClusterIssuer
   commonName: "argocd.dev.durp.info"
   dnsNames:
