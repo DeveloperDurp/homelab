@@ -6,7 +6,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
   - match: Host(`argocd.dev.durp.info`)
     middlewares:
