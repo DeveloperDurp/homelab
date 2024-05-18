@@ -39,4 +39,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: links.dev.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName: durp.info
