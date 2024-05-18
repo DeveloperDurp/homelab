@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`argocd.dev.durp.info`)
+  - match: Host(`argocd.internal.dev.durp.info`)
     middlewares:
     - name: whitelist
       namespace: traefik  
@@ -39,8 +39,8 @@ metadata:
 spec:
   secretName: argocd-tls
   issuerRef:
-    name: selfsigned-cluster-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "argocd.dev.durp.info"
+  commonName: "argocd.internal.dev.durp.info"
   dnsNames:
-  - "argocd.dev.durp.info"  
+  - "argocd.internal.dev.durp.info"  
