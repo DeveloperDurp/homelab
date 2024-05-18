@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`traefik.internal.durp.info`)
+  - match: Host(`traefik.internal.dev.durp.info`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik    
@@ -14,7 +14,7 @@ spec:
     services:
     - name: api@internal
       kind: TraefikService
-  - match: Host(`traefik.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+  - match: Host(`traefik.internal.dev.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
@@ -34,6 +34,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "traefik.internal.durp.info"
+  commonName: "traefik.internal.dev.durp.info"
   dnsNames:
-  - "traefik.internal.durp.info"
+  - "traefik.internal.dev.durp.info"
