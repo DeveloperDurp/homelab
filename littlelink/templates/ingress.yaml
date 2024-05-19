@@ -8,9 +8,6 @@ spec:
   routes:
   - match: Host(`links.dev.durp.info`) && PathPrefix(`/`)
     kind: Rule
-    middlewares:
-    - name: internal-only
-      namespace: traefik 
     services:
     - name: littlelink
       port: 80
