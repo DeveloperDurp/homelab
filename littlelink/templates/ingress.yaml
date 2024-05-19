@@ -8,6 +8,8 @@ spec:
   routes:
   - match: Host(`links.dev.durp.info`) && PathPrefix(`/`)
     kind: Rule
+    middlewares:
+    - name: traefik-real-ip
     services:
     - name: littlelink
       port: 80
@@ -40,3 +42,15 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-real-ip
+spec:
+  plugin:
+    traefik-real-ip:
+      excludednets:
+        - "1.1.1.1/24"
