@@ -642,7 +642,7 @@ traefik:
       # middlewares:
       #   - namespace-name1@kubernetescrd
       #   - namespace-name2@kubernetescrd
-      middlewares: []
+      middlewares: 
         - traefik@traefik-real-ip
     metrics:
       # When using hostNetwork, use another port to avoid conflict with node exporter:
