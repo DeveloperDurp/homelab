@@ -61,7 +61,7 @@ kind: Middleware
 metadata:
   name: whitelist
 spec:
-  ipWhiteList:
+  ipAllowList:
     sourceRange:
       - 192.168.10.1/32      
       - 10.0.0.0/8
