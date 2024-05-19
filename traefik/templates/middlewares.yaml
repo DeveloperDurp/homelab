@@ -32,3 +32,15 @@ spec:
     sourceRange:
       - 192.168.10.1/32      
       - 10.0.0.0/8
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-real-ip
+spec:
+  plugin:
+    traefik-real-ip:
+      excludednets:
+        - "1.1.1.1/24"

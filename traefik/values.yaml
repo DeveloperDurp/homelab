@@ -643,6 +643,7 @@ traefik:
       #   - namespace-name1@kubernetescrd
       #   - namespace-name2@kubernetescrd
       middlewares: []
+        - traefik@traefik-real-ip
     metrics:
       # When using hostNetwork, use another port to avoid conflict with node exporter:
       # https://github.com/prometheus/prometheus/wiki/Default-port-allocations

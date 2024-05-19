@@ -44,17 +44,6 @@ spec:
   externalName: durp.info
 
 ---
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-real-ip
-spec:
-  plugin:
-    traefik-real-ip:
-      excludednets:
-        - "1.1.1.1/24"
----
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
