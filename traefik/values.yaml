@@ -580,9 +580,10 @@ traefik:
       redirectTo: websecure
       #
       # Trust forwarded  headers information (X-Forwarded-*).
-      # forwardedHeaders:
-      #   trustedIPs: []
-      #   insecure: false
+      forwardedHeaders:
+        trustedIPs: 
+          - "192.168.10.1"
+        insecure: false
       #
       # Enable the Proxy Protocol header parsing for the entry point
       # proxyProtocol:
