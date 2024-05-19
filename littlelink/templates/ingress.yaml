@@ -9,9 +9,7 @@ spec:
   - match: Host(`links.dev.durp.info`) && PathPrefix(`/`)
     kind: Rule
     middlewares:
-    - name: whitelist
-      namespace: traefik 
-    - name: traefik-real-ip
+    - name: internalOnly
       namespace: traefik 
     services:
     - name: littlelink
