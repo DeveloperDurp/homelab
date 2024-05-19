@@ -502,6 +502,8 @@ traefik:
     - "--log.level=DEBUG"
     - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
     - --experimental.plugins.jwt.version=v0.7.0
+    - --experimental.plugins.traefik-real-ip.moduleName=github.com/soulbalz/traefik-real-ip
+    - --experimental.plugins.traefik-real-ip.version=v1.0.3
 
 
   # Environment variables to be passed to Traefik's binary
