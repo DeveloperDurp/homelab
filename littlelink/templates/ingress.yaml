@@ -9,7 +9,7 @@ spec:
   - match: Host(`links.dev.durp.info`) && PathPrefix(`/`)
     kind: Rule
     middlewares:
-    - name: internalOnly
+    - name: internal-only
       namespace: traefik 
     services:
     - name: littlelink
