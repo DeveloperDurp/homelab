@@ -10,6 +10,7 @@ spec:
     kind: Rule
     middlewares:
     - name: whitelist
+      namespace: traefik 
     - name: traefik-real-ip
       namespace: traefik 
     services:
@@ -45,16 +46,3 @@ spec:
   type: ExternalName
   externalName: durp.info
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: whitelist
-spec:
-  ipWhiteList:
-    sourceRange:
-      - 192.168.10.1/32
-      - 192.168.30.1/24
-      - 10.0.0.0/8
-    ipStrategy:
-      depth: 1
