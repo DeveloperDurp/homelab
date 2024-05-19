@@ -9,7 +9,6 @@ spec:
   - match: Host("api.dev.durp.info") && PathPrefix(`/api`)
     kind: Rule
     middlewares:
-      - name: jwt
       - name: traefik-real-ip
     services:
     - name: "durpapi-service"
