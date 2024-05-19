@@ -10,6 +10,7 @@ spec:
     kind: Rule
     middlewares:
     - name: traefik-real-ip
+    - name: whitelist
     services:
     - name: littlelink
       port: 80
@@ -54,3 +55,13 @@ spec:
     traefik-real-ip:
       excludednets:
         - "1.1.1.1/24"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: whitelist
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 192.168.10.1/32      
+      - 10.0.0.0/8
