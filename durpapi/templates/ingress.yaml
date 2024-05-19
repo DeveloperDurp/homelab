@@ -10,7 +10,6 @@ spec:
     kind: Rule
     middlewares:
       - name: jwt
-      - name: traefik-real-ip
     services:
     - name: "durpapi-service"
       port: 80
@@ -44,14 +43,3 @@ spec:
       Keys:
         - https://authentik.durp.info/application/o/api/jwks
 
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: traefik-real-ip
-spec:
-  plugin:
-    traefik-real-ip:
-      excludednets:
-        - "1.1.1.1/24"
