@@ -1,7 +1,7 @@
 authentik:
   global:
     env: 
-      - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      - name: AUTHENTIK_POSTGRESQL_PASSWORD
         valueFrom:
           secretKeyRef:
             name: db-pass
