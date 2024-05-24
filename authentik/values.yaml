@@ -32,9 +32,16 @@ authentik:
       registry: registry.internal.durp.info
       repository: bitnami/postgresql
       pullPolicy: Always
-    postgresqlUsername: "authentik"
-    postgresqlDatabase: "authentik"
-    existingSecret: db-pass 
+    auth:
+      username: "authentik"
+      existingSecret: db-pass
+      secretKeys:
+        adminPasswordKey: dbpass 
+        userPasswordKey: dbpass
+        
+          #postgresqlUsername: "authentik"
+          #postgresqlDatabase: "authentik"
+          #existingSecret: db-pass 
     persistence:
       enabled: true
       storageClass: longhorn
