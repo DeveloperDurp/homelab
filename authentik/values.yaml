@@ -2,7 +2,7 @@ authentik:
   global:
     env: 
       - name: AUTHENTIK_REDIS__DB
-        value: 1
+        value: "1"
       - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
           secretKeyRef:
