@@ -39,7 +39,7 @@ spec:
             value: "80"            
           - name: ROCKET_WORKERS
             value: "10"
-          - name: SECRET_USERNAME
+          - name: ADMIN_TOKEN
             valueFrom:
               secretKeyRef:
                 name: bitwarden-secret
