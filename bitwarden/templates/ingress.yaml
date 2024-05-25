@@ -40,3 +40,24 @@ metadata:
 spec:
   type: ExternalName
   externalName: dev.durp.info
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bitwarden-admin-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`bitwarden.dev.durp.info`) && PathPrefix(`/admin`)
+    kind: Rule
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    services:
+    - name: bitwarden
+      port: 80
+  tls:
+    secretName: bitwarden-tls
