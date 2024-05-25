@@ -38,8 +38,8 @@ argo-cd:
       dex.config: |
         connectors:
           - config:
-              issuer: https://authentik.durp.info/application/o/argocd/
-              clientID: dbb8ffc06104fb6e7fac3e4ae7fafb1d90437625
+              issuer: https://authentik.dev.durp.info/application/o/argocd/
+              clientID: lKuMgyYaOlQMNAUSjsRVYgkwZG9UT6CeFWeTLAcl
               clientSecret: $client-secret:clientSecret
               insecureEnableGroups: true
               scopes:
