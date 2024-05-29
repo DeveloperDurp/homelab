@@ -1,11 +1,11 @@
-version: 0.1.0-dev0144
-apiVersion: v2
-name: durpapi
-dependencies:
-- version: 12.5.*
-  condition: postgresql.enabled
-  name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-description: A Helm chart for Kubernetes
 type: application
 appVersion: 0.1.0
+description: A Helm chart for Kubernetes
+name: durpapi
+dependencies:
+- condition: postgresql.enabled
+  version: 12.5.*
+  repository: https://charts.bitnami.com/bitnami
+  name: postgresql
+apiVersion: v2
+version: test
