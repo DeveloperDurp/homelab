@@ -1,26 +1,26 @@
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-gitlab
-spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.5.0
----
-
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: gitlab-secret
-spec:
-  secretStoreRef:
-    name: vault
-    kind: ClusterSecretStore
-  target:
-    name: gitlab-secret
-  data:
-  - secretKey: accesstoken
-    remoteRef:
-      key: secrets/gitlab/token
-      property: accesstoken
+#apiVersion: pkg.crossplane.io/v1
+#kind: Provider
+#metadata:
+#  name: provider-gitlab
+#spec:
+#  package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.5.0
+#---
+#
+#apiVersion: external-secrets.io/v1beta1
+#kind: ExternalSecret
+#metadata:
+#  name: gitlab-secret
+#spec:
+#  secretStoreRef:
+#    name: vault
+#    kind: ClusterSecretStore
+#  target:
+#    name: gitlab-secret
+#  data:
+#  - secretKey: accesstoken
+#    remoteRef:
+#      key: secrets/gitlab/token
+#      property: accesstoken
 
 ---
 
