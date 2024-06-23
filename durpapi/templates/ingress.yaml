@@ -41,4 +41,4 @@ spec:
     jwt:
       Required: true
       Keys:
-        - https://authentik.durp.info/application/o/api/jwks
+        - https://authentik.durp.info/application/o/api/jwks/
