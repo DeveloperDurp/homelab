@@ -13,4 +13,4 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-    - cheap
+  - cheap

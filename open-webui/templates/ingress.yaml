@@ -39,4 +39,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: open-webui.prd.durp.info
 spec:
   type: ExternalName
-  externalName:.prd.durp.info
+  externalName: prd.durp.info

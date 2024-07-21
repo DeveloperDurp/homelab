@@ -42,4 +42,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: kuma.prd.durp.info
 spec:
   type: ExternalName
-  externalName:.prd.durp.info
+  externalName: prd.durp.info

@@ -14,7 +14,7 @@ vault:
   injector:
     enabled: "-"
 
-    replicas: 3
+    replicas: 2
     leaderElector:
       enabled: true
 
