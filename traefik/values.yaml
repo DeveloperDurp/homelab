@@ -582,7 +582,7 @@ traefik:
       # Trust forwarded  headers information (X-Forwarded-*).
       forwardedHeaders:
         trustedIPs: 
-          - "192.168.10.1"
+          - "192.168.11.1"
         insecure: false
       #
       # Enable the Proxy Protocol header parsing for the entry point
@@ -613,7 +613,7 @@ traefik:
       ## Trust forwarded  headers information (X-Forwarded-*).
       forwardedHeaders:
         trustedIPs: 
-          - "192.168.10.1"
+          - "192.168.11.1"
         insecure: false
       #
       ## Enable the Proxy Protocol header parsing for the entry point
