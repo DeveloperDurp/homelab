@@ -4,7 +4,7 @@ external-dns:
 
   image:
     pullPolicy: Always
-  txtPrefix: "dev-"
+  txtPrefix: "prd-"
   sources:
     - service
     

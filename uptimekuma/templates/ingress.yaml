@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`kuma.dev.durp.info`) && PathPrefix(`/`)
+  - match: Host(`kuma.prd.durp.info`) && PathPrefix(`/`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik    
@@ -28,9 +28,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "kuma.dev.durp.info"
+  commonName: "kuma.prd.durp.info"
   dnsNames:
-  - "kuma.dev.durp.info"  
+  - "kuma.prd.durp.info"  
 
 ---
 
@@ -39,7 +39,7 @@ apiVersion: v1
 metadata:
   name: heimdall-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: kuma.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: kuma.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName: prd.durp.info

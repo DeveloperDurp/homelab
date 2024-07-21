@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("api.dev.durp.info") && PathPrefix(`/api`)
+  - match: Host("api.prd.durp.info") && PathPrefix(`/api`)
     kind: Rule
     middlewares:
       - name: jwt
@@ -24,7 +24,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host("api.dev.durp.info") && PathPrefix(`/swagger`)
+  - match: Host("api.prd.durp.info") && PathPrefix(`/swagger`)
     kind: Rule
     services:
     - name: "durpapi-service"

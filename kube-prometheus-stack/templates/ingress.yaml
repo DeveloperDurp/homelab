@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`grafana.dev.durp.info`) && PathPrefix(`/`) 
+  - match: Host(`grafana.prd.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
     - name: grafana
@@ -25,9 +25,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "grafana.dev.durp.info"
+  commonName: "grafana.prd.durp.info"
   dnsNames:
-  - "grafana.dev.durp.info"  
+  - "grafana.prd.durp.info"  
 
 ---
 
@@ -39,7 +39,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`alertmanager.dev.durp.info`) && PathPrefix(`/`) 
+  - match: Host(`alertmanager.prd.durp.info`) && PathPrefix(`/`) 
     middlewares:
     - name: whitelist
       namespace: traefik
@@ -63,9 +63,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "alertmanager.dev.durp.info"
+  commonName: "alertmanager.prd.durp.info"
   dnsNames:
-  - "alertmanager.dev.durp.info"  
+  - "alertmanager.prd.durp.info"  
 
 ---
 
@@ -74,7 +74,7 @@ apiVersion: v1
 metadata:
   name: grafana-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: grafana.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: grafana.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info  
+  externalName:.prd.durp.info  

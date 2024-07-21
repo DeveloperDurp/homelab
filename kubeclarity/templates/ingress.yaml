@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`kubeclarity.dev.durp.info`) && PathPrefix(`/`)
+  - match: Host(`kubeclarity.prd.durp.info`) && PathPrefix(`/`)
     middlewares:
     - name: whitelist
       namespace: traefik
@@ -30,9 +30,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "kubeclarity.dev.durp.info"
+  commonName: "kubeclarity.prd.durp.info"
   dnsNames:
-  - "kubeclarity.dev.durp.info"  
+  - "kubeclarity.prd.durp.info"  
 
 ---
 
@@ -41,7 +41,7 @@ apiVersion: v1
 metadata:
   name: kubeclarity-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: kubeclarity.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: kubeclarity.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName:.prd.durp.info

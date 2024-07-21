@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`heimdall.dev.durp.info`) && PathPrefix(`/`)
+  - match: Host(`heimdall.prd.durp.info`) && PathPrefix(`/`)
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik  
@@ -15,7 +15,7 @@ spec:
     services:
     - name: heimdall
       port: 80
-  - match: Host(`heimdall.dev.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+  - match: Host(`heimdall.prd.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
@@ -35,9 +35,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "heimdall.dev.durp.info"
+  commonName: "heimdall.prd.durp.info"
   dnsNames:
-  - "heimdall.dev.durp.info"  
+  - "heimdall.prd.durp.info"  
 
 ---
 

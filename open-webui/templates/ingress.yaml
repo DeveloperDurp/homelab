@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`open-webui.dev.durp.info`) && PathPrefix(`/`)
+  - match: Host(`open-webui.prd.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: open-webui
@@ -25,9 +25,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "open-webui.dev.durp.info"
+  commonName: "open-webui.prd.durp.info"
   dnsNames:
-  - "open-webui.dev.durp.info"  
+  - "open-webui.prd.durp.info"  
 
 ---
 
@@ -36,7 +36,7 @@ apiVersion: v1
 metadata:
   name: open-webui-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: open-webui.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: open-webui.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName: prd.durp.info

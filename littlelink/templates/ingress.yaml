@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`links.dev.durp.info`) && PathPrefix(`/`)
+  - match: Host(`links.prd.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: littlelink
@@ -25,9 +25,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "links.dev.durp.info"
+  commonName: "links.prd.durp.info"
   dnsNames:
-  - "links.dev.durp.info"  
+  - "links.prd.durp.info"  
 
 ---
 
@@ -36,8 +36,8 @@ apiVersion: v1
 metadata:
   name: links-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: links.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: links.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName:.prd.durp.info
 

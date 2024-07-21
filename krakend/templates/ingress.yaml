@@ -7,9 +7,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "api.dev.durp.info"
+  commonName: "api.prd.durp.info"
   dnsNames:
-  - "api.dev.durp.info"        
+  - "api.prd.durp.info"        
 
 ---
 
@@ -21,7 +21,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`api.dev.durp.info`) && PathPrefix(`/`)
+    - match: Host(`api.prd.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: krakend-service
@@ -37,10 +37,10 @@ apiVersion: v1
 metadata:
   name: api-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: api.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: api.prd.durp.info
 spec:
   type: ExternalName
-  externalName: dev.durp.info
+  externalName:.prd.durp.info
 
 ---
 
@@ -49,7 +49,7 @@ apiVersion: v1
 metadata:
   name: api-developer-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: developer.dev.durp.info
+    external-dns.alpha.kubernetes.io/hostname: developer.prd.durp.info
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
 spec:
   type: ExternalName
