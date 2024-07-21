@@ -34,9 +34,9 @@ spec:
             - name: NFS_SERVER
               value: 192.168.20.253
             - name: NFS_PATH
-              value: /mnt/user/k3s 
+              value: /mnt/user/k3s-dev 
       volumes:
         - name: nfs-client-ssd
           nfs:
             server: 192.168.20.253
-            path: /mnt/user/k3s
+            path: /mnt/user/k3s-dev

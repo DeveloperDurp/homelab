@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`authentik.prd.durp.info`) && PathPrefix(`/`)
+  - match: Host(`authentik.prd.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
     - name: authentik-server

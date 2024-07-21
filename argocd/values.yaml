@@ -33,13 +33,13 @@ argo-cd:
     cm:
       create: true
       annotations: {}
-      url: https://argocd.internal.durp.info
+      url: https://argocd.internal.prd.durp.info
       oidc.tls.insecure.skip.verify: "true"
       dex.config: |
         connectors:
           - config:
-              issuer: https://authentik.durp.info/application/o/argocd/
-              clientID: dbb8ffc06104fb6e7fac3e4ae7fafb1d90437625
+              issuer: https://authentik.prd.durp.info/application/o/argocd/
+              clientID: lKuMgyYaOlQMNAUSjsRVYgkwZG9UT6CeFWeTLAcl
               clientSecret: $client-secret:clientSecret
               insecureEnableGroups: true
               scopes:

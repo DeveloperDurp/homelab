@@ -502,6 +502,8 @@ traefik:
     - "--log.level=DEBUG"
     - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
     - --experimental.plugins.jwt.version=v0.7.0
+    - --experimental.plugins.traefik-real-ip.moduleName=github.com/soulbalz/traefik-real-ip
+    - --experimental.plugins.traefik-real-ip.version=v1.0.3
 
 
   # Environment variables to be passed to Traefik's binary
@@ -578,9 +580,10 @@ traefik:
       redirectTo: websecure
       #
       # Trust forwarded  headers information (X-Forwarded-*).
-      # forwardedHeaders:
-      #   trustedIPs: []
-      #   insecure: false
+      forwardedHeaders:
+        trustedIPs: 
+          - "192.168.11.1"
+        insecure: false
       #
       # Enable the Proxy Protocol header parsing for the entry point
       # proxyProtocol:
@@ -608,9 +611,10 @@ traefik:
       # advertisedPort: 4443
       #
       ## Trust forwarded  headers information (X-Forwarded-*).
-      #forwardedHeaders:
-      #  trustedIPs: []
-      #  insecure: false
+      forwardedHeaders:
+        trustedIPs: 
+          - "192.168.11.1"
+        insecure: false
       #
       ## Enable the Proxy Protocol header parsing for the entry point
       #proxyProtocol:

@@ -8,17 +8,17 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`argocd.internal.prd.durp.info`)
-      middlewares:
-        - name: internal-only
-          namespace: traefik
-      kind: Rule
-      services:
-        - name: argocd-server
-          port: 443
-          scheme: https
+  - match: Host(`argocd.internal.prd.durp.info`)
+    middlewares:
+    - name: internal-only
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: argocd-server
+      port: 443
+      scheme: https
   tls:
-    secretName: argocd-tls
+    secretName: argocd-tls  
 
 ---
 
@@ -33,4 +33,4 @@ spec:
     kind: ClusterIssuer
   commonName: "argocd.internal.prd.durp.info"
   dnsNames:
-    - "argocd.internal.prd.durp.info"
+  - "argocd.internal.prd.durp.info"  

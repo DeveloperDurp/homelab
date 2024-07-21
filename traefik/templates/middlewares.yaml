@@ -47,4 +47,3 @@ spec:
     traefik-real-ip:
       excludednets:
         - "1.1.1.1/24"
-
