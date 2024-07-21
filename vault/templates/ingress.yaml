@@ -10,7 +10,7 @@ spec:
   routes:
   - match: Host(`vault.internal.prd.durp.info`)
     middlewares:
-    - name: whitelist
+    - name: internal-only
       namespace: traefik  
     kind: Rule
     services:
