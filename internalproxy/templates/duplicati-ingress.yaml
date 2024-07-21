@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/`)
+  - match: Host(`duplicati.internal.prd.durp.info`) && PathPrefix(`/`)
     middlewares:
     - name: whitelist
       namespace: traefik
@@ -45,7 +45,7 @@ spec:
     services:
     - name: duplicati
       port: 8200
-  - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+  - match: Host(`duplicati.internal.prd.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
@@ -65,6 +65,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "duplicati.internal.durp.info"
+  commonName: "duplicati.internal.prd.durp.info"
   dnsNames:
-  - "duplicati.internal.durp.info"  
+  - "duplicati.internal.prd.durp.info"  

@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`smokeping.durp.info`) && PathPrefix(`/`)
+  - match: Host(`smokeping.prd.durp.info`) && PathPrefix(`/`)
     middlewares:
     - name: whitelist
       namespace: traefik
@@ -45,7 +45,7 @@ spec:
     services:
     - name: smokeping
       port: 81
-  - match: Host(`smokeping.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+  - match: Host(`smokeping.prd.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
     - name: ak-outpost-authentik-embedded-outpost
@@ -65,9 +65,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "smokeping.durp.info"
+  commonName: "smokeping.prd.durp.info"
   dnsNames:
-  - "smokeping.durp.info"  
+  - "smokeping.prd.durp.info"  
 
 ---
 
@@ -76,7 +76,7 @@ apiVersion: v1
 metadata:
   name: smokeping-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: smokeping.durp.info
+    external-dns.alpha.kubernetes.io/hostname: smokeping.prd.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info  
+  externalName:.prd.durp.info  

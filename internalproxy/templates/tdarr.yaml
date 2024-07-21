@@ -37,7 +37,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`tdarr.internal.durp.info`)
+  - match: Host(`tdarr.internal.prd.durp.info`)
     middlewares:
     - name: whitelist
       namespace: traefik  
@@ -62,6 +62,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "tdarr.internal.durp.info"
+  commonName: "tdarr.internal.prd.durp.info"
   dnsNames:
-  - "tdarr.internal.durp.info"  
+  - "tdarr.internal.prd.durp.info"  

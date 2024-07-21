@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`registry.internal.durp.info`) && PathPrefix(`/`)
+  - match: Host(`registry.internal.prd.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: registry-internal
@@ -54,6 +54,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "registry.durp.info"
+  commonName: "registry.prd.durp.info"
   dnsNames:
-  - "registry.durp.info"  
+  - "registry.prd.durp.info"  

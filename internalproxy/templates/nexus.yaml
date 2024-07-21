@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`nexus.durp.info`) && PathPrefix(`/`)
+  - match: Host(`nexus.prd.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: nexus
@@ -54,9 +54,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "nexus.durp.info"
+  commonName: "nexus.prd.durp.info"
   dnsNames:
-  - "nexus.durp.info"  
+  - "nexus.prd.durp.info"  
 
 ---
 
@@ -65,7 +65,7 @@ apiVersion: v1
 metadata:
   name: nexus-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: nexus.durp.info
+    external-dns.alpha.kubernetes.io/hostname: nexus.prd.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info
+  externalName:.prd.durp.info

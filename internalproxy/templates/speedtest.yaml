@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`speedtest.durp.info`) && PathPrefix(`/`)
+  - match: Host(`speedtest.prd.durp.info`) && PathPrefix(`/`)
     kind: Rule
     middlewares:
     - name: authentik-proxy-provider
@@ -57,9 +57,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "speedtest.durp.info"
+  commonName: "speedtest.prd.durp.info"
   dnsNames:
-  - "speedtest.durp.info"  
+  - "speedtest.prd.durp.info"  
 
 ---
 
@@ -68,7 +68,7 @@ apiVersion: v1
 metadata:
   name: speedtest-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: speedtest.durp.info
+    external-dns.alpha.kubernetes.io/hostname: speedtest.prd.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info
+  externalName:.prd.durp.info
