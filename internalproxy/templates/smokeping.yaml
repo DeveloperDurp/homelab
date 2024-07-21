@@ -79,4 +79,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: smokeping.prd.durp.info
 spec:
   type: ExternalName
-  externalName:.prd.durp.info  
+  externalName: prd.durp.info

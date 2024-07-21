@@ -4,13 +4,13 @@ external-dns:
 
   image:
     pullPolicy: Always
-
+  txtPrefix: "prd-"
   sources:
     - service
-    
+
   provider: cloudflare
   cloudflare:
     secretName : "external-dns"
-    proxied: true
+    proxied: false
 
   policy: sync
