@@ -1,0 +1,196 @@
+metallb:
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+  loadBalancerClass: ""
+
+  rbac:
+    create: true
+
+  prometheus:
+    scrapeAnnotations: false
+    metricsPort: 7472
+    speakerMetricsTLSSecret: ""
+    controllerMetricsTLSSecret: ""
+    rbacPrometheus: true
+    serviceAccount: ""
+    namespace: ""
+    rbacProxy:
+      repository: gcr.io/kubebuilder/kube-rbac-proxy
+      tag: v0.12.0
+      pullPolicy:
+    podMonitor:
+      enabled: false
+      additionalLabels: {}
+      annotations: {}
+      jobLabel: "app.kubernetes.io/name"
+      interval:
+      metricRelabelings: []
+      relabelings: []
+    serviceMonitor:
+      enabled: false
+      speaker:
+        additionalLabels: {}
+        annotations: {}
+        tlsConfig:
+          insecureSkipVerify: true
+      controller:
+        additionalLabels: {}
+        annotations: {}
+        tlsConfig:
+          insecureSkipVerify: true
+      jobLabel: "app.kubernetes.io/name"
+      interval:
+      metricRelabelings: []
+      relabelings: []
+    prometheusRule:
+      enabled: false
+      additionalLabels: {}
+      annotations: {}
+      staleConfig:
+        enabled: true
+        labels:
+          severity: warning
+      configNotLoaded:
+        enabled: true
+        labels:
+          severity: warning
+      addressPoolExhausted:
+        enabled: true
+        labels:
+          severity: alert
+      addressPoolUsage:
+        enabled: true
+        thresholds:
+          - percent: 75
+            labels:
+              severity: warning
+          - percent: 85
+            labels:
+              severity: warning
+          - percent: 95
+            labels:
+              severity: alert
+      bgpSessionDown:
+        enabled: true
+        labels:
+          severity: alert
+
+      extraAlerts: []
+
+  controller:
+    enabled: true
+    # -- Controller log level. Must be one of: `all`, `debug`, `info`, `warn`, `error` or `none`
+    logLevel: info
+    image:
+      repository: quay.io/metallb/controller
+      tag:
+      pullPolicy:
+    strategy:
+      type: RollingUpdate
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      fsGroup: 65534
+    resources: {}
+    nodeSelector: {}
+    tolerations: []
+    priorityClassName: ""
+    runtimeClassName: ""
+    affinity: {}
+    podAnnotations: {}
+    labels: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    tlsMinVersion: "VersionTLS12"
+    tlsCipherSuites: ""
+
+    extraContainers: []
+
+  speaker:
+    enabled: true
+    logLevel: debug
+    tolerateMaster: true
+    memberlist:
+      enabled: true
+      mlBindPort: 7946
+      mlBindAddrOverride: ""
+      mlSecretKeyPath: "/etc/ml_secret_key"
+    excludeInterfaces:
+      enabled: true
+    ignoreExcludeLB: false
+
+    image:
+      repository: quay.io/metallb/speaker
+      tag:
+      pullPolicy:
+    updateStrategy:
+      type: RollingUpdate
+    serviceAccount:
+      create: true
+      name: ""
+      annotations: {}
+    securityContext: {}
+    resources: {}
+    nodeSelector: {}
+    tolerations: []
+    priorityClassName: ""
+    affinity: {}
+    runtimeClassName: ""
+    podAnnotations: {}
+    labels:
+      pod-security.kubernetes.io/enforce: privileged
+      pod-security.kubernetes.io/audit: privileged
+      pod-security.kubernetes.io/warn: privileged
+    livenessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 5
+    frr:
+      enabled: true
+      image:
+        repository: quay.io/frrouting/frr
+        tag: 9.0.2
+        pullPolicy:
+      metricsPort: 7473
+      resources: {}
+    reloader:
+      resources: {}
+    frrMetrics:
+      resources: {}
+    extraContainers: []
+  crds:
+    enabled: true
+    validationFailurePolicy: Fail
+  frrk8s:
+    enabled: false

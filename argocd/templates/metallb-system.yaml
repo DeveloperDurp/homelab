@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb-system
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/developerdurp/homelab.git
+    targetRevision: prd
+    path: metallb-system
+  destination:
+    namespace: metallb-system
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
