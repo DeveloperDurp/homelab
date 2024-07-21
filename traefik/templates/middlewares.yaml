@@ -20,6 +20,7 @@ spec:
       - X-authentik-meta-app
       - X-authentik-meta-version
 
+
 ---
 
 apiVersion: traefik.containo.us/v1alpha1

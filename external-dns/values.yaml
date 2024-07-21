@@ -7,7 +7,7 @@ external-dns:
   txtPrefix: "prd-"
   sources:
     - service
-    
+
   provider: cloudflare
   cloudflare:
     secretName : "external-dns"

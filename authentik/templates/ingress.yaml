@@ -36,7 +36,7 @@ apiVersion: v1
 metadata:
   name: authentik-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: authentik.durp.info
+    external-dns.alpha.kubernetes.io/hostname: authentik.prd.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info
+  externalName:.prd.durp.info
