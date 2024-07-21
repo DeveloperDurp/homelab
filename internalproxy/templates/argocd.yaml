@@ -10,8 +10,8 @@ spec:
   routes:
   - match: Host(`argocd.internal.prd.durp.info`)
     middlewares:
-    - name: whitelist
-      namespace: traefik  
+      - name: internal-only
+        namespace: traefik
     kind: Rule
     services:
     - name: argocd-server
