@@ -4,7 +4,7 @@ metadata:
   name: cheap
 spec:
   addresses:
-    - 192.168.20.130-192.168.20.140
+    - 192.168.20.34-192.168.20.39
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
