@@ -11,6 +11,6 @@ external-dns:
   provider: cloudflare
   cloudflare:
     secretName : "external-dns"
-    proxied: true
+    proxied: false
 
   policy: sync
