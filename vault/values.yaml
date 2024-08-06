@@ -1,0 +1,40 @@
+vault:
+
+  global:
+    externalVaultAddr: "https://vault.internal.prd.durp.info"
+
+    image:
+      repository: "registry.internal.durp.info/hashicorp/vault-k8s"
+      tag: "1.3.1"
+      pullPolicy: Always
+
+    agentImage:
+      repository: "registry.internal.durp.info/hashicorp/vault"
+      tag: "1.15.2"
+
+
+  injector:
+    enabled: "-"
+
+    replicas: 2
+    leaderElector:
+      enabled: true
+
+    metrics:
+      enabled: true
+
+    image:
+      repository: "registry.internal.durp.info/hashicorp/vault-k8s"
+      tag: "1.3.1"
+      pullPolicy: Always
+
+    agentImage:
+      repository: "registry.internal.durp.info/hashicorp/vault"
+      tag: "1.15.2"
+
+  server:
+    enabled: false
+
+  ui:
+    enabled: false
+
