@@ -32,37 +32,3 @@ vault:
       repository: "registry.internal.durp.info/hashicorp/vault"
       tag: "1.15.2"
 
-  server:
-    enabled: "-"
-    image:
-      repository: "registry.internal.durp.info/hashicorp/vault"
-      tag: "1.15.2"
-      pullPolicy: Always
-    ha:
-      enabled: false
-      replicas: 3
-    resources: {}
-    # resources:
-    #   requests:
-    #     memory: 256Mi
-    #     cpu: 250m
-    #   limits:
-    #     memory: 256Mi
-    #     cpu: 250m
-
-    dataStorage:
-      enabled: true
-      size: 10Gi
-      storageClass: longhorn
-      accessMode: ReadWriteOnce
-    auditStorage:
-      enabled: false
-      size: 10Gi
-      mountPath: "/vault/audit"
-      storageClass: longhorn
-      accessMode: ReadWriteOnce
-  ui:
-    enabled: false
-    externalPort: 8200
-    targetPort: 8200
-
