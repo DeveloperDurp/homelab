@@ -32,9 +32,9 @@ vault:
       repository: "registry.internal.durp.info/hashicorp/vault"
       tag: "1.15.2"
 
-  server:
-    enabled: false
+  ## server:
+  ##   enabled: false
 
-  ui:
-    enabled: false
+  ## ui:
+  ##   enabled: false
 
