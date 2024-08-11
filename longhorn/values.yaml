@@ -77,7 +77,7 @@ longhorn:
   
   defaultSettings:
     #backupTarget: S3://lukritz-longhorn@us-east-1/
-    backupTarget: nfs://192.168.20.253:/longhorn
+    backupTarget: nfs://192.168.20.253:/longhorn-master
     backupTargetCredentialSecret: longhorn-backup-token-secret
     allowRecurringJobWhileVolumeDetached: ~
     createDefaultDiskLabeledNodes: ~
