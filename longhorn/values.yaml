@@ -76,7 +76,7 @@ longhorn:
     snapshotterReplicaCount: ~
   
   defaultSettings:
-    backupTarget: S3://longhorn@us-east-1/
+    backupTarget: S3://longhorn-master@us-east-1/
     backupTargetCredentialSecret: longhorn-backup-token-secret
     allowRecurringJobWhileVolumeDetached: ~
     createDefaultDiskLabeledNodes: ~
