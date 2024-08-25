@@ -13,3 +13,69 @@ spec:
       remoteRef:
         key: secrets/internalproxy/ollama
         property: users
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama
+spec:
+  ports:
+    - name: app
+      port: 11435
+      protocol: TCP
+      targetPort: 11435
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ollama
+subsets:
+  - addresses:
+      - ip: 192.168.20.104
+    ports:
+      - name: app
+        port: 11435
+        protocol: TCP
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ollama-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`ollama.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: ollama
+          port: 11435
+          scheme: https
+  tls:
+    secretName: ollama-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ollama-tls
+spec:
+  secretName: ollama-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "ollama.durp.info"
+  dnsNames:
+    - "ollama.durp.info"
