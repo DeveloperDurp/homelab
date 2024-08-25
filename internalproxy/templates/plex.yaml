@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`plex.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`plex.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: plex
@@ -55,9 +55,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "plex.internal.durp.info"
+  commonName: "plex.durp.info"
   dnsNames:
-    - "plex.internal.durp.info"
+    - "plex.durp.info"
 
 ---
 

@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`jellyfin.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`jellyfin.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: jellyfin
@@ -55,9 +55,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "jellyfin.internal.durp.info"
+  commonName: "jellyfin.durp.info"
   dnsNames:
-    - "jellyfin.internal.durp.info"
+    - "jellyfin.durp.info"
 
 ---
 
