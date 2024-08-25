@@ -42,7 +42,8 @@ spec:
       kind: Rule
       services:
         - name: portainer
-          port: 8200
+          port: 9443
+          scheme: https
   tls:
     secretName: portainer-tls
 
