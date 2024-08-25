@@ -42,7 +42,7 @@ spec:
       kind: Rule
       services:
         - name: s3
-          port: 443
+          port: 9768
           scheme: http
   tls:
     secretName: s3-tls
