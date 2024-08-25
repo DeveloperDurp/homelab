@@ -43,6 +43,7 @@ spec:
       services:
         - name: pfsense
           port: 10443
+          scheme: https
   tls:
     secretName: pfsense-tls
 
