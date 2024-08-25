@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - name: app
-      port: 8443
+      port: 8006
       protocol: TCP
-      targetPort: 8443
+      targetPort: 8006
   clusterIP: None
   type: ClusterIP
 
@@ -22,7 +22,7 @@ subsets:
       - ip: 192.168.21.252
     ports:
       - name: app
-        port: 8443
+        port: 8006
         protocol: TCP
 
 ---
