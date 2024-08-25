@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`kasm.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`kasm.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: kasm
@@ -55,9 +55,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "kasm.internal.durp.info"
+  commonName: "kasm.durp.info"
   dnsNames:
-    - "kasm.internal.durp.info"
+    - "kasm.durp.info"
 
 ---
 
