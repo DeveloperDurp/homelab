@@ -57,7 +57,7 @@ longhorn:
           {
             "name":"backup", 
             "task":"backup", 
-            "cron":"0 */6 * * *", 
+            "cron":"0 0 * * ?", 
             "retain":24
           }
         ]'
