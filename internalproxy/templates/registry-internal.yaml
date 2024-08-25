@@ -54,6 +54,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "registry.durp.info"
+  commonName: "registry.internal.durp.info"
   dnsNames:
-  - "registry.durp.info"  
+  - "registry.internal.durp.info"
