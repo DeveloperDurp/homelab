@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - name: app
-      port: 10433
+      port: 10443
       protocol: TCP
       targetPort: 10433
   clusterIP: None
@@ -22,7 +22,7 @@ subsets:
       - ip: 192.168.20.1
     ports:
       - name: app
-        port: 10433
+        port: 10443
         protocol: TCP
 
 ---
@@ -42,7 +42,7 @@ spec:
       kind: Rule
       services:
         - name: pfsense
-          port: 10433
+          port: 10443
   tls:
     secretName: pfsense-tls
 
