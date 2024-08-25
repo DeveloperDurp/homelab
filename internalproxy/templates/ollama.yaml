@@ -16,6 +16,16 @@ spec:
 
 ---
 
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ollama-basic-auth
+spec:
+  basicAuth:
+    secret: ollama-secret
+
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -55,8 +65,7 @@ spec:
   routes:
     - match: Host(`ollama.durp.info`) && PathPrefix(`/`)
       middlewares:
-        - name: whitelist
-          namespace: traefik
+        - name: ollama-basic-auth
       kind: Rule
       services:
         - name: ollama
