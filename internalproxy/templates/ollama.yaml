@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: ollama-secret
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  target:
+    name: ollama-secret
+  data:
+    - secretKey: users
+      remoteRef:
+        key: secrets/internalproxy/ollama
+        property: users
