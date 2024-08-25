@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: plex
+  name: wazuh
 spec:
   ports:
     - name: app
-      port: 32400
+      port: 443
       protocol: TCP
-      targetPort: 32400
+      targetPort: 443
   clusterIP: None
   type: ClusterIP
 
@@ -16,13 +16,13 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: plex
+  name: wazuh
 subsets:
   - addresses:
-      - ip: 192.168.20.253
+      - ip: 192.168.20.102
     ports:
       - name: app
-        port: 32400
+        port: 443
         protocol: TCP
 
 ---
@@ -30,43 +30,34 @@ subsets:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: plex-ingress
+  name: wazuh-ingress
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`plex.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`wazuh.internal.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
       kind: Rule
       services:
-        - name: plex
-          port: 32400
+        - name: wazuh
+          port: 443
           scheme: https
   tls:
-    secretName: plex-tls
+    secretName: wazuh-tls
 
 ---
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: plex-tls
+  name: wazuh-tls
 spec:
-  secretName: plex-tls
+  secretName: wazuh-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "plex.internal.durp.info"
+  commonName: "wazuh.internal.durp.info"
   dnsNames:
-    - "plex.internal.durp.info"
-
----
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: plex-external-dns
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: plex.durp.info
-spec:
-  type: ExternalName
-  externalName: durp.info  
+    - "wazuh.internal.durp.info"
