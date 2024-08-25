@@ -42,7 +42,7 @@ spec:
       kind: Rule
       services:
         - name: proxmox
-          port: 443
+          port: 8006
           scheme: https
   tls:
     secretName: proxmox-tls
