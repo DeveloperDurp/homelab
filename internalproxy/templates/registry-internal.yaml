@@ -41,7 +41,7 @@ spec:
     - name: registry-internal
       port: 5000
   tls:
-    secretName: registry-tls
+    secretName: registry-internal-tls
 
 ---
 
