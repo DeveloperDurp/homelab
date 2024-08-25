@@ -39,8 +39,6 @@ spec:
       middlewares:
         - name: whitelist
           namespace: traefik
-        - name: authentik-proxy-provider
-          namespace: traefik
       kind: Rule
       services:
         - name: pfsense
