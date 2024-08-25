@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
   - name: app
-    port: 5001
+    port: 5000
     protocol: TCP
-    targetPort: 5001
+    targetPort: 5000
   clusterIP: None
   type: ClusterIP
 
@@ -22,7 +22,7 @@ subsets:
   - ip: 192.168.20.253
   ports:
   - name: app
-    port: 5001
+    port: 5000
     protocol: TCP
 
 ---    
@@ -39,7 +39,7 @@ spec:
     kind: Rule
     services:
     - name: registry-internal
-      port: 5001
+      port: 5000
   tls:
     secretName: registry-tls
 
