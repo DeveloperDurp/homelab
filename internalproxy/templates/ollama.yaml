@@ -70,7 +70,6 @@ spec:
       services:
         - name: ollama
           port: 11435
-          scheme: https
   tls:
     secretName: ollama-tls
 
