@@ -5,5 +5,4 @@ metadata:
 spec:
   chain:
     middlewares:
-    - name: traefik-real-ip
     - name: whitelist
