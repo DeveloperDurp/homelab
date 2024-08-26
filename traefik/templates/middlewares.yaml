@@ -29,8 +29,7 @@ metadata:
 spec:
   ipWhiteList:
     sourceRange:
-      - 192.168.10.1/32
-      - 192.168.30.1/24
+      - 192.168.0.0/16
       - 10.0.0.0/8
     ipStrategy:
       depth: 1
