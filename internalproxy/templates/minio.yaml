@@ -42,7 +42,7 @@ spec:
       kind: Rule
       services:
         - name: minio
-          port: 443
+          port: 9769
           scheme: http
   tls:
     secretName: minio-tls
