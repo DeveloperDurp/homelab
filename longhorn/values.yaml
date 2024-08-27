@@ -77,7 +77,7 @@ longhorn:
   
   defaultSettings:
     backupTarget: S3://longhorn-dev@us-east-1/
-    backupTargetCredentialSecret: longhorn-backup-token-secret
+    backupTargetCredentialSecret: longhorn-backup-token-secret2
     allowRecurringJobWhileVolumeDetached: ~
     createDefaultDiskLabeledNodes: ~
     defaultDataPath: ~
