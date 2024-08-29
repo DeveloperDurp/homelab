@@ -35,7 +35,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`gitea.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`gitea.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: gitea
@@ -55,9 +55,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "gitea.internal.durp.info"
+  commonName: "gitea.durp.info"
   dnsNames:
-    - "gitea.internal.durp.info"
+    - "gitea.durp.info"
 
 ---
 
