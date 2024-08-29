@@ -10,15 +10,15 @@ deployment:
   probe:
     readiness:  
       httpGet:
-        path: /api/health/gethealth
+        path: /health/gethealth
         port: 8080
     liveness: 
       httpGet:
-        path: /api/health/gethealth
+        path: /health/gethealth
         port: 8080
     startup: 
       httpGet:
-        path: /api/health/gethealth
+        path: /health/gethealth
         port: 8080
 service:
   type: ClusterIP
