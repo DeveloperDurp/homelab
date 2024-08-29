@@ -40,7 +40,7 @@ spec:
       services:
         - name: jellyfin
           port: 8096
-          scheme: https
+          scheme: http
   tls:
     secretName: jellyfin-tls
 
