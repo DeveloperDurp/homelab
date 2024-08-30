@@ -819,13 +819,13 @@ traefik:
   # Additional serviceAccount annotations (e.g. for oidc authentication)
   serviceAccountAnnotations: {}
 
-  resources: {}
-    # requests:
-    #   cpu: "100m"
-    #   memory: "50Mi"
-    # limits:
-    #   cpu: "300m"
-    #   memory: "150Mi"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "50Mi"
+    limits:
+      cpu: "300m"
+      memory: "150Mi"
 
   # This example pod anti-affinity forces the scheduler to put traefik pods
   # on nodes where no other traefik pods are scheduled.
