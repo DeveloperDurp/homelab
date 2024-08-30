@@ -730,7 +730,7 @@ traefik:
   ## Create HorizontalPodAutoscaler object.
   ##
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
     maxReplicas: 10
     metrics:
@@ -739,13 +739,13 @@ traefik:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 80
     - type: Resource
       resource:
         name: memory
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 80
     behavior:
       scaleDown:
         stabilizationWindowSeconds: 300
