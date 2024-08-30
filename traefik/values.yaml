@@ -825,7 +825,7 @@ traefik:
       memory: "50Mi"
     limits:
       cpu: "300m"
-      memory: "150Mi"
+      memory: "256Mi"
 
   # This example pod anti-affinity forces the scheduler to put traefik pods
   # on nodes where no other traefik pods are scheduled.
