@@ -11,7 +11,7 @@ plane-ce:
     enabled: true
     appHost: "plane.durp.info"
     minioHost: "plane-minio.durp.info"
-    ingressClass: "nginx"
+    ingressClass: "traefik"
     ingress_annotations: {
       "nginx.ingress.kubernetes.io/proxy-body-size": "5m",
     }
