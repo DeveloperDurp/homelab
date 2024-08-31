@@ -1,4 +1,4 @@
-plane:
+plane-ce:
   planeVersion: stable
 
   dockerRegistry:
