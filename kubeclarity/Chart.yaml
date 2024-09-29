@@ -8,4 +8,4 @@ appVersion: 0.0.1
 dependencies:
 - name: kubeclarity
   repository: https://openclarity.github.io/kubeclarity
-  version: 2.22.0
+  version: 2.23.3
