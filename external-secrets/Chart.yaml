@@ -8,5 +8,5 @@ appVersion: 0.0.1
 dependencies:
 - name: external-secrets
   repository: https://charts.external-secrets.io
-  version: 0.8.1
+  version: 0.10.4
 
