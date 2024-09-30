@@ -4,12 +4,10 @@ vault:
 
     image:
       repository: "registry.internal.durp.info/hashicorp/vault-k8s"
-      tag: "1.3.1"
       pullPolicy: Always
 
     agentImage:
       repository: "registry.internal.durp.info/hashicorp/vault"
-      tag: "1.15.2"
 
   injector:
     enabled: "-"
@@ -23,18 +21,15 @@ vault:
 
     image:
       repository: "registry.internal.durp.info/hashicorp/vault-k8s"
-      tag: "1.3.1"
       pullPolicy: Always
 
     agentImage:
       repository: "registry.internal.durp.info/hashicorp/vault"
-      tag: "1.15.2"
 
   server:
     enabled: "-"
     image:
       repository: "registry.internal.durp.info/hashicorp/vault"
-      tag: "1.15.2"
       pullPolicy: Always
     ha:
       enabled: false
