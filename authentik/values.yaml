@@ -44,6 +44,9 @@ authentik:
         - ReadWriteMany
   redis:
     enabled: true
+    master:
+      persistence:
+        enabled: false    
     image:
       registry: registry.internal.durp.info
       repository: bitnami/redis
