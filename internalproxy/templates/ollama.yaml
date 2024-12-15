@@ -22,6 +22,7 @@ metadata:
   name: ollama-basic-auth
 spec:
   basicAuth:
+    headerField: x-api-key
     secret: ollama-secret
 
 ---
