@@ -48,7 +48,7 @@ metadata:
   name: ollama
 subsets:
   - addresses:
-      - ip: 192.168.30.99
+      - ip: 192.168.20.104
     ports:
       - name: app
         port: 11435
