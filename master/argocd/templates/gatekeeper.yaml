@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: gatekeeper
+    path: master/gatekeeper
   destination:
     namespace: gatekeeper
     name: in-cluster

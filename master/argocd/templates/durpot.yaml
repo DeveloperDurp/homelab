@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: durpot
+    path: master/durpot
   destination:
     namespace: durpot
     name: in-cluster

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: longhorn
+    path: master/longhorn
   destination:
     namespace: longhorn-system
     name: in-cluster

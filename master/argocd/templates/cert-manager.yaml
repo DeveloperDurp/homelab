@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: cert-manager
+    path: master/cert-manager
   destination:
     namespace: cert-manager
     name: in-cluster

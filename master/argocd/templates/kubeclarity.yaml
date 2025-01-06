@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: kubeclarity
+    path: master/kubeclarity
   destination:
     namespace: kubeclarity
     name: in-cluster

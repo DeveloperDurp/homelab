@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: krakend
+    path: master/krakend
   destination:
     namespace: krakend
     name: in-cluster

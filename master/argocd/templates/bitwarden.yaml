@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: bitwarden
+    path: master/bitwarden
     directory:
       recurse: true
   destination:
