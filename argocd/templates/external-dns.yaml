@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: external-dns
+    path: master/external-dns
   destination:
     namespace: external-dns
     name: in-cluster

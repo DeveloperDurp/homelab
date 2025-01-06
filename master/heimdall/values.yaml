@@ -1,0 +1,28 @@
+heimdall:
+
+  image:
+    registry: 
+    repository: registry.internal.durp.info/linuxserver/heimdall
+    pullPolicy: Always    
+
+  env:
+    TZ: UTC
+    PUID: "1000"
+    PGID: "1000"
+
+  service:
+    main:
+      annotations:
+          external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
+          external-dns.alpha.kubernetes.io/target: home.durp.info
+      ports:
+        http:
+          port: 80
+
+  ingress:
+    main:
+      enabled: false
+
+  persistence:
+    config:
+      enabled: true

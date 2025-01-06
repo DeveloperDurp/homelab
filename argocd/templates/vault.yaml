@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: vault
+    path: master/vault
   destination:
     namespace: vault
     name: in-cluster
@@ -16,7 +16,7 @@ spec:
     automated:
       prune: true
       selfHeal: true  
-    syncOptions:
+    syncOptions: Gc
       - CreateNamespace=true 
   ignoreDifferences:
   - group: admissionregistration.k8s.io

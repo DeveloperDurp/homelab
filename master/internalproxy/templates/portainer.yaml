@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: portainer
+spec:
+  ports:
+    - name: app
+      port: 9443
+      protocol: TCP
+      targetPort: 9443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: portainer
+subsets:
+  - addresses:
+      - ip: 192.168.20.104
+    ports:
+      - name: app
+        port: 9443
+        protocol: TCP
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`portainer.internal.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: portainer
+          port: 9443
+          scheme: https
+  tls:
+    secretName: portainer-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: portainer-tls
+spec:
+  secretName: portainer-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "portainer.internal.durp.info"
+  dnsNames:
+    - "portainer.internal.durp.info"

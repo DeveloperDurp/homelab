@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: uptimekuma
+    path: master/uptimekuma
     directory:
       recurse: true
   destination:

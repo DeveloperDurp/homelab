@@ -1,0 +1,52 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+  name: heimdall-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`heimdall.durp.info`) && PathPrefix(`/`)
+    middlewares:
+    - name: authentik-proxy-provider
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: heimdall
+      port: 80
+  - match: Host(`heimdall.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+    kind: Rule
+    services:
+    - name: ak-outpost-authentik-embedded-outpost
+      namespace: authentik
+      port: 9000
+  tls:
+    secretName: heimdall-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: heimdall-tls
+spec:
+  secretName: heimdall-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "heimdall.durp.info"
+  dnsNames:
+  - "heimdall.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: heimdall-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: heimdall.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info

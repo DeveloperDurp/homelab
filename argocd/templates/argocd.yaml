@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: argocd
+    path: master/argocd
   destination:
     namespace: argocd
     name: in-cluster

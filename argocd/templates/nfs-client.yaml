@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: nfs-client
+    path: master/nfs-client
     directory:
       recurse: true
   destination:

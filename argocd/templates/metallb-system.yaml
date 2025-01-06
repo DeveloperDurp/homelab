@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: metallb-system
+    path: master/metallb-system
   destination:
     namespace: metallb-system
     name: in-cluster

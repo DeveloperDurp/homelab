@@ -1,0 +1,39 @@
+ingress:
+  enabled: false
+deployment: 
+  image: registry.internal.durp.info/developerdurp/durpapi
+  secretfile: durpapi-secret
+  imagePullPolicy: Always
+  hpa:
+    minReplicas: 3
+    maxReplicas: 10
+  probe:
+    readiness:  
+      httpGet:
+        path: /health/gethealth
+        port: 8080
+    liveness: 
+      httpGet:
+        path: /health/gethealth
+        port: 8080
+    startup: 
+      httpGet:
+        path: /health/gethealth
+        port: 8080
+service:
+  type: ClusterIP
+  port: 80
+  targetport: 8080
+
+swagger:
+  host: api.durp.info
+postgresql:
+  enabled: true
+  auth:
+    existingSecret: durpapi-secret
+    secretKeys:
+      adminPasswordKey: db_pass
+      userPasswordKey: db_pass
+      replicationPasswordKey: db_pass
+    database: postgres
+    username: postgres

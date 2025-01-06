@@ -1,0 +1,65 @@
+vault:
+
+  global:
+
+    image:
+      repository: "registry.internal.durp.info/hashicorp/vault-k8s"
+      tag: "1.4.2"
+      pullPolicy: Always
+
+    agentImage:
+      repository: "registry.internal.durp.info/hashicorp/vault"
+      tag: "1.17.6"
+
+  injector:
+    enabled: "-"
+
+    replicas: 3
+    leaderElector:
+      enabled: true
+
+    metrics:
+      enabled: true
+
+    image:
+      repository: "registry.internal.durp.info/hashicorp/vault-k8s"
+      tag: "1.4.2"
+      pullPolicy: Always
+
+    agentImage:
+      repository: "registry.internal.durp.info/hashicorp/vault"
+      tag: "1.17.6"
+
+  server:
+    enabled: "-"
+    image:
+      repository: "registry.internal.durp.info/hashicorp/vault"
+      tag: "1.17.6"
+      pullPolicy: Always
+    ha:
+      enabled: false
+      replicas: 3
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 250m
+      limits:
+        memory: 256Mi
+        cpu: 250m
+
+    dataStorage:
+      enabled: true
+      size: 10Gi
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+    auditStorage:
+      enabled: false
+      size: 10Gi
+      mountPath: "/vault/audit"
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+  ui:
+    enabled: false
+    externalPort: 8200
+    targetPort: 8200
+

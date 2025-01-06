@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: littlelink
+    path: master/littlelink
     directory:
       recurse: true
   destination:

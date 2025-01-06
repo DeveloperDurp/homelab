@@ -1,0 +1,56 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api-tls
+spec:
+  secretName: api-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "api.durp.info"
+  dnsNames:
+  - "api.durp.info"        
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: krakend-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`api.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: krakend-service
+          port: 8080
+          scheme: http
+  tls:
+    secretName: api-tls
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: api.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-developer-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: developer.durp.info
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+spec:
+  type: ExternalName
+  externalName: developerdurp.github.io

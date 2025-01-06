@@ -1,0 +1,39 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`traefik.internal.durp.info`)
+    middlewares:
+    - name: authentik-proxy-provider
+      namespace: traefik    
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
+  - match: Host(`traefik.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+    kind: Rule
+    services:
+    - name: ak-outpost-authentik-embedded-outpost
+      namespace: authentik
+      port: 9000        
+  tls:
+    secretName: traefik-tls  
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-tls
+  namespace: traefik
+spec:
+  secretName: traefik-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "traefik.internal.durp.info"
+  dnsNames:
+  - "traefik.internal.durp.info"

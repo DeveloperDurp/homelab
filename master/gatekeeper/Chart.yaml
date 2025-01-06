@@ -1,0 +1,11 @@
+apiVersion: v2
+name: gatekeeper
+description: A Helm chart for Kubernetes
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+
+dependencies:
+- name: gatekeeper
+  repository: https://open-policy-agent.github.io/gatekeeper/charts
+  version: 3.17.1

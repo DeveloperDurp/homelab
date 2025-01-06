@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pfsense
+spec:
+  ports:
+    - name: app
+      port: 10443
+      protocol: TCP
+      targetPort: 10443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: pfsense
+subsets:
+  - addresses:
+      - ip: 192.168.20.1
+    ports:
+      - name: app
+        port: 10443
+        protocol: TCP
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pfsense-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`pfsense.internal.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: pfsense
+          port: 10443
+          scheme: https
+  tls:
+    secretName: pfsense-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pfsense-tls
+spec:
+  secretName: pfsense-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "pfsense.internal.durp.info"
+  dnsNames:
+    - "pfsense.internal.durp.info"

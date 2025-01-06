@@ -1,0 +1,44 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("api.durp.info") && PathPrefix(`/api`)
+    kind: Rule
+    middlewares:
+      - name: jwt
+    services:
+    - name: "durpapi-service"
+      port: 80
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Chart.Name }}-swagger"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host("api.durp.info") && PathPrefix(`/swagger`)
+    kind: Rule
+    services:
+    - name: "durpapi-service"
+      port: 80
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: jwt
+spec:
+  plugin:
+    jwt:
+      Required: true
+      Keys:
+        - https://authentik.durp.info/application/o/api/jwks

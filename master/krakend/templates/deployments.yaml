@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: krakend
+  name: krakend
+  labels:
+    app: krakend
+spec:
+  selector:
+    matchLabels:
+      app: krakend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: krakend
+    spec:
+      volumes:
+      - name: krakend-secret
+        secret:
+          secretName: krakend-secret
+      containers:
+      - name: krakend
+        image: registry.internal.durp.info/devopsfaith/krakend:2.4.3
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /__health
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /__health
+            port: 8080            
+        ports:
+        - name: http
+          containerPort: 8080          
+        volumeMounts:
+        - name: krakend-secret
+          mountPath: /etc/krakend

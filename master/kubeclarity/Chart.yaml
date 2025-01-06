@@ -1,0 +1,11 @@
+apiVersion: v2
+name: kubeclarity
+description: A Helm chart for Kubernetes
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+
+dependencies:
+- name: kubeclarity
+  repository: https://openclarity.github.io/kubeclarity
+  version: 2.23.3

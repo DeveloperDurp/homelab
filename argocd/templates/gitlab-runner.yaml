@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: gitlab-runner
+    path: master/gitlab-runner
   destination:
     namespace: gitlab-runner
     name: in-cluster

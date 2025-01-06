@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: authentik
+    path: master/authentik
   destination:
     namespace: authentik
     name: in-cluster

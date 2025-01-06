@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: traefik
+    path: master/traefik
   destination:
     namespace: traefik
     name: in-cluster
