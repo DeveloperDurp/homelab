@@ -16,7 +16,7 @@ spec:
     automated:
       prune: true
       selfHeal: true  
-    syncOptions: Gc
+    syncOptions:
       - CreateNamespace=true 
   ignoreDifferences:
   - group: admissionregistration.k8s.io
