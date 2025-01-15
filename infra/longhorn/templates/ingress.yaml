@@ -1,0 +1,41 @@
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: IngressRoute
+#metadata:
+#  name: longhorn-ingress
+#spec:
+#  entryPoints:
+#    - websecure
+#  routes:
+#  - match: Host(`longhorn.internal.durp.info`) && PathPrefix(`/`)
+#    middlewares:
+#    - name: whitelist
+#      namespace: traefik
+#    - name: authentik-proxy-provider
+#      namespace: traefik  
+#    kind: Rule
+#    services:
+#    - name: longhorn-frontend
+#      port: 80
+#  - match: Host(`longhorn.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+#    kind: Rule
+#    services:
+#    - name: ak-outpost-authentik-embedded-outpost
+#      namespace: authentik
+#      port: 9000
+#  tls:
+#    secretName: longhorn-tls
+#
+#---
+#
+#apiVersion: cert-manager.io/v1
+#kind: Certificate
+#metadata:
+#  name: longhorn-tls
+#spec:
+#  secretName: longhorn-tls
+#  issuerRef:
+#    name: letsencrypt-production
+#    kind: ClusterIssuer
+#  commonName: "longhorn.internal.durp.info"
+#  dnsNames:
+#  - "longhorn.internal.durp.info"  
