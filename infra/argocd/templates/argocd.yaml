@@ -52,9 +52,9 @@ spec:
     - websecure
   routes:
     - match: Host(`argocd.infra.durp.info`)
-      middlewares:
-        - name: whitelist
-          namespace: traefik
+      #middlewares:
+      #  - name: whitelist
+      #    namespace: traefik
       kind: Rule
       services:
         - name: argocd-server
