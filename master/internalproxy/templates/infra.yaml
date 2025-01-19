@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: infra
+spec:
+  ports:
+    - name: app
+      port: 443
+      protocol: TCP
+      targetPort: 443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: infra
+subsets:
+  - addresses:
+      - ip: 192.168.12.130
+    ports:
+      - name: app
+        port: 443
+        protocol: TCP
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: infra-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`*.infra.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: infra
+          port: 443
+          scheme: https
+  tls:
+    secretName: infra-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: infra-tls
+spec:
+  secretName: infra-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "infra.durp.info"
+  dnsNames:
+    - "*.infra.durp.info"
