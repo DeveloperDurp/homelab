@@ -36,9 +36,6 @@ spec:
     - websecure
   routes:
     - match: Host(`*.infra.durp.info`) && PathPrefix(`/`)
-      middlewares:
-        - name: whitelist
-          namespace: traefik
       kind: Rule
       services:
         - name: infra
