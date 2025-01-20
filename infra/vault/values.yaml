@@ -73,6 +73,7 @@ vault:
             cluster_address = "[::]:8201"
             tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
             tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
+            tls_disable = "true"
           }
   
           storage "raft" {
