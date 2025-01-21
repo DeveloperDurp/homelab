@@ -56,6 +56,25 @@ vault:
   
     standalone:
       enabled: true
+
+      config: |
+        ui = true
+        cluster_name = "vault-integrated-storage"
+        listener "tcp" {
+          address = "[::]:8200"
+          cluster_address = "[::]:8201"
+          tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
+          tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
+          tls_disable = "true"
+        }
+
+        seal "transit" {
+          address = "http://192.168.20.253:8201"
+          disable_renewal = "false"
+          key_name = "autounseal"
+          mount_path = "transit/"
+          tls_skip_verify = "true"
+        }
   
     # Run Vault in "HA" mode.
     ha:
