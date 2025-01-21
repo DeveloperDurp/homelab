@@ -37,6 +37,11 @@ vault:
     # used to include variables required for auto-unseal.
     extraEnvironmentVars:
       VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
+
+    extraSecretEnvironmentVars: 
+      - envName: VAULT_TOKEN
+        secretName: autounseal
+        secretKey: VAULT_TOKEN
   
     volumes:
       - name: userconfig-vault-server-tls
