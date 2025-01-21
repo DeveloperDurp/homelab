@@ -55,7 +55,7 @@ vault:
       enabled: true
   
     standalone:
-      enabled: false
+      enabled: true
   
     # Run Vault in "HA" mode.
     ha:
