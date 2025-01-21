@@ -45,7 +45,7 @@ longhorn:
     defaultFsType: ext4
     defaultClassReplicaCount: 3
     defaultDataLocality: disabled # best-effort otherwise
-    reclaimPolicy: Retain
+    reclaimPolicy: Delete
     migratable: false
     recurringJobSelector:
       enable: true
