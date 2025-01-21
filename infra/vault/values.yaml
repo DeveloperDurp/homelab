@@ -58,13 +58,11 @@ vault:
       enabled: true
 
       config: |
+        disable_mlock = true
         ui = true
-        cluster_name = "vault-integrated-storage"
         listener "tcp" {
           address = "[::]:8200"
           cluster_address = "[::]:8201"
-          tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-          tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
           tls_disable = "true"
         }
 
@@ -74,6 +72,11 @@ vault:
           key_name = "autounseal"
           mount_path = "transit/"
           tls_skip_verify = "true"
+        }
+
+        storage "raft" {
+          path    = "./vault/vault-0"
+          node_id = "vault-0"
         }
   
     # Run Vault in "HA" mode.
