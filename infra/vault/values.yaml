@@ -59,7 +59,7 @@ vault:
   
     # Run Vault in "HA" mode.
     ha:
-      enabled: true
+      enabled: false
       replicas: 3
       raft:
         enabled: true
