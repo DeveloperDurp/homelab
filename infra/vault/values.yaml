@@ -62,7 +62,7 @@ vault:
       enabled: false
       replicas: 3
       raft:
-        enabled: true
+        enabled: false
         setNodeId: true
   
         config: |
