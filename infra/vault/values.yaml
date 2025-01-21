@@ -75,8 +75,7 @@ vault:
         }
 
         storage "raft" {
-          path    = "./vault/vault-0"
-          node_id = "vault-0"
+            path = "/vault/data"
         }
   
     # Run Vault in "HA" mode.
