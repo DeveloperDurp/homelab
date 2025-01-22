@@ -1,7 +1,7 @@
 vault:
   global:
     enabled: true
-    tlsDisable: false
+    tlsDisable: true
     resources:
       requests:
         memory: 256Mi
@@ -68,8 +68,6 @@ vault:
         listener "tcp" {
           address = "[::]:8200"
           cluster_address = "[::]:8201"
-          tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-          tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
         }
 
         seal "transit" {
@@ -98,8 +96,6 @@ vault:
           listener "tcp" {
             address = "[::]:8200"
             cluster_address = "[::]:8201"
-            tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-            tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
           }
 
           seal "transit" {
@@ -113,22 +109,14 @@ vault:
           storage "raft" {
             path = "/vault/data"
             retry_join {
-              leader_api_addr = "https://vault-0.vault-internal:8200"
-              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
-              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
+              leader_api_addr = "http://vault-0.vault-internal:8200"
+              tls_skip_verify = "true"
             }
             retry_join {
-              leader_api_addr = "https://vault-1.vault-internal:8200"
-              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
-              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
+              leader_api_addr = "http://vault-1.vault-internal:8200"
             }
             retry_join {
-              leader_api_addr = "https://vault-2.vault-internal:8200"
-              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
-              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
-              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
+              leader_api_addr = "http://vault-2.vault-internal:8200"
             }
           } 
   
