@@ -103,7 +103,7 @@ vault:
           }
 
           seal "transit" {
-            address = "http://192.168.20.253:8201"
+            address = "https://192.168.20.253:8201"
             disable_renewal = "false"
             key_name = "autounseal"
             mount_path = "transit/"
