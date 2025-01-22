@@ -35,24 +35,24 @@ vault:
   
     # extraEnvironmentVars is a list of extra environment variables to set with the stateful set. These could be
     # used to include variables required for auto-unseal.
-    #extraEnvironmentVars:
-      #VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
+    extraEnvironmentVars:
+      VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
 
     extraSecretEnvironmentVars: 
       - envName: VAULT_TOKEN
         secretName: autounseal
         secretKey: VAULT_TOKEN
   
-    #volumes:
-    #  - name: userconfig-vault-server-tls
-    #    secret:
-    #      defaultMode: 420
-    #      secretName: vault-server-tls 
+    volumes:
+      - name: userconfig-vault-server-tls
+        secret:
+          defaultMode: 420
+          secretName: vault-server-tls 
 
-    #volumeMounts:
-    #  - mountPath: /vault/userconfig/vault-server-tls
-    #    name: userconfig-vault-server-tls
-    #    readOnly: true
+    volumeMounts:
+      - mountPath: /vault/userconfig/vault-server-tls
+        name: userconfig-vault-server-tls
+        readOnly: true
   
     # This configures the Vault Statefulset to create a PVC for audit logs.
     # See https://www.vaultproject.io/docs/audit/index.html to know more
@@ -96,10 +96,12 @@ vault:
           listener "tcp" {
             address = "[::]:8200"
             cluster_address = "[::]:8201"
+            tls_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
+            tls_key_file  = "/vault/userconfig/vault-server-tls/vault.key"
           }
 
           seal "transit" {
-            address = "https://192.168.20.253:8201"
+            address = "http://192.168.20.253:8201"
             disable_renewal = "false"
             key_name = "autounseal"
             mount_path = "transit/"
@@ -110,13 +112,21 @@ vault:
             path = "/vault/data"
             retry_join {
               leader_api_addr = "http://vault-0.vault-internal:8200"
-              tls_skip_verify = "true"
+              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
+              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
+              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
             }
             retry_join {
               leader_api_addr = "http://vault-1.vault-internal:8200"
+              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
+              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
+              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
             }
             retry_join {
               leader_api_addr = "http://vault-2.vault-internal:8200"
+              leader_ca_cert_file = "/vault/userconfig/vault-server-tls/vault.ca"
+              leader_client_cert_file = "/vault/userconfig/vault-server-tls/vault.crt"
+              leader_client_key_file = "/vault/userconfig/vault-server-tls/vault.key"
             }
           } 
   
