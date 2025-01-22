@@ -35,8 +35,8 @@ vault:
   
     # extraEnvironmentVars is a list of extra environment variables to set with the stateful set. These could be
     # used to include variables required for auto-unseal.
-    extraEnvironmentVars:
-      VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
+    extraEnvironmentVars: []
+      #VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
 
     extraSecretEnvironmentVars: 
       - envName: VAULT_TOKEN
