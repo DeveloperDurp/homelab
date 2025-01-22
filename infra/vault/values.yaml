@@ -60,7 +60,7 @@ vault:
       enabled: true
   
     standalone:
-      enabled: true
+      enabled: false
 
       config: |
         disable_mlock = true
@@ -86,10 +86,10 @@ vault:
   
     # Run Vault in "HA" mode.
     ha:
-      enabled: false
+      enabled: true
       replicas: 3
       raft:
-        enabled: false
+        enabled: true
         setNodeId: true
   
         config: |
