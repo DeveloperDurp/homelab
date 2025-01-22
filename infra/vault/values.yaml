@@ -35,7 +35,7 @@ vault:
   
     # extraEnvironmentVars is a list of extra environment variables to set with the stateful set. These could be
     # used to include variables required for auto-unseal.
-    extraEnvironmentVars: []
+    #extraEnvironmentVars:
       #VAULT_CACERT: /vault/userconfig/vault-server-tls/vault.ca
 
     extraSecretEnvironmentVars: 
@@ -43,16 +43,16 @@ vault:
         secretName: autounseal
         secretKey: VAULT_TOKEN
   
-    volumes:
-      - name: userconfig-vault-server-tls
-        secret:
-          defaultMode: 420
-          secretName: vault-server-tls 
+    #volumes:
+    #  - name: userconfig-vault-server-tls
+    #    secret:
+    #      defaultMode: 420
+    #      secretName: vault-server-tls 
 
-    volumeMounts:
-      - mountPath: /vault/userconfig/vault-server-tls
-        name: userconfig-vault-server-tls
-        readOnly: true
+    #volumeMounts:
+    #  - mountPath: /vault/userconfig/vault-server-tls
+    #    name: userconfig-vault-server-tls
+    #    readOnly: true
   
     # This configures the Vault Statefulset to create a PVC for audit logs.
     # See https://www.vaultproject.io/docs/audit/index.html to know more
