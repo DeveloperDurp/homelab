@@ -6,6 +6,17 @@ external-secrets:
     repository: ghcr.io/external-secrets/external-secrets
     pullPolicy: Always
 
+  extraVolumes: 
+    - name: ca-pemstore
+      configMap:
+        name: ca-pemstore
+
+  extraVolumeMounts: 
+    - name: ca-pemstore
+      mountPath: /etc/ssl/certs/vault.pem
+      subPath: vault.pem
+      readOnly: true
+
   resources: 
     requests:
       memory: 32Mi
