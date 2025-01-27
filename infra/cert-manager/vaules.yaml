@@ -1,4 +1,6 @@
 cert-manager:
+  crds:
+    enabled: true
   image:
     registry: registry.internal.durp.info
     repository: jetstack/cert-manager-controller
