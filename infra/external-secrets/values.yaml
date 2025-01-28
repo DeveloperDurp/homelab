@@ -3,7 +3,7 @@ external-secrets:
   revisionHistoryLimit: 1
 
   image:
-    repository: ghcr.io/external-secrets/external-secrets
+    repository: registry.internal.durp.info/external-secrets/external-secrets
     pullPolicy: Always
 
   extraVolumes: 
@@ -27,7 +27,7 @@ external-secrets:
 
   webhook:
     image:
-      repository: ghcr.io/external-secrets/external-secrets
+      repository: registry.internal.durp.info/external-secrets/external-secrets
       pullPolicy: Always
 
     resources: 
@@ -42,7 +42,7 @@ external-secrets:
     revisionHistoryLimit: 1
 
     image:
-      repository: ghcr.io/external-secrets/external-secrets
+      repository: registry.internal.durp.info/external-secrets/external-secrets
       pullPolicy: Always
       tag: ""
 
