@@ -20,7 +20,7 @@ spec:
         image: registry.internal.durp.info/open-webui/open-webui:main
         imagePullPolicy: Always
         volumeMounts:
-        - name: open-webui-pvc
+        - name: open-webui-pvc1
           mountPath: /app/backend/data
         ports:
         - name: http
