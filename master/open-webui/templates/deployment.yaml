@@ -32,6 +32,6 @@ spec:
                 name: open-webui-secret
                 key: OLLAMA_BASE_URL
       volumes:
-      - name: open-webui-pvc
+      - name: open-webui-pvc1
         persistentVolumeClaim:
-          claimName: open-webui-pvc             
+          claimName: open-webui-pvc1

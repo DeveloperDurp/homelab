@@ -55,7 +55,7 @@ argo-cd:
       create: true
       policy.csv: |
         g, ArgoCD Admins, role:admin 
-      scopes: "[groups]"
+      scopes: "[groups
 
   server:
     route: 
