@@ -107,7 +107,7 @@ vault:
             disable_renewal = "false"
             key_name = "autounseal"
             mount_path = "transit/"
-            tls_skip_verify = "false"
+            tls_skip_verify = "true"
           }
   
           storage "raft" {
