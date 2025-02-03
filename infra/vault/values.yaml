@@ -103,11 +103,11 @@ vault:
           }
 
           seal "transit" {
-            address = "https://192.168.20.253:8201"
+            address = "https://root-vault.internal.durp.info"
             disable_renewal = "false"
             key_name = "autounseal"
             mount_path = "transit/"
-            tls_skip_verify = "true"
+            tls_skip_verify = "false"
           }
   
           storage "raft" {
