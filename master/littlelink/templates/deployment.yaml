@@ -89,7 +89,7 @@ spec:
           - name: CUSTOM_BUTTON_COLOR
             value: '#ffdd00,#1185fe'
           - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#000000,#000000'
+            value: '#000000,#FFFFFF'
           - name: CUSTOM_BUTTON_ALT_TEXT
             value: Support,BlueSky
           - name: CUSTOM_BUTTON_NAME
