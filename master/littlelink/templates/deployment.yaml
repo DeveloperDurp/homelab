@@ -65,7 +65,7 @@ spec:
           - name : BIO
             value: Sup Nerd,
           - name : BUTTON_ORDER
-            value: GITHUB,GITLAB,YOUTUBE,TWITTER,BLUESKY,COFFEE,EMAIL
+            value: GITHUB,GITLAB,YOUTUBE,INSTAGRAM,TWITTER,BLUESKY,COFFEE,EMAIL
           - name : TWITTER
             value: https://twitter.com/developerdurp                
           - name : GITHUB
@@ -89,7 +89,7 @@ spec:
           - name: CUSTOM_BUTTON_COLOR
             value: '#ffdd00,#ffdd00'
           - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#000000,#000000'
+            value: '#000000,#1185fe'
           - name: CUSTOM_BUTTON_ALT_TEXT
             value: Support,BlueSky
           - name: CUSTOM_BUTTON_NAME
