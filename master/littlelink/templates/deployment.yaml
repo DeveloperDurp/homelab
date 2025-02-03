@@ -87,9 +87,9 @@ spec:
           - name: CUSTOM_BUTTON_URL
             value: https://www.buymeacoffee.com/DeveloperDurp,https://bsky.app/profile/durp.info
           - name: CUSTOM_BUTTON_COLOR
-            value: '#ffdd00,#ffdd00'
+            value: '#ffdd00,#1185fe'
           - name: CUSTOM_BUTTON_TEXT_COLOR
-            value: '#000000,#1185fe'
+            value: '#000000,#000000'
           - name: CUSTOM_BUTTON_ALT_TEXT
             value: Support,BlueSky
           - name: CUSTOM_BUTTON_NAME
