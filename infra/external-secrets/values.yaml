@@ -39,6 +39,7 @@ external-secrets:
         cpu: 10m
 
   certController:
+    create: false
     revisionHistoryLimit: 1
 
     image:
