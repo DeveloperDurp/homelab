@@ -6,7 +6,7 @@ argo-cd:
       repository: registry.internal.durp.info/argoproj/argocd
       imagePullPolicy: Always
 
-  server:
+  #server:
     #extraArgs:
     #  - --dex-server-plaintext
     #  - --dex-server=argocd-dex-server:5556
