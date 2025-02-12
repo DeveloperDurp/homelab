@@ -4,3 +4,22 @@ metadata:
   name: issuer
 secrets:
   - name:  issuer-token-lmzpj
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vault-issuer
+  namespace: default
+spec:
+  vault:
+    server: https://vault.infra.durp.info
+    path: pki/sign/issue-homelab-certs
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: issuer
+        secretRef:
+          name: issuer-token-lmzpj
+          key: token
