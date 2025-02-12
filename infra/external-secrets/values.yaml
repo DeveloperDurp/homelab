@@ -26,6 +26,8 @@ external-secrets:
       cpu: 10m
 
   webhook:
+    log:
+      level: debug
     image:
       repository: registry.internal.durp.info/external-secrets/external-secrets
       pullPolicy: Always
@@ -41,6 +43,8 @@ external-secrets:
   certController:
     create: true
     revisionHistoryLimit: 1
+    log:
+      level: debug
 
     image:
       repository: registry.internal.durp.info/external-secrets/external-secrets
