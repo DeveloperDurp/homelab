@@ -13,7 +13,7 @@ metadata:
   name: vault-issuer
 spec:
   vault:
-    server: https://vault.infra.durp.info
+    server: https://vault.vault.svc.cluster.local:8200
     path: pki/sign/issue-homelab-certs
     auth:
       kubernetes:
