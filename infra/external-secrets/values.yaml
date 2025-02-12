@@ -1,6 +1,16 @@
 external-secrets:
   replicaCount: 3
   revisionHistoryLimit: 1
+  leaderElect: true
+
+  installCRDs: true
+  crds:
+    createClusterExternalSecret: true
+    createClusterSecretStore: true
+    createClusterGenerator: true
+    createPushSecret: true
+    conversion:
+      enabled: false
 
   image:
     repository: registry.internal.durp.info/external-secrets/external-secrets
@@ -41,7 +51,7 @@ external-secrets:
         cpu: 10m
 
   certController:
-    create: true
+    create: false
     revisionHistoryLimit: 1
     log:
       level: debug
