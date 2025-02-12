@@ -26,7 +26,7 @@ spec:
   secretName: longhorn-tls
   issuerRef:
     name: vault-issuer
-    namespace: cert-manager
+    kind: ClusterIssuer
   commonName: "longhorn.infra.durp.info"
   dnsNames:
     - "longhorn.infra.durp.info"
