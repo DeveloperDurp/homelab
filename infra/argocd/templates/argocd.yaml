@@ -72,7 +72,7 @@ metadata:
 spec:
   secretName: argocd-tls
   issuerRef:
-    name: letsencrypt-production
+    name: vault-issuer
     kind: ClusterIssuer
   commonName: "argocd.infra.durp.info"
   dnsNames:
