@@ -33,7 +33,7 @@ format:
     - tofu fmt -diff -check -write=false
   rules:
     - changes:
-        - .tf
+        - "infra/terraform/*.tf"
 
 validate:
   stage: .pre
@@ -43,7 +43,7 @@ validate:
     - tofu validate
   rules:
     - changes:
-        - .tf
+        - "infra/terraform/*.tf"
 
 plan-infrastructure:
   stage: plan
@@ -64,7 +64,7 @@ plan-infrastructure:
   needs: ["validate","format"]
   rules:
     - changes:
-        - .tf
+        - "infra/terraform/*.tf"
 
 apply-infrastructure:
   stage: apply
@@ -76,7 +76,7 @@ apply-infrastructure:
     - tofu apply -auto-approve $ARGUMENTS
   rules:
     - changes:
-        - .tf
+        - "infra/terraform/*.tf"
       when: manual
   needs: ["plan-infrastructure"]
 
@@ -90,6 +90,6 @@ destroy-infrastructure:
     - tofu destory -auto-approve $ARGUMENTS
   rules:
     - changes:
-        - .tf
+        - "infra/terraform/*.tf"
       when: manual
   needs: ["plan-infrastructure"]
