@@ -23,9 +23,9 @@ locals {
   storage    = "cache-domains"
   emulatessd = true
   format     = "raw"
-  dnsserver = "192.168.12.1"
-  tags      = "postgres"
-  vlan      = 12
+  dnsserver  = "192.168.12.1"
+  tags       = "postgres"
+  vlan       = 12
   haproxy = {
     count  = 3
     name   = ["haproxy-01", "haproxy-02", "haproxy-03"]
