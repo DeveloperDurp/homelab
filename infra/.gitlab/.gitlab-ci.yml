@@ -1,0 +1,94 @@
+stages:
+  - plan
+  - apply
+  - destroy
+
+variables:
+  WORKDIR: $CI_PROJECT_DIR/infra
+  GITLAB_TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/infra
+
+image:
+  name: registry.internal.durp.info/opentofu/opentofu:latest
+  entrypoint: [""]
+
+.tf-init:
+  before_script:
+    - cd $WORKDIR
+    - |
+      tofu init -reconfigure -backend-config="address=${GITLAB_TF_ADDRESS}" \
+      -backend-config="lock_address=${GITLAB_TF_ADDRESS}/lock" \ 
+      -backend-config="unlock_address=${GITLAB_TF_ADDRESS}/lock" \
+      -backend-config="username=gitlab-ci-token" \
+      -backend-config="password=${CI_JOB_TOKEN}" \
+      -backend-config="lock_method=POST" \
+      -backend-config="unlock_method=DELETE" \
+      -backend-config="retry_wait_min=5"
+
+format:
+  stage: .pre
+  allow_failure: false
+  script:
+    - cd $WORKDIR
+    - tofu fmt -diff -check -write=false
+  rules:
+    - changes:
+        - .tf
+
+validate:
+  stage: .pre
+  allow_failure: false
+  extends: .tf-init
+  script:
+    - tofu validate
+  rules:
+    - changes:
+        - .tf
+
+plan-infrastructure:
+  stage: plan
+  variables:
+    PLAN: plan.tfplan
+    JSON_PLAN_FILE: tfplan.json
+    ENVIRONMENT_NAME: infra
+  allow_failure: false
+  extends: .tf-init
+  script:
+    - apk add --update curl jq
+    - alias convert_report="jq -r '([.resource_changes[].change.actions?]|flatten)|{\"create\":(map(select(.==\"create\"))|length),\"update\":(map(select(.==\"update\"))|length),\"delete\":(map(select(.==\"delete\"))|length)}'"
+    - tofu plan -out=$PLAN $ARGUMENTS
+    - tofu show --json $PLAN | jq -r '([.resource_changes[].change.actions?]|flatten)|{"create":(map(select(.=="create"))|length),"update":(map(select(.=="update"))|length),"delete":(map(select(.=="delete"))|length)}' > $JSON_PLAN_FILE
+  artifacts:
+    reports:
+      terraform: $WORKDIR/$JSON_PLAN_FILE
+  needs: ["validate","format"]
+  rules:
+    - changes:
+        - .tf
+
+apply-infrastructure:
+  stage: apply
+  variables:
+    ENVIRONMENT_NAME: infra
+  allow_failure: false
+  extends: .tf-init
+  script:
+    - tofu apply -auto-approve $ARGUMENTS
+  rules:
+    - changes:
+        - .tf
+      when: manual
+  needs: ["plan-infrastructure"]
+
+destroy-infrastructure:
+  stage: destroy
+  variables:
+    ENVIRONMENT_NAME: infra
+  allow_failure: false
+  extends: .tf-init
+  script:
+    - tofu destory -auto-approve $ARGUMENTS
+  rules:
+    - changes:
+        - .tf
+      when: manual
+  needs: ["plan-infrastructure"]
