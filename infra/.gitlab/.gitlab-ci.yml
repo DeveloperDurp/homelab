@@ -87,7 +87,7 @@ destroy-infrastructure:
   allow_failure: false
   extends: .tf-init
   script:
-    - tofu destory -auto-approve $ARGUMENTS
+    - tofu destroy -auto-approve $ARGUMENTS
   rules:
     - changes:
         - "infra/terraform/*.tf"
