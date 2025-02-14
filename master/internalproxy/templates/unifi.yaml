@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pfsense
+  name: unifi
 spec:
   ports:
     - name: app
-      port: 10443
+      port: 443
       protocol: TCP
-      targetPort: 10443
+      targetPort: 443
   clusterIP: None
   type: ClusterIP
 
@@ -16,13 +16,13 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: pfsense
+  name: unifi
 subsets:
   - addresses:
       - ip: 192.168.20.1
     ports:
       - name: app
-        port: 10443
+        port: 443
         protocol: TCP
 
 ---
@@ -30,34 +30,34 @@ subsets:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: pfsense-ingress
+  name: unifi-ingress
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`pfsense.internal.durp.info`) && PathPrefix(`/`)
+    - match: Host(`unifi.internal.durp.info`) && PathPrefix(`/`)
       middlewares:
         - name: whitelist
           namespace: traefik
       kind: Rule
       services:
-        - name: pfsense
-          port: 10443
+        - name: unifi
+          port: 443
           scheme: https
   tls:
-    secretName: pfsense-tls
+    secretName: unifi-tls
 
 ---
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: pfsense-tls
+  name: unifi-tls
 spec:
-  secretName: pfsense-tls
+  secretName: unifi-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "pfsense.internal.durp.info"
+  commonName: "unifi.internal.durp.info"
   dnsNames:
-    - "pfsense.internal.durp.info"
+    - "unifi.internal.durp.info"
