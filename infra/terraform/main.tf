@@ -67,6 +67,11 @@ resource "proxmox_vm_qemu" "haproxy" {
   boot    = "order=virtio0"
   onboot  = true
   sshkeys = local.sshkeys
+  vga         = "serial0"
+  serial {
+    id   = 0
+    type = "socket"
+  }
   disks {
     ide {
       ide2 {
@@ -118,6 +123,11 @@ resource "proxmox_vm_qemu" "postgres" {
   boot    = "order=virtio0"
   onboot  = true
   sshkeys = local.sshkeys
+  vga         = "serial0"
+  serial {
+    id   = 0
+    type = "socket"
+  }
   disks {
     ide {
       ide2 {
