@@ -67,7 +67,9 @@ resource "proxmox_vm_qemu" "haproxy" {
   boot    = "order=virtio0"
   onboot  = true
   sshkeys = local.sshkeys
-  vga     = "serial0"
+  vga {
+    type = "serial0"
+  }
   serial {
     id   = 0
     type = "socket"
