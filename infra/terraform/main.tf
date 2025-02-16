@@ -24,9 +24,29 @@ locals {
   emulatessd = true
   format     = "raw"
   dnsserver  = "192.168.12.1"
-  tags       = "postgres"
   vlan       = 12
+  k3smaster = {
+    tags   = "k3s_infra"
+    count  = 3
+    name   = ["master01-infra", "master02-infra", "master03-infra"]
+    cores  = 2
+    memory = "4096"
+    drive  = 20
+    node   = ["mothership", "overlord", "vanguard"]
+    ip     = ["11", "12", "13"]
+  }
+  k3sserver = {
+    tags   = "k3s_infra"
+    count  = 3
+    name   = ["node01-infra", "node02-infra", "node03-infra"]
+    cores  = 4
+    memory = "8192"
+    drive  = 240
+    node   = ["mothership", "overlord", "vanguard"]
+    ip     = ["21", "22", "23"]
+  }
   haproxy = {
+    tags   = "haproxy"
     count  = 3
     name   = ["haproxy-01", "haproxy-02", "haproxy-03"]
     cores  = 2
@@ -36,6 +56,7 @@ locals {
     ip     = ["31", "32", "33"]
   }
   postgres = {
+    tags   = "postgres"
     count  = 3
     name   = ["postgres-01", "postgres-02", "postgres-03"]
     cores  = 4
@@ -46,118 +67,3 @@ locals {
   }
 }
 
-resource "proxmox_vm_qemu" "haproxy" {
-  count       = local.haproxy.count
-  ciuser      = "administrator"
-  vmid        = "${local.vlan}${local.haproxy.ip[count.index]}"
-  name        = local.haproxy.name[count.index]
-  target_node = local.haproxy.node[count.index]
-  clone       = local.template
-  tags        = local.tags
-  qemu_os     = "l26"
-  full_clone  = true
-  os_type     = "cloud-init"
-  agent       = 1
-  cores       = local.haproxy.cores
-  sockets     = 1
-  cpu_type    = "host"
-  memory      = local.haproxy.memory
-  scsihw      = "virtio-scsi-pci"
-  #bootdisk    = "scsi0"
-  boot    = "order=virtio0"
-  onboot  = true
-  sshkeys = local.sshkeys
-  vga {
-    type = "serial0"
-  }
-  serial {
-    id   = 0
-    type = "socket"
-  }
-  disks {
-    ide {
-      ide2 {
-        cloudinit {
-          storage = local.storage
-        }
-      }
-    }
-    virtio {
-      virtio0 {
-        disk {
-          size    = local.haproxy.drive
-          format  = local.format
-          storage = local.storage
-        }
-      }
-    }
-  }
-  network {
-    id     = 0
-    model  = "virtio"
-    bridge = "vmbr0"
-    tag    = local.vlan
-  }
-  #Cloud Init Settings
-  ipconfig0    = "ip=192.168.${local.vlan}.${local.haproxy.ip[count.index]}/24,gw=192.168.${local.vlan}.1"
-  searchdomain = "durp.loc"
-  nameserver   = local.dnsserver
-}
-
-resource "proxmox_vm_qemu" "postgres" {
-  count       = local.postgres.count
-  ciuser      = "administrator"
-  vmid        = "${local.vlan}${local.postgres.ip[count.index]}"
-  name        = local.postgres.name[count.index]
-  target_node = local.postgres.node[count.index]
-  clone       = local.template
-  tags        = local.tags
-  qemu_os     = "l26"
-  full_clone  = true
-  os_type     = "cloud-init"
-  agent       = 1
-  cores       = local.postgres.cores
-  sockets     = 1
-  cpu_type    = "host"
-  memory      = local.postgres.memory
-  scsihw      = "virtio-scsi-pci"
-  #bootdisk    = "scsi0"
-  boot    = "order=virtio0"
-  onboot  = true
-  sshkeys = local.sshkeys
-  vga {
-    type = "serial0"
-  }
-  serial {
-    id   = 0
-    type = "socket"
-  }
-  disks {
-    ide {
-      ide2 {
-        cloudinit {
-          storage = local.storage
-        }
-      }
-    }
-    virtio {
-      virtio0 {
-        disk {
-          size    = local.postgres.drive
-          format  = local.format
-          storage = local.storage
-        }
-      }
-    }
-  }
-  network {
-    id     = 0
-    model  = "virtio"
-    bridge = "vmbr0"
-    tag    = local.vlan
-  }
-  #Cloud Init Settings
-  ipconfig0    = "ip=192.168.${local.vlan}.${local.postgres.ip[count.index]}/24,gw=192.168.${local.vlan}.1"
-  searchdomain = "durp.loc"
-  nameserver   = local.dnsserver
-}
