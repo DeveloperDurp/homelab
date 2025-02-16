@@ -7,7 +7,7 @@ resource "proxmox_vm_qemu" "k3smaster" {
   name        = local.k3smaster.name[count.index]
   target_node = local.k3smaster.node[count.index]
   tags        = local.k3smaster.tags
-  full_clone = false
+  full_clone  = false
   qemu_os     = "l26"
   os_type     = "cloud-init"
   agent       = 1
@@ -16,9 +16,9 @@ resource "proxmox_vm_qemu" "k3smaster" {
   cpu_type    = "host"
   memory      = local.k3smaster.memory
   scsihw      = "virtio-scsi-pci"
-  boot    = "order=virtio0"
-  onboot  = true
-  sshkeys = local.sshkeys
+  boot        = "order=virtio0"
+  onboot      = true
+  sshkeys     = local.sshkeys
   vga {
     type = "serial0"
   }
