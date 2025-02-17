@@ -1,0 +1,17 @@
+required_packages:
+    - ufw
+    - qemu-guest-agent
+    - fail2ban
+    - unattended-upgrades
+    - cockpit
+    - nfs-common
+    - open-iscsi
+
+unnecessary_services:
+    - postfix
+    - telnet
+    
+unnecessary_software:
+    - tcpdump
+    - nmap-ncat
+    - wpa_supplicant    

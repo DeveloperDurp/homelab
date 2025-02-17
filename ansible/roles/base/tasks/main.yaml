@@ -1,0 +1,132 @@
+- name: Update packages
+  apt:
+    name: '*'
+    state: latest
+    update_cache: yes
+    only_upgrade: yes
+  retries: 300
+  delay: 10
+
+- name: Remove packages not needed anymore
+  apt:
+    autoremove: yes  
+  retries: 300
+  delay: 10      
+      
+- name: Install required packages Debian
+  apt: 
+    state: latest 
+    pkg: "{{ item }}"
+  with_items:  "{{ required_packages }}" 
+  retries: 300
+  delay: 10  
+
+- name: Create user account
+  user: 
+    name: "user"
+    shell: /bin/bash
+    state: present
+    createhome: yes
+
+- name: ensure ssh folder exists for user
+  file: 
+    path: /home/user/.ssh
+    owner: user 
+    group: user 
+    mode: "0700"
+    state: directory
+
+- name: Deploy SSH Key (user)
+  copy:
+    dest: /home/user/.ssh/authorized_keys
+    src: files/authorized_keys_user
+    owner: user 
+    group: user
+    force: true 
+
+- name: Remove Root SSH Configuration
+  file: 
+    path: /root/.ssh
+    state: absent
+
+- name: Copy Secured SSHD Configuration
+  copy: 
+    src: files/sshd_config_secured 
+    dest: /etc/ssh/sshd_config 
+    owner: root 
+    group: root 
+    mode: "0644"
+  when: ansible_os_family == "Debian"   
+
+- name: Copy Secured SSHD Configuration
+  copy: 
+    src: files/sshd_config_secured_redhat 
+    dest: /etc/ssh/sshd_config 
+    owner: root 
+    group: root 
+    mode: "0644"    
+  when: ansible_os_family == "RedHat"   
+
+- name: Restart SSHD
+  systemd:
+    name: sshd
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+  ignore_errors: yes
+
+
+- name: Copy unattended-upgrades file
+  copy: 
+    src: files/10periodic
+    dest: /etc/apt/apt.conf.d/10periodic 
+    owner: root 
+    group: root 
+    mode: "0644"
+    force: yes
+  when: ansible_os_family == "Debian"      
+
+- name: Remove undesirable packages
+  package:
+    name: "{{ unnecessary_software }}"
+    state: absent
+  when: ansible_os_family == "Debian"    
+
+- name: Stop and disable unnecessary services
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  with_items: "{{ unnecessary_services }}"
+  ignore_errors: yes
+
+- name: Set a message of the day
+  copy:
+    dest: /etc/motd
+    src: files/motd
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Set a login banner
+  copy:
+    dest: "{{ item }}"
+    src: files/issue
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - /etc/issue
+    - /etc/issue.net
+
+- name: set timezone
+  shell: timedatectl set-timezone America/Chicago
+
+- name: Enable cockpit
+  systemd:
+    name: cockpit
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+  when: ansible_os_family == "RedHat"    
+
