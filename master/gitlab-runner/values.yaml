@@ -6,7 +6,7 @@ gitlab-runner:
 
   imagePullPolicy: Always
   gitlabUrl: https://gitlab.com/
-  unregisterRunner: true
+  unregisterRunner: false
   terminationGracePeriodSeconds: 3600
   concurrent: 10
   checkInterval: 30
