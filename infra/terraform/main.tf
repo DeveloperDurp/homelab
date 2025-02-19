@@ -65,4 +65,14 @@ locals {
     node   = ["mothership", "overlord", "vanguard"]
     ip     = ["34", "35", "36"]
   }
+  pihole = {
+    tags   = "pihole"
+    count  = 3
+    name   = ["pihole-01", "pihole-02", "pihole-03"]
+    cores  = 2
+    memory = "2048"
+    drive  = 20
+    node   = ["mothership", "overlord", "vanguard"]
+    ip     = ["41", "42", "43"]
+  }
 }
