@@ -29,7 +29,19 @@ authentik:
   worker:
     replicas: 3
   postgresql:
-    enabled: false
+    enabled: true
+    image:
+      registry: registry.durp.info
+      repository: bitnami/postgresql
+      pullPolicy: Always
+    postgresqlUsername: "authentik"
+    postgresqlDatabase: "authentik"
+    existingSecret: db-pass 
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      accessModes:
+        - ReadWriteMany
   redis:
     enabled: true
     master:
