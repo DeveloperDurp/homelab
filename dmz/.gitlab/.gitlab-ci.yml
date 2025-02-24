@@ -8,7 +8,7 @@ variables:
   GITLAB_TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/dmz
 
 image:
-  name: registry.internal.durp.info/opentofu/opentofu:latest
+  name: registry.durp.info/opentofu/opentofu:latest
   entrypoint: [""]
 
 .tf-init:
@@ -45,7 +45,7 @@ validate:
     - changes:
         - "dmz/terraform/*.tf"
 
-plan-dmzstructure:
+plan-dmz-infrastructure:
   stage: plan
   variables:
     PLAN: plan.tfplan
@@ -66,7 +66,7 @@ plan-dmzstructure:
     - changes:
         - "dmz/terraform/*.tf"
 
-apply-dmzstructure:
+apply-dmz-infrastructure:
   stage: apply
   variables:
     ENVIRONMENT_NAME: dmz
@@ -78,9 +78,9 @@ apply-dmzstructure:
     - changes:
         - "dmz/terraform/*.tf"
       when: manual
-  needs: ["plan-dmzstructure"]
+  needs: ["plan-dmz-infrastructure"]
 
-destroy-dmzstructure:
+destroy-dmz-infrastructure:
   stage: destroy
   variables:
     ENVIRONMENT_NAME: dmz
@@ -92,4 +92,4 @@ destroy-dmzstructure:
     - changes:
         - "dmz/terraform/*.tf"
       when: manual
-  needs: ["plan-dmzstructure"]
+  needs: ["plan-dmz-infrastructure"]

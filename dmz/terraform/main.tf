@@ -45,34 +45,4 @@ locals {
     node   = ["mothership", "overlord", "vanguard"]
     ip     = ["21", "22", "23"]
   }
-  haproxy = {
-    tags   = "haproxy"
-    count  = 3
-    name   = ["haproxy-01", "haproxy-02", "haproxy-03"]
-    cores  = 2
-    memory = "1024"
-    drive  = 20
-    node   = ["mothership", "overlord", "vanguard"]
-    ip     = ["31", "32", "33"]
-  }
-  postgres = {
-    tags   = "postgres"
-    count  = 3
-    name   = ["postgres-01", "postgres-02", "postgres-03"]
-    cores  = 4
-    memory = "4096"
-    drive  = 40
-    node   = ["mothership", "overlord", "vanguard"]
-    ip     = ["34", "35", "36"]
-  }
-  pihole = {
-    tags   = "pihole"
-    count  = 3
-    name   = ["pihole-01", "pihole-02", "pihole-03"]
-    cores  = 2
-    memory = "2048"
-    drive  = 20
-    node   = ["mothership", "overlord", "vanguard"]
-    ip     = ["41", "42", "43"]
-  }
 }
