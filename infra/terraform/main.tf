@@ -23,7 +23,7 @@ locals {
   storage    = "cache-domains"
   emulatessd = true
   format     = "raw"
-  dnsserver  = "192.168.12.41,192.168.12.42,192.168.12.43"
+  dnsserver  = "192.168.12.1"
   vlan       = 12
   k3smaster = {
     tags   = "k3s_infra"
