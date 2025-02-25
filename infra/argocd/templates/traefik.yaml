@@ -31,7 +31,7 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: infra/traefik
+    path: dmz/traefik
   destination:
     namespace: traefik
     name: dmz
