@@ -128,5 +128,9 @@
     daemon_reload: yes
     state: restarted
     enabled: yes
-  when: ansible_os_family == "RedHat"    
 
+- name: change password
+  ansible.builtin.user:
+    name: "administrator"
+    state: present
+    password: "{{ lookup('ansible.builtin.env', 'ADMIN_PASSWORD') | password_hash('sha512') }}"
