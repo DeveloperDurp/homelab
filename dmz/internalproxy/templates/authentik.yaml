@@ -11,8 +11,6 @@ spec:
     services:
     - name: authentik-server
       port: 443
-  tls:
-    secretName: authentik-tls
 
 ---
 
