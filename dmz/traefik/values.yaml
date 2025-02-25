@@ -4,6 +4,9 @@ traefik:
     repository: traefik
     pullPolicy: Always
   
+  providers:  
+      allowExternalNameServices: true
+
   deployment:
     replicas: 3
     revisionHistoryLimit: 1
