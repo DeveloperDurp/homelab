@@ -1,101 +1,101 @@
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: ollama-secret
-spec:
-  secretStoreRef:
-    name: vault
-    kind: ClusterSecretStore
-  target:
-    name: ollama-secret
-  data:
-    - secretKey: users
-      remoteRef:
-        key: secrets/internalproxy/ollama
-        property: users
-
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: ollama-basic-auth
-spec:
-  basicAuth:
-    secret: ollama-secret
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: ollama
-spec:
-  ports:
-    - name: app
-      port: 11435
-      protocol: TCP
-      targetPort: 11435
-  clusterIP: None
-  type: ClusterIP
-
----
-
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: ollama
-subsets:
-  - addresses:
-      - ip: 192.168.20.104
-    ports:
-      - name: app
-        port: 11435
-        protocol: TCP
-
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: ollama-ingress
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`ollama.durp.info`) && PathPrefix(`/`)
-      middlewares:
-        - name: ollama-basic-auth
-      kind: Rule
-      services:
-        - name: ollama
-          port: 11435
-  tls:
-    secretName: ollama-tls
-
----
-
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: ollama-tls
-spec:
-  secretName: ollama-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: "ollama.durp.info"
-  dnsNames:
-    - "ollama.durp.info"
-
----
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: ollama-external-dns
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: ollama.durp.info
-spec:
-  type: ExternalName
-  externalName: durp.info
+#apiVersion: external-secrets.io/v1beta1
+#kind: ExternalSecret
+#metadata:
+#  name: ollama-secret
+#spec:
+#  secretStoreRef:
+#    name: vault
+#    kind: ClusterSecretStore
+#  target:
+#    name: ollama-secret
+#  data:
+#    - secretKey: users
+#      remoteRef:
+#        key: secrets/internalproxy/ollama
+#        property: users
+#
+#---
+#
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+#  name: ollama-basic-auth
+#spec:
+#  basicAuth:
+#    secret: ollama-secret
+#
+#---
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: ollama
+#spec:
+#  ports:
+#    - name: app
+#      port: 11435
+#      protocol: TCP
+#      targetPort: 11435
+#  clusterIP: None
+#  type: ClusterIP
+#
+#---
+#
+#apiVersion: v1
+#kind: Endpoints
+#metadata:
+#  name: ollama
+#subsets:
+#  - addresses:
+#      - ip: 192.168.20.104
+#    ports:
+#      - name: app
+#        port: 11435
+#        protocol: TCP
+#
+#---
+#
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: IngressRoute
+#metadata:
+#  name: ollama-ingress
+#spec:
+#  entryPoints:
+#    - websecure
+#  routes:
+#    - match: Host(`ollama.durp.info`) && PathPrefix(`/`)
+#      middlewares:
+#        - name: ollama-basic-auth
+#      kind: Rule
+#      services:
+#        - name: ollama
+#          port: 11435
+#  tls:
+#    secretName: ollama-tls
+#
+#---
+#
+#apiVersion: cert-manager.io/v1
+#kind: Certificate
+#metadata:
+#  name: ollama-tls
+#spec:
+#  secretName: ollama-tls
+#  issuerRef:
+#    name: letsencrypt-production
+#    kind: ClusterIssuer
+#  commonName: "ollama.durp.info"
+#  dnsNames:
+#    - "ollama.durp.info"
+#
+#---
+#
+#kind: Service
+#apiVersion: v1
+#metadata:
+#  name: ollama-external-dns
+#  annotations:
+#    external-dns.alpha.kubernetes.io/hostname: ollama.durp.info
+#spec:
+#  type: ExternalName
+#  externalName: durp.info
