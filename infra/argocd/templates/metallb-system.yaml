@@ -34,7 +34,7 @@ spec:
     path: dmz/metallb-system
   destination:
     namespace: metallb-system
-    name: in-cluster
+    name: dmz
   syncPolicy:
     automated:
       prune: true
