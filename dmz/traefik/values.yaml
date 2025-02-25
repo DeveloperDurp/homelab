@@ -5,6 +5,7 @@ traefik:
     pullPolicy: Always
   
   providers:  
+    kubernetesCRD:
       allowExternalNameServices: true
 
   deployment:
