@@ -11,6 +11,8 @@ spec:
     services:
     - name: authentik-server
       port: 443
+  tls:
+    secretName: authentik-tls
 
 ---
 
@@ -21,3 +23,15 @@ metadata:
 spec:
   type: ExternalName
   externalName: authentik.infra.durp.info
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: authentik-tls
+spec:
+  secretName: authentik-tls
+  commonName: "test.durp.info"
+  dnsNames:
+  - "test.durp.info"
