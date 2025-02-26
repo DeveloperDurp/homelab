@@ -5,15 +5,8 @@ metadata:
 data:
   traefik.yaml: |
     http:
-      routers:
-        router0:
-          entryPoints:
-          - web
-          service: service-foo
-          rule: host(`test.durp.info`)
-
       services:
-        service-foo:
+        authentik-service:
           loadBalancer:
             servers:
             - url: https://google.com
