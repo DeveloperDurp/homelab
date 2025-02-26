@@ -7,6 +7,7 @@ traefik:
   providers:  
     kubernetesCRD:
       allowExternalNameServices: true
+      allowEmptyServices: false
 
   deployment:
     replicas: 3
