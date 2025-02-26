@@ -23,7 +23,6 @@ traefik:
       enabled: true
   
   additionalArguments: 
-    - "--configFile=/config/traefik.yml"
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
     - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
