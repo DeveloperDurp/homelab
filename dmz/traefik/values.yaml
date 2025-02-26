@@ -55,6 +55,3 @@ traefik:
       memory: "512Mi"
     limits:
       memory: "512Mi"
-
-  logs:
-    level: "DEBUG"
