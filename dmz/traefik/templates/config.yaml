@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: traefik-configmap
 data:
-  traefik.yaml: |
+  traefik.yml: |
     http:
       routers:
         router0:
