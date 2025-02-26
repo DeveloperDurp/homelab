@@ -11,12 +11,10 @@ data:
           - web
           service: service-foo
           rule: host(`test.durp.info`)
-          tls:
-            cert-resolver: default
 
       services:
         service-foo:
           loadBalancer:
             servers:
-            - url: https://authentik.infra.durp.info
+            - url: https://google.com
             passHostHeader: true
