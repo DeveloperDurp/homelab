@@ -22,7 +22,7 @@ metadata:
   name: authentik-server
 spec:
   type: ExternalName
-  externalName: authentik.infra.durp.info
+  externalName: https://authentik.infra.durp.info
 
 ---
 
