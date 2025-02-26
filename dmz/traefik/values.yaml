@@ -11,10 +11,11 @@ traefik:
   deployment:
     replicas: 3
     revisionHistoryLimit: 1
-    additionalVolumes:
-      - name: traefik-configmap
-        mountPath: "/config"
-        type: configMap
+
+  volumes:
+    - name: traefik-configmap
+      mountPath: "/config"
+      type: configMap
   
   ingressRoute:
     dashboard:
