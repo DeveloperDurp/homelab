@@ -15,7 +15,7 @@ traefik:
 
   volumes:
     - name: traefik-configmap
-      mountPath: "/config"
+      mountPath: "/etc/traefik"
       type: configMap
   
   ingressRoute:
