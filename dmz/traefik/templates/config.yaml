@@ -7,16 +7,11 @@ data:
     http:
       routers:
         router0:
-          entryPoints:
-            - websecure
-          service: service-foo
-          rule: host(`test.durp.info`)
-          tls:
-            cert-resolver: default
+          service: service0
+          rule: Host(`test.durp.info`)
 
       services:
-        service-foo:
+        service0:
           loadBalancer:
             servers:
-            - url: https://google.com
-            passHostHeader: true
+              - url: https://google.com
