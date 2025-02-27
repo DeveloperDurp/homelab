@@ -36,6 +36,7 @@ external-secrets:
       cpu: 10m
 
   webhook:
+    failurePolicy: Ignore
     log:
       level: debug
     image:
