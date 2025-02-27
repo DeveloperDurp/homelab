@@ -24,6 +24,5 @@ spec:
     kind: Rule
     services:
     - name: service0
-      kind: TraefikService
   tls:
     secretName: test
