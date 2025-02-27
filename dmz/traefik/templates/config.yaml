@@ -10,8 +10,20 @@ data:
           service: service0
           rule: Host(`test.durp.info`)
 
-      services:
-        service0:
-          loadBalancer:
-            servers:
-              - url: https://google.com
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: test-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`test.durp.info`) && PathPrefix(`/`) 
+    kind: Rule
+    services:
+    - name: service0
+      port: 443
+  tls:
+    secretName: test
