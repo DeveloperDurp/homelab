@@ -50,3 +50,6 @@ external-secrets:
       limits:
         memory: 32Mi
         cpu: 10m
+
+  certController:
+    create: false
