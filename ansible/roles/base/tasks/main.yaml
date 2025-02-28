@@ -131,12 +131,6 @@
 
 - name: change password
   ansible.builtin.user:
-    name: "administrator"
-    state: present
-    password: "{{ lookup('ansible.builtin.env', 'ADMIN_PASSWORD') | password_hash('sha512') }}"
-
-- name: change password
-  ansible.builtin.user:
     name: "user"
     state: present
     password: "{{ lookup('ansible.builtin.env', 'USER_PASSWORD') | password_hash('sha512') }}"
