@@ -36,6 +36,7 @@ external-secrets:
       cpu: 10m
 
   webhook:
+    create: false
     failurePolicy: Ignore
     log:
       level: debug
@@ -63,7 +64,7 @@ external-secrets:
         cpu: 10m
 
   certController:
-    create: true
+    create: false
     revisionHistoryLimit: 1
     log:
       level: debug
