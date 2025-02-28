@@ -69,3 +69,14 @@ external-secrets:
       limits:
         memory: 32Mi
         cpu: 10m
+
+    extraVolumes: 
+      - name: ca-pemstore
+        configMap:
+          name: ca-pemstore
+
+    extraVolumeMounts: 
+      - name: ca-pemstore
+        mountPath: /etc/ssl/certs/vault.pem
+        subPath: vault.pem
+        readOnly: true
