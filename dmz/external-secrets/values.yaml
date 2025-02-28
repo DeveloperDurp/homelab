@@ -52,4 +52,20 @@ external-secrets:
         cpu: 10m
 
   certController:
-    create: false
+    create: true
+    revisionHistoryLimit: 1
+    log:
+      level: debug
+
+    image:
+      repository: registry.internal.durp.info/external-secrets/external-secrets
+      pullPolicy: Always
+      tag: ""
+
+    resources: 
+      requests:
+        memory: 32Mi
+        cpu: 10m
+      limits:
+        memory: 32Mi
+        cpu: 10m
