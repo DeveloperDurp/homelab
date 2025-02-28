@@ -1,25 +1,25 @@
-- name: Update packages
-  apt:
-    name: '*'
-    state: latest
-    update_cache: yes
-    only_upgrade: yes
-  retries: 300
-  delay: 10
-
-- name: Remove packages not needed anymore
-  apt:
-    autoremove: yes  
-  retries: 300
-  delay: 10      
-      
-- name: Install required packages Debian
-  apt: 
-    state: latest 
-    pkg: "{{ item }}"
-  with_items:  "{{ required_packages }}" 
-  retries: 300
-  delay: 10  
+#- name: Update packages
+#  apt:
+#    name: '*'
+#    state: latest
+#    update_cache: yes
+#    only_upgrade: yes
+#  retries: 300
+#  delay: 10
+#
+#- name: Remove packages not needed anymore
+#  apt:
+#    autoremove: yes  
+#  retries: 300
+#  delay: 10      
+#      
+#- name: Install required packages Debian
+#  apt: 
+#    state: latest 
+#    pkg: "{{ item }}"
+#  with_items:  "{{ required_packages }}" 
+#  retries: 300
+#  delay: 10  
 
 - name: Create user account
   user: 
@@ -134,3 +134,16 @@
     name: "administrator"
     state: present
     password: "{{ lookup('ansible.builtin.env', 'ADMIN_PASSWORD') | password_hash('sha512') }}"
+
+- name: change password
+  ansible.builtin.user:
+    name: "user"
+    state: present
+    password: "{{ lookup('ansible.builtin.env', 'USER_PASSWORD') | password_hash('sha512') }}"
+
+- name: add user to sudoers
+  community.general.sudoers:
+    name: user
+    state: present
+    user: user
+    commands: ALL
