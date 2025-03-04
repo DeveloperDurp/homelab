@@ -43,20 +43,10 @@ spec:
   - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
-    - name: master-cluster
+    - name: infra-cluster
       port: 443
   tls:
     secretName: authentik-tls
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: authentik-server
-spec:
-  type: ExternalName
-  externalName: authentik.durp.info
 
 ---
 
@@ -92,6 +82,30 @@ apiVersion: v1
 kind: Service
 metadata:
   name: master-cluster
+spec:
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: infra-cluster
+subsets:
+  - addresses:
+      - ip: 192.168.12.130
+    ports:
+      - port: 443
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: infra-cluster
 spec:
   ports:
     - protocol: TCP
