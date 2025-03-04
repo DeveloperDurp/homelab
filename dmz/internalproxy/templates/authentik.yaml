@@ -8,8 +8,6 @@ spec:
   routes:
   - match: Host(`test.durp.info`) && PathPrefix(`/`) 
     kind: Rule
-    middlewares:
-    - name: example-redirectregex
     services:
     - name: authentik-server
       port: 443
