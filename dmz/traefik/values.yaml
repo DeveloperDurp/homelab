@@ -16,7 +16,7 @@ traefik:
 
   volumes:
     - name: traefik-configmap
-      mountPath: "/etc/traefik"
+      mountPath: "/config"
       type: configMap
   
   ingressRoute:
@@ -24,6 +24,7 @@ traefik:
       enabled: true
   
   additionalArguments: 
+    - "--providers.file.filename=/config/config.yml"
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
     - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
