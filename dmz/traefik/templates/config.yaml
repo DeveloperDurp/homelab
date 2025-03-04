@@ -9,8 +9,10 @@ data:
         router0:
           service: service0
           rule: Host(`test.durp.info`)
+          tls:
+            secretName: authentik-tls
       services:
         service0:
           loadBalancer:
             servers:
-              - url: https://google.com
+              - url: https://authentik.durp.info
