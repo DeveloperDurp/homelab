@@ -8,9 +8,9 @@ data:
       routers:
         router0:
           service: service0
-          rule: Host(`authentik.durp.info`)
+          rule: Host(`testing.durp.info`)
       services:
         service0:
           loadBalancer:
             servers:
-              - url: https://authentik.durp.info
+              - url: https://192.168.20.130

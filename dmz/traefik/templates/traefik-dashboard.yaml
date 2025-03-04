@@ -31,23 +31,23 @@ spec:
   - "traefik.durp.info"
 
 ---
-#
-#apiVersion: traefik.io/v1alpha1
-#kind: IngressRoute
-#metadata:
-#  name: authentik-ingress
-#spec:
-#  entryPoints:
-#    - websecure
-#  routes:
-#  - match: Host(`test.durp.info`) && PathPrefix(`/`) 
-#    kind: Rule
-#    services:
-#    - name: service0
-#      port: 443
-#  tls:
-#    secretName: authentik-tls
-#
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: authentik-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
+    kind: Rule
+    services:
+    - name: master-cluster
+      port: 443
+  tls:
+    secretName: authentik-tls
+
 ---
 
 apiVersion: v1
@@ -69,18 +69,31 @@ spec:
     name: letsencrypt-production
     kind: ClusterIssuer
   secretName: authentik-tls
-  commonName: "test.durp.info"
+  commonName: "authentik.durp.info"
   dnsNames:
-  - "test.durp.info"
+  - "authentik.durp.info"
+
 
 ---
 
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
+apiVersion: v1
+kind: Endpoints
 metadata:
-  name: example-redirectregex
+  name: master-cluster
+subsets:
+  - addresses:
+      - ip: 192.168.20.130
+    ports:
+      - port: 443
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: master-cluster
 spec:
-  redirectRegex:
-    regex: (.)*
-    replacement: https://authentik.durp.info/${1}
-    permanent: false
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 9376
