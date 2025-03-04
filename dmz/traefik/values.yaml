@@ -6,6 +6,7 @@ traefik:
   
   providers:  
     kubernetesCRD:
+      allowCrossNamespace: false
       allowExternalNameServices: true
       allowEmptyServices: false
 
