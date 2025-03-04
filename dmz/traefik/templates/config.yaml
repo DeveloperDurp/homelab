@@ -5,10 +5,15 @@ metadata:
 data:
   config.yml: |
     http:
+      middlewares:
+        strip-host-and-path-middleware:
+          stripHost: "test.durp.info"
       routers:
         router0:
           service: service0
           rule: Host(`test.durp.info`)
+          middleware:
+            - name: strip-host-and-path-middleware
       services:
         service0:
           loadBalancer:
