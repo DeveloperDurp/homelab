@@ -50,5 +50,5 @@ metadata:
   name: example-redirectregex
 spec:
   redirectRegex:
-    regex: ^https://example.com/(.*)
+    regex: ^https://test.durp.info/(.*)
     replacement: https://google.com/${1}
