@@ -8,11 +8,8 @@ spec:
   routes:
   - match: Host(`test.durp.info`) && PathPrefix(`/`) 
     kind: Rule
-    middlewares:
-    - name: example-redirectregex
-      namespace: traefik
     services:
-    - name: service0
+    - name: test
       port: 443
   tls:
     secretName: authentik-tls

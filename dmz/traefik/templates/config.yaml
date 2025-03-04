@@ -5,25 +5,9 @@ metadata:
 data:
   config.yml: |
     http:
-      routers:
-        router0:
-          service: service0
-          rule: Host(`test.durp.info`)
-
       services:
-        service0:
+        test:
           loadBalancer:
             servers:
               - url: https://google.com
 
-    https:
-      routers:
-        router0:
-          service: service0
-          rule: Host(`test.durp.info`)
-
-      services:
-        service0:
-          loadBalancer:
-            servers:
-              - url: https://google.com
