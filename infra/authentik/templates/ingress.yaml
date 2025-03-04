@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`authentik.infra.durp.info`) && PathPrefix(`/`) 
+  - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
     - name: authentik-server
@@ -25,7 +25,7 @@ spec:
   issuerRef:
     name: vault-issuer
     kind: ClusterIssuer
-  commonName: "authentik.infra.durp.info"
+  commonName: "authentik.durp.info"
   dnsNames:
-  - "authentik.infra.durp.info" 
+  - "authentik.durp.info" 
 
