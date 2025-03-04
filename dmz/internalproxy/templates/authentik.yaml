@@ -8,6 +8,9 @@ spec:
   routes:
   - match: Host(`test.durp.info`) && PathPrefix(`/`) 
     kind: Rule
+    middlewares:
+    - name: example-redirectregex
+      namespace: traefik
     services:
     - name: service0
       port: 443
@@ -38,3 +41,14 @@ spec:
   commonName: "test.durp.info"
   dnsNames:
   - "test.durp.info"
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: example-redirectregex
+spec:
+  redirectRegex:
+    regex: ^https://example.com/(.*)
+    replacement: https://google.com/${1}
