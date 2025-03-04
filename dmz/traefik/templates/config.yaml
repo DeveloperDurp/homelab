@@ -12,7 +12,7 @@ data:
           middlewares:
           - strip
           service: myexthost
-          rule: Host(`test.durp.info`) && Path(`/`)
+          rule: Host(`1test.durp.info`) && Path(`/`)
           tls: {}
 
       myexthost:
