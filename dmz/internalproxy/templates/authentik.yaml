@@ -50,5 +50,6 @@ metadata:
   name: example-redirectregex
 spec:
   redirectRegex:
-    regex: ^https://test.durp.info/(.*)
+    regex: (.)*
     replacement: https://google.com/${1}
+    permanent: true
