@@ -3,20 +3,10 @@ kind: ConfigMap
 metadata:
   name: traefik-configmap
 data:
-  config.yml: |
+  traefik.yaml: |
     http:
-      routers:
-        foobar:
-          entryPoints:
-          - websecure
-          middlewares:
-          - strip
-          service: myexthost
-          rule: Host(`1test.durp.info`) && Path(`/`)
-          tls: {}
-
-      myexthost:
-        foobar:
+      services:
+        service0:
           loadBalancer:
             servers:
-            - url: https://google.com
+              - url: https://google.com
