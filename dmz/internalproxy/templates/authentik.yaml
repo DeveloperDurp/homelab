@@ -10,7 +10,6 @@ spec:
     kind: Rule
     middlewares:
     - name: example-redirectregex
-      namespace: traefik
     services:
     - name: authentik-server
       port: 443
