@@ -13,4 +13,4 @@ data:
         service0:
           loadBalancer:
             servers:
-              - url: https://authentik.durp.info
+              - url: https://google.com
