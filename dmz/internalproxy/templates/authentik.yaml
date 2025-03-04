@@ -9,7 +9,7 @@ spec:
   - match: Host(`test.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
-    - name: authentik-server
+    - name: foobar@internal
       port: 443
   tls:
     secretName: authentik-tls
