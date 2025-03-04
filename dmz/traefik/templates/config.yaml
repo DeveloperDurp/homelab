@@ -5,12 +5,6 @@ metadata:
 data:
   config.yml: |
     http:
-      routers:
-        router0:
-          service: service0
-          rule: Host(`test.durp.info`)
-          tls:
-            secretName: authentik-tls
       services:
         service0:
           loadBalancer:
