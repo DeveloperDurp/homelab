@@ -1,18 +1,18 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: authentik-ingress
-spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`test.durp.info`) && PathPrefix(`/`) 
-    kind: Rule
-    services:
-    - name: authentik-server
-      port: 443
-  tls:
-    secretName: authentik-tls
+#apiVersion: traefik.io/v1alpha1
+#kind: IngressRoute
+#metadata:
+#  name: authentik-ingress
+#spec:
+#  entryPoints:
+#    - websecure
+#  routes:
+#  - match: Host(`test.durp.info`) && PathPrefix(`/`) 
+#    kind: Rule
+#    services:
+#    - name: authentik-server
+#      port: 443
+#  tls:
+#    secretName: authentik-tls
 
 ---
 

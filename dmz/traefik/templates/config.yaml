@@ -5,9 +5,18 @@ metadata:
 data:
   config.yml: |
     http:
-      services:
-        test:
+      routers:
+        foobar:
+          entryPoints:
+          - websecure
+          middlewares:
+          - strip
+          service: myexthost
+          rule: Host(`test.durp.info`) && Path(`/`)
+          tls: {}
+
+      myexthost:
+        foobar:
           loadBalancer:
             servers:
-              - url: https://google.com
-
+            - url: https://google.com
