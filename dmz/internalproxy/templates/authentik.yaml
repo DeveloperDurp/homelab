@@ -51,4 +51,4 @@ spec:
   redirectRegex:
     regex: (.)*
     replacement: https://authentik.durp.info/${1}
-    permanent: true
+    permanent: false
