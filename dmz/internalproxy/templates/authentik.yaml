@@ -10,6 +10,7 @@ spec:
     kind: Rule
     services:
     - name: test
+      namespace: traefik
       port: 443
   tls:
     secretName: authentik-tls
