@@ -14,21 +14,21 @@
 #  tls:
 #    secretName: authentik-tls
 #
-#---
-#
-#apiVersion: cert-manager.io/v1
-#kind: Certificate
-#metadata:
-#  name: authentik-tls
-#spec:
-#  secretName: authentik-tls
-#  issuerRef:
-#    name: letsencrypt-production
-#    kind: ClusterIssuer
-#  commonName: "authentik.durp.info"
-#  dnsNames:
-#  - "authentik.durp.info" 
-#
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: authentik-tls
+spec:
+  secretName: authentik-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "outpost.internal.durp.info"
+  dnsNames:
+  - "outpost.internal.durp.info" 
+
 #---
 #
 #kind: Service
@@ -58,3 +58,21 @@ spec:
               number: 9000
         path: /
         pathType: Prefix
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: outpost-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`outpost.internal.durp.info`) && PathPrefix(`/`) 
+    kind: Rule
+    services:
+    - name: ak-outpost-master-embedded-outpost
+      port: 9000
+  tls:
+    secretName: authentik-tls
