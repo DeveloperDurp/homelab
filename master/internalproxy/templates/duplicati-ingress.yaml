@@ -48,7 +48,7 @@ spec:
   - match: Host(`duplicati.internal.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
-    - name: ak-outpost-authentik-embedded-outpost
+    - name: ak-outpost-master-embedded-outpost
       namespace: authentik
       port: 9000
   tls:
