@@ -49,7 +49,7 @@ spec:
   ingressClassName: traefik
   rules:
   - host: outpost.internal.durp.info
-    http:
+    https:
       paths:
       - backend:
           service:
