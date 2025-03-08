@@ -19,7 +19,7 @@ metadata:
   name: tdarr
 subsets:
 - addresses:
-  - ip: 192.168.20.253
+  - ip: 192.168.20.200
   ports:
   - name: app
     port: 8267
