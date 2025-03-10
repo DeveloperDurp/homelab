@@ -20,6 +20,6 @@ spec:
       - CreateNamespace=true 
   ignoreDifferences:
   - group: admissionregistration.k8s.io
-    kind: MutatingWebhookConfiguration
-    jqPathExpressions:
-    - .webhooks[]?.clientConfig.caBundle
+    kind: ValidatingWebhookConfiguration
+    jsonPointers:
+    - /webhooks/0/failurePolicy
