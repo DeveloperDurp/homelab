@@ -40,6 +40,7 @@ authentik:
     persistence:
       enabled: true
       storageClass: longhorn
+      size: 16Gi
       accessModes:
         - ReadWriteMany
   redis:
