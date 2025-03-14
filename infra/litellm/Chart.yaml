@@ -1,12 +1,16 @@
 apiVersion: v2
-name: litellm
-description: A Helm chart for Kubernetes
+name: litellm-helm
+description: Call all LLM APIs using the OpenAI format
 type: application
-
-version: 0.1.0
-appVersion: "1.16.0"
+version: 0.4.1
+appVersion: v1.50.2
 
 dependencies:
-  - name: "litellm-helm"
-    version: 0.1.636
-    repository: oci://ghcr.io/berriai
+  - name: "postgresql"
+    version: ">=13.3.0"
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: db.deployStandalone
+  - name: redis
+    version: ">=18.0.0"
+    repository: oci://registry-1.docker.io/bitnamicharts 
+    condition: redis.enabled
