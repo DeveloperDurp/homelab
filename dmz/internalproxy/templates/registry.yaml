@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry
+spec:
+  ports:
+  - name: app
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: registry
+subsets:
+- addresses:
+  - ip: 192.168.20.200
+  ports:
+  - name: app
+    port: 5000
+    protocol: TCP
+
+---    
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: registry-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`registry.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: registry
+      port: 5000
+  tls:
+    secretName: registry-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry-tls
+spec:
+  secretName: registry-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "registry.durp.info"
+  dnsNames:
+  - "registry.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: registry-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: registry.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
