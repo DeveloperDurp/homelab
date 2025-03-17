@@ -1,5 +1,7 @@
 traefik:
   image: 
+    #    registry: registry.durp.info
+    #    repository: traefik
     pullPolicy: Always
   
   providers:  
@@ -12,11 +14,17 @@ traefik:
     replicas: 3
     revisionHistoryLimit: 1
 
+  volumes:
+    - name: traefik-configmap
+      mountPath: "/config"
+      type: configMap
+  
   ingressRoute:
     dashboard:
       enabled: true
   
   additionalArguments: 
+    - "--providers.file.filename=/config/config.yml"
     - "--serversTransport.insecureSkipVerify=true"
     - "--log.level=DEBUG"
     - --experimental.plugins.jwt.moduleName=github.com/traefik-plugins/traefik-jwt-plugin
