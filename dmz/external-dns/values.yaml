@@ -5,6 +5,8 @@ external-dns:
   image:
     pullPolicy: Always
 
+  txtPrefix: "dmz-"
+
   sources:
     - service
     
