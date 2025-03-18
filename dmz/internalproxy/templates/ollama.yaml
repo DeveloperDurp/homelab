@@ -11,7 +11,7 @@ spec:
   data:
     - secretKey: users
       remoteRef:
-        key: secrets/ollama
+        key: kv/ollama
         property: users
 
 ---
