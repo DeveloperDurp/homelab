@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: open-webui-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`open-webui.durp.info`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: master-cluster
+      port: 443
+  tls:
+    secretName: open-webui-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: open-webui-tls
+spec:
+  secretName: open-webui-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "open-webui.durp.info"
+  dnsNames:
+  - "open-webui.durp.info"  
