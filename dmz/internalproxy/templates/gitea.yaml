@@ -38,7 +38,7 @@ spec:
     - match: Host(`gitea.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
-        - name: gitea
+        - name: unraid
           port: 3000
           scheme: http
   tls:
