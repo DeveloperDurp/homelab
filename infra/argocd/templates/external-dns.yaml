@@ -8,9 +8,9 @@ spec:
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
-    path: dmz/external-secrets
+    path: dmz/external-dns
   destination:
-    namespace: external-secrets
+    namespace: external-dns
     name: dmz
   syncPolicy:
     automated:
