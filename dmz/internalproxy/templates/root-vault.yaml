@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: root-vault
+spec:
+  ports:
+    - name: app
+      port: 8201
+      protocol: TCP
+      targetPort: 8201
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: root-vault
+subsets:
+  - addresses:
+      - ip: 192.168.20.200
+    ports:
+      - name: app
+        port: 8201
+        protocol: TCP
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: root-vault-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`root-vault.internal.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: root-vault
+          port: 8201
+          scheme: https
+  tls:
+    secretName: root-vault-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: root-vault-tls
+spec:
+  secretName: root-vault-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "root-vault.internal.durp.info"
+  dnsNames:
+    - "root-vault.internal.durp.info"
