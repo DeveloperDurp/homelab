@@ -43,12 +43,6 @@ spec:
     services:
     - name: redlib
       port: 8082
-  - match: Host(`redlib.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
-    kind: Rule
-    services:
-    - name: ak-outpost-dmz-embedded-outpost 
-      namespace: authentik
-      port: 9000
   tls:
     secretName: redlib-tls
 
