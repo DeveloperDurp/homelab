@@ -36,19 +36,19 @@ spec:
     - websecure
   routes:
   - match: Host(`redlib.durp.info`) && PathPrefix(`/`)
-    middlewares:
-    - name: authentik-proxy-provider
-      namespace: traefik  
+      #    middlewares:
+      #    - name: authentik-proxy-provider
+      #      namespace: traefik  
     kind: Rule
     services:
     - name: redlib
       port: 8082
-  - match: Host(`redlib.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
-    kind: Rule
-    services:
-    - name: ak-outpost-master-embedded-outpost
-      namespace: authentik
-      port: 9000
+    #  - match: Host(`redlib.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
+    #    kind: Rule
+    #    services:
+    #    - name: ak-outpost-master-embedded-outpost
+    #      namespace: authentik
+    #      port: 9000
   tls:
     secretName: redlib-tls
 
