@@ -46,7 +46,7 @@ spec:
   - match: Host(`redlib.durp.info`) && PathPrefix(`/outpost.goauthentik.io`)
     kind: Rule
     services:
-    - name: ak-outpost-master-embedded-outpost
+    - name: ak-outpost-dmz-embedded-outpost 
       namespace: authentik
       port: 9000
   tls:
