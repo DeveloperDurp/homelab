@@ -66,3 +66,15 @@ spec:
   commonName: "redlib.durp.info"
   dnsNames:
   - "redlib.durp.info"  
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: redlib-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: redlib.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
