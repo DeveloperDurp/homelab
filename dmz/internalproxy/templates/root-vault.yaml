@@ -56,7 +56,7 @@ metadata:
 spec:
   secretName: root-vault-tls
   issuerRef:
-    name: letsencrypt-production
+    name: vault-issuer
     kind: ClusterIssuer
   commonName: "root-vault.internal.durp.info"
   dnsNames:
