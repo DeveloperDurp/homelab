@@ -37,7 +37,7 @@ spec:
     path: dmz/authentik
   destination:
     namespace: authentik
-    name: in-cluster
+    name: dmz
   syncPolicy:
     automated:
       prune: true
