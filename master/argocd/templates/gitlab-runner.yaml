@@ -1,21 +1,21 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: gitlab-runner
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
-    targetRevision: main
-    path: master/gitlab-runner
-  destination:
-    namespace: gitlab-runner
-    name: in-cluster
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true  
-    syncOptions:
-      - CreateNamespace=true    
-
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: gitlab-runner
+#  namespace: argocd
+#spec:
+#  project: default
+#  source:
+#    repoURL: https://gitlab.com/developerdurp/homelab.git
+#    targetRevision: main
+#    path: master/gitlab-runner
+#  destination:
+#    namespace: gitlab-runner
+#    name: in-cluster
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true  
+#    syncOptions:
+#      - CreateNamespace=true    
+#
