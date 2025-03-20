@@ -19,7 +19,7 @@ metadata:
   name: root-vault
 subsets:
   - addresses:
-      - ip: 192.168.20.200
+      - ip: 192.168.21.200
     ports:
       - name: app
         port: 8201
