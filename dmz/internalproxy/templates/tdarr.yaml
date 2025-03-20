@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr
+spec:
+  ports:
+  - name: app
+    port: 8267
+    protocol: TCP
+    targetPort: 8267
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: tdarr
+subsets:
+- addresses:
+  - ip: 192.168.21.200
+  ports:
+  - name: app
+    port: 8267
+    protocol: TCP
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tdarr-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`tdarr.internal.durp.info`)
+    middlewares:
+    - name: whitelist
+      namespace: traefik  
+    - name: authentik-proxy-provider
+      namespace: traefik  
+    kind: Rule
+    services:
+    - name: tdarr
+      port: 8267
+      scheme: http
+  tls:
+    secretName: tdarr-tls  
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tdarr-tls
+spec:
+  secretName: tdarr-tls
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
+  commonName: "tdarr.internal.durp.info"
+  dnsNames:
+  - "tdarr.internal.durp.info"  
