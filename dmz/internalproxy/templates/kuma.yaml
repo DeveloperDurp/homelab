@@ -8,6 +8,9 @@ spec:
   routes:
   - match: Host(`kuma.durp.info`) && PathPrefix(`/`) 
     kind: Rule
+    middlewares:
+    - name: authentik-proxy-provider
+      namespace: traefik  
     services:
     - name: master-cluster
       port: 443
