@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
   - name: app
-    port: 8200
+    port: 9443
     protocol: TCP
-    targetPort: 8200
+    targetPort: 9443
   clusterIP: None
   type: ClusterIP
 
@@ -19,10 +19,10 @@ metadata:
   name: portainer
 subsets:
 - addresses:
-  - ip: 192.168.21.200
+  - ip: 192.168.20.104
   ports:
   - name: app
-    port: 8200
+    port: 9443
     protocol: TCP
 
 ---    
@@ -42,7 +42,7 @@ spec:
     kind: Rule
     services:
     - name: portainer
-      port: 8200
+      port: 9443
   tls:
     secretName: portainer-tls
 
