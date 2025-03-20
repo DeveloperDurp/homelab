@@ -34,7 +34,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: plex-external-dns
+  name: open-webui-external-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: open-webui.durp.info
 spec:
