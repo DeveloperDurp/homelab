@@ -9,7 +9,7 @@ spec:
   - match: Host(`kuma.durp.info`) && PathPrefix(`/`) 
     kind: Rule
     services:
-    - name: infra-cluster
+    - name: master-cluster
       port: 443
   tls:
     secretName: kuma-tls
