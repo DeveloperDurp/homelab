@@ -44,7 +44,7 @@ spec:
       services:
         - name: semaphore
           port: 3001
-          scheme: https
+          scheme: http
   tls:
     secretName: semaphore-tls
 
