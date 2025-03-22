@@ -3,6 +3,12 @@ traefik:
     registry: registry.durp.info
     repository: traefik
     pullPolicy: Always
+
+  providers:  
+    kubernetesCRD:
+      allowCrossNamespace: true
+      allowExternalNameServices: true
+      allowEmptyServices: false
   
   deployment:
     replicas: 3
