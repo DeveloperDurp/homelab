@@ -24,12 +24,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: nebula-sync-secret
-                key: ADMIN_TOKEN
+                key: primary
           - name: REPLICAS
             valueFrom:
               secretKeyRef:
                 name: nebula-sync-secret
-                key: ADMIN_TOKEN
+                key: replicas
           - name: FULL_SYNC
             value: "false"
           - name: RUN_GRAVITY
