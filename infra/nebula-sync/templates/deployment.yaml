@@ -15,20 +15,10 @@ spec:
       labels:
         app: nebula-sync
     spec:
-      volumes:
-      - name: nebula-sync-configmap
-        configMap: 
-          name: nebula-sync-configmap
-          items:
-            - key: .env
-              path: .env
       containers:
       - name: nebula-sync
         image: registry.durp.info/lovelaze/nebula-sync:latest
         imagePullPolicy: Always
-        volumeMounts:
-        - mountPath: /app
-          name: .env
         env:
           - name: PRIMARY
             valueFrom:
@@ -40,7 +30,6 @@ spec:
               secretKeyRef:
                 name: nebula-sync-secret
                 key: ADMIN_TOKEN
-
           - name: FULL_SYNC
             value: "false"
           - name: RUN_GRAVITY
