@@ -43,6 +43,7 @@ spec:
     services:
     - name: portainer
       port: 9443
+      scheme: https
   tls:
     secretName: portainer-tls
 
