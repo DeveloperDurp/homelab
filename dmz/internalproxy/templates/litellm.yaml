@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: litellm
+spec:
+  ports:
+    - name: app
+      port: 4000
+      protocol: TCP
+      targetPort: 4000
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: litellm
+subsets:
+  - addresses:
+      - ip: 192.168.20.104
+    ports:
+      - name: app
+        port: 4000
+        protocol: TCP
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: litellm-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`litellm.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: litellm
+          port: 4000
+  tls:
+    secretName: litellm-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: litellm-tls
+spec:
+  secretName: litellm-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "litellm.durp.info"
+  dnsNames:
+    - "litellm.durp.info"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: litellm-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: litellm.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
