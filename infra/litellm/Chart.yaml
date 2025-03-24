@@ -9,4 +9,4 @@ appVersion: "1.16.0"
 dependencies:
   - name: "litellm-helm"
     version: 0.1.636
-    repository: oci://ghcr.io/berriai/litellm-helm
+    repository: https://ghcr.io/berriai/litellm-helm
