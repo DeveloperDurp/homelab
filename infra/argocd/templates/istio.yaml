@@ -26,28 +26,28 @@ spec:
 
 ---
 
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: istio-system-dmz
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
-    targetRevision: main
-    path: dmz/istio-system
-  destination:
-    namespace: istio-system
-    name: dmz
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true  
-    syncOptions:
-      - CreateNamespace=true 
-  ignoreDifferences:
-  - group: admissionregistration.k8s.io
-    kind: ValidatingWebhookConfiguration
-    jsonPointers:
-    - /webhooks/0/failurePolicy
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: istio-system-dmz
+#  namespace: argocd
+#spec:
+#  project: default
+#  source:
+#    repoURL: https://gitlab.com/developerdurp/homelab.git
+#    targetRevision: main
+#    path: dmz/istio-system
+#  destination:
+#    namespace: istio-system
+#    name: dmz
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true  
+#    syncOptions:
+#      - CreateNamespace=true 
+#  ignoreDifferences:
+#  - group: admissionregistration.k8s.io
+#    kind: ValidatingWebhookConfiguration
+#    jsonPointers:
+#    - /webhooks/0/failurePolicy
