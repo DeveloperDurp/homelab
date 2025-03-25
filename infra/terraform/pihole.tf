@@ -30,7 +30,7 @@ resource "proxmox_vm_qemu" "pihole" {
     ide {
       ide2 {
         cloudinit {
-          storage = local.storage
+          storage = local.pihole.storage
         }
       }
     }
@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "pihole" {
         disk {
           size    = local.pihole.drive
           format  = local.format
-          storage = local.storage
+          storage = local.pihole.storage
         }
       }
     }

@@ -30,7 +30,7 @@ resource "proxmox_vm_qemu" "haproxy" {
     ide {
       ide2 {
         cloudinit {
-          storage = local.storage
+          storage = local.haproxy.storage
         }
       }
     }
@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "haproxy" {
         disk {
           size    = local.haproxy.drive
           format  = local.format
-          storage = local.storage
+          storage = local.haproxy.storage
         }
       }
     }

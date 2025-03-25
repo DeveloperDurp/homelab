@@ -30,7 +30,7 @@ resource "proxmox_vm_qemu" "k3smaster" {
     ide {
       ide2 {
         cloudinit {
-          storage = local.storage
+          storage = local.k3smaster.storage
         }
       }
     }
@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "k3smaster" {
         disk {
           size    = local.k3smaster.drive
           format  = local.format
-          storage = local.storage
+          storage = local.k3smaster.storage
         }
       }
     }
@@ -89,7 +89,7 @@ resource "proxmox_vm_qemu" "k3sserver" {
     ide {
       ide2 {
         cloudinit {
-          storage = local.storage
+          storage = local.k3sserver.storage
         }
       }
     }
@@ -98,7 +98,7 @@ resource "proxmox_vm_qemu" "k3sserver" {
         disk {
           size    = local.k3sserver.drive
           format  = local.format
-          storage = local.storage
+          storage = local.k3sserver.storage
         }
       }
     }
