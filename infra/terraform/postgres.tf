@@ -88,7 +88,7 @@ resource "proxmox_vm_qemu" "postgres" {
     ide {
       ide2 {
         cloudinit {
-          storage = local.storage
+          storage = local.postgres.storage
         }
       }
     }
@@ -97,7 +97,7 @@ resource "proxmox_vm_qemu" "postgres" {
         disk {
           size    = local.postgres.drive
           format  = local.format
-          storage = local.storage
+          storage = local.postgres.storage
         }
       }
     }
