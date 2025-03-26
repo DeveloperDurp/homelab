@@ -1,0 +1,18 @@
+external-dns:
+  global:
+    imageRegistry: "registry.durp.info"
+
+  image:
+    pullPolicy: Always
+
+  txtPrefix: "dmz-"
+
+  sources:
+    - service
+    
+  provider: cloudflare
+  cloudflare:
+    secretName : "external-dns"
+    proxied: false
+
+  policy: sync

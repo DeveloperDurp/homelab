@@ -1,7 +1,7 @@
 stages:
   - triggers
 
-build_windows:
+build_dmz:
   stage: triggers
   trigger:
     include: infra/.gitlab/.gitlab-ci.yml
@@ -9,7 +9,7 @@ build_windows:
     - changes:
         - "dmz/terraform/*.tf"
 
-build_linux:
+build_infra:
   stage: triggers
   trigger:
     include: dmz/.gitlab/.gitlab-ci.yml
