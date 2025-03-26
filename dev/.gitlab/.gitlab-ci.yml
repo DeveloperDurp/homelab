@@ -4,8 +4,8 @@ stages:
   - destroy
 
 variables:
-  WORKDIR: $CI_PROJECT_DIR/dmz/terraform
-  GITLAB_TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/dmz
+  WORKDIR: $CI_PROJECT_DIR/dev/terraform
+  GITLAB_TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/dev
 
 image:
   name: registry.durp.info/opentofu/opentofu:latest
@@ -33,7 +33,7 @@ format:
     - tofu fmt -diff -check -write=false
   rules:
     - changes:
-        - "dmz/terraform/*.tf"
+        - "dev/terraform/*.tf"
 
 validate:
   stage: .pre
@@ -43,14 +43,14 @@ validate:
     - tofu validate
   rules:
     - changes:
-        - "dmz/terraform/*.tf"
+        - "dev/terraform/*.tf"
 
-plan-dmz-infrastructure:
+plan-dev-infrastructure:
   stage: plan
   variables:
     PLAN: plan.tfplan
     JSON_PLAN_FILE: tfplan.json
-    ENVIRONMENT_NAME: dmz
+    ENVIRONMENT_NAME: dev
   allow_failure: false
   extends: .tf-init
   script:
@@ -64,32 +64,32 @@ plan-dmz-infrastructure:
   needs: ["validate","format"]
   rules:
     - changes:
-        - "dmz/terraform/*.tf"
+        - "dev/terraform/*.tf"
 
-apply-dmz-infrastructure:
+apply-dev-infrastructure:
   stage: apply
   variables:
-    ENVIRONMENT_NAME: dmz
+    ENVIRONMENT_NAME: dev
   allow_failure: false
   extends: .tf-init
   script:
     - tofu apply -auto-approve $ARGUMENTS
   rules:
     - changes:
-        - "dmz/terraform/*.tf"
+        - "dev/terraform/*.tf"
       when: manual
-  needs: ["plan-dmz-infrastructure"]
+  needs: ["plan-dev-infrastructure"]
 
-destroy-dmz-infrastructure:
+destroy-dev-infrastructure:
   stage: destroy
   variables:
-    ENVIRONMENT_NAME: dmz
+    ENVIRONMENT_NAME: dev
   allow_failure: false
   extends: .tf-init
   script:
     - tofu destroy -auto-approve $ARGUMENTS
   rules:
     - changes:
-        - "dmz/terraform/*.tf"
+        - "dev/terraform/*.tf"
       when: manual
-  needs: ["plan-dmz-infrastructure"]
+  needs: ["plan-dev-infrastructure"]
