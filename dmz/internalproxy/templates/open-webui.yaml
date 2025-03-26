@@ -1,4 +1,4 @@
-acpiVersion: v1
+apiVersion: v1
 kind: Service
 metadata:
   name: open-webui
@@ -35,12 +35,12 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`open-webui.durp.info`) && PathPrefix(`/`)
-    kind: Rule
-    services:
-      - name: open-webui
-        port: 8089
-        scheme: http
+    - match: Host(`open-webui.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: open-webui
+          port: 8089
+          scheme: https
   tls:
     secretName: open-webui-tls
 
@@ -57,7 +57,7 @@ spec:
     kind: ClusterIssuer
   commonName: "open-webui.durp.info"
   dnsNames:
-  - "open-webui.durp.info"  
+    - "open-webui.durp.info"
 
 ---
 
