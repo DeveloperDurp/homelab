@@ -38,8 +38,9 @@ spec:
   - match: Host(`open-webui.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
-    - name: open-webui
-      port: 8089
+      - name: open-webui
+        port: 8089
+        scheme: http
   tls:
     secretName: open-webui-tls
 
@@ -68,4 +69,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: open-webui.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info  
+  externalName: durp.info
