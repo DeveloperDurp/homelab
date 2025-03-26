@@ -1,3 +1,18 @@
-include:
-  - local: infra/.gitlab/.gitlab-ci.yml
-  #- local: dmz/.gitlab/.gitlab-ci.yml
+stages:
+  - triggers
+
+build_windows:
+  stage: triggers
+  trigger:
+    include: infra/.gitlab/.gitlab-ci.yml
+  rules:
+    - changes:
+        - "dmz/terraform/*.tf"
+
+build_linux:
+  stage: triggers
+  trigger:
+    include: dmz/.gitlab/.gitlab-ci.yml
+  rules:
+    - changes:
+        - "infra/terraform/*.tf"
