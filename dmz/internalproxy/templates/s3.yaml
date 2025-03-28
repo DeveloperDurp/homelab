@@ -61,7 +61,7 @@ spec:
   commonName: "s3.internal.durp.info"
   dnsNames:
     - "s3.internal.durp.info"
-    -
+
 ---
 
 apiVersion: traefik.io/v1alpha1
