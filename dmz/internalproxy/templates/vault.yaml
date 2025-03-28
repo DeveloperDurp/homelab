@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vault-infra-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`vault.infra.durp.info`) && PathPrefix(`/`) 
+    kind: Rule
+    services:
+    - name: infra-cluster
+      port: 443
+  tls:
+    secretName: vault-infra-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-infra-tls
+spec:
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  secretName: vault-infra-tls
+  commonName: "vault.infra.durp.info"
+  dnsNames:
+  - "vault.infra.durp.info"
+
