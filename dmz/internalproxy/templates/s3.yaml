@@ -67,7 +67,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: s3-ingress
+  name: s3-ingress-external
 spec:
   entryPoints:
     - websecure
