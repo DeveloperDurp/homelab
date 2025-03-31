@@ -141,7 +141,7 @@ openclarity:
       name: ""
       # -- Allows auto mount of ServiceAccountToken on the serviceAccount created.
       # Can be set to false if pods using this serviceAccount do not need to use K8s API.
-      automountServiceAccountToken: false
+      automountServiceAccountToken: true
 
     # -- Global policy used to determine when to clean up an AssetScan.
     # Possible options are:
