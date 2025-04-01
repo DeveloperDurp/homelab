@@ -1,0 +1,2 @@
+argocd login --insecure
+argocd cluster add <cluster> --name<name>
