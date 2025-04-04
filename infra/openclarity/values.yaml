@@ -792,7 +792,7 @@ openclarity:
     serviceAccount:
       # -- Enable creation of ServiceAccount
       create: true
-      # -- The name of the ServiceAccount to use.
+      #false -- The name of the ServiceAccount to use.
       # If not set and create is true, it will use the component's calculated name.
       name: ""
       # -- Allows auto mount of ServiceAccountToken on the serviceAccount created.
