@@ -1,5 +1,4 @@
 istiod:
-  profile: remote
   autoscaleEnabled: true
   autoscaleMin: 1
   autoscaleMax: 5
@@ -51,7 +50,7 @@ istiod:
   cpu:
     targetAverageUtilization: 80
   memory: {}
-    # targetAverageUtilization: 80
+  # targetAverageUtilization: 80
 
   # Additional volumeMounts to the istiod container
   volumeMounts: []
@@ -177,7 +176,7 @@ istiod:
 
     # Sidecar injector mutating webhook configuration path value for the clientConfig.service field.
     # Override to pass env variables, for example: /inject/cluster/remote/net/network2
-    injectionPath: "/inject/cluster/cluster2/net/network1"
+    injectionPath: "/inject"
 
     injectionCABundle: ""
   telemetry:
@@ -386,7 +385,7 @@ istiod:
       forceApplyIptables: false
 
     # configure remote pilot and istiod service and endpoint
-    remotePilotAddress: "192.168.12.131"
+    remotePilotAddress: ""
 
     ##############################################################################################
     # The following values are found in other charts. To effectively modify these values, make   #
@@ -399,10 +398,10 @@ istiod:
     caAddress: ""
 
     # Enable control of remote clusters.
-    externalIstiod: false
+    externalIstiod: true
 
     # Configure a remote cluster as the config cluster for an external istiod.
-    configCluster: true
+    configCluster: false
 
     # configValidation enables the validation webhook for Istio configuration.
     configValidation: true
@@ -536,8 +535,8 @@ istiod:
 
     # Set to `type: RuntimeDefault` to use the default profile for templated gateways, if your container runtime supports it
     seccompProfile: {}
+
 base:
-  profile: remote
   global:
     imagePullSecrets: []
 
@@ -598,18 +597,18 @@ gateway:
     # Type of service. Set to "None" to disable the service entirely
     type: LoadBalancer
     ports:
-    - name: status-port
-      port: 15021
-      protocol: TCP
-      targetPort: 15021
-    - name: http2
-      port: 80
-      protocol: TCP
-      targetPort: 80
-    - name: https
-      port: 443
-      protocol: TCP
-      targetPort: 443
+      - name: status-port
+        port: 15021
+        protocol: TCP
+        targetPort: 15021
+      - name: http2
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 443
     annotations: {}
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
@@ -643,10 +642,10 @@ gateway:
 
   # Deployment Update strategy
   strategy: {}
-  
+
   # Sets the Deployment minReadySeconds value
   minReadySeconds:
-  
+
   # Optionally configure a custom readinessProbe. By default the control plane
   # automatically injects the readinessProbe. If you wish to override that
   # behavior, you may define your own readinessProbe here.
@@ -669,7 +668,7 @@ gateway:
   affinity: {}
 
   # If specified, the gateway will act as a network gateway for the given network.
-  networkGateway: "network1"
+  networkGateway: "network2"
 
   # Specify image pull policy if default behavior isn't desired.
   # Default behavior: latest images will be Always else IfNotPresent
