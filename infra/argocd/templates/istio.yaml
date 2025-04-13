@@ -13,6 +13,9 @@ spec:
     namespace: istio-system
     name: in-cluster
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        topology.istio.io/network: network1
     automated:
       prune: true
       selfHeal: true  
@@ -41,6 +44,9 @@ spec:
     namespace: istio-system
     name: dmz
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        topology.istio.io/network: network2
     automated:
       prune: true
       selfHeal: true
