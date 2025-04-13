@@ -4,3 +4,7 @@ istiod:
     meshID: mesh1
     multiCluster:
       clusterName: infra
+
+gateway:
+  name: istio-eastwestgateway
+  networkGateway: network1
