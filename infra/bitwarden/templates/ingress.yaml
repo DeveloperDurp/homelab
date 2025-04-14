@@ -23,20 +23,8 @@ metadata:
 spec:
   secretName: bitwarden-tls
   issuerRef:
-    name: letsencrypt-production
+    name: vault-issuer
     kind: ClusterIssuer
   commonName: "bitwarden.durp.info"
   dnsNames:
-  - "bitwarden.durp.info"  
-
----
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: bitwarden-external-dns
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: bitwarden.durp.info
-spec:
-  type: ExternalName
-  externalName: durp.info
+  - "bitwarden.durp.info"
