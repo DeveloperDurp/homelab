@@ -52,7 +52,7 @@ locals {
     cores   = 2
     memory  = "1024"
     drive   = 20
-    storage = "domains"
+    storage = "cache-domains"
     node    = ["mothership", "overlord", "vanguard"]
     ip      = ["31", "32", "33"]
   }
@@ -63,7 +63,7 @@ locals {
     cores   = 4
     memory  = "4096"
     drive   = 40
-    storage = "domains"
+    storage = "cache-domains"
     node    = ["mothership", "overlord", "vanguard"]
     ip      = ["34", "35", "36"]
   }
@@ -74,7 +74,7 @@ locals {
     cores   = 2
     memory  = "2048"
     drive   = 20
-    storage = "domains"
+    storage = "cache-domains"
     node    = ["mothership", "overlord", "vanguard"]
     ip      = ["41", "42", "43"]
   }
