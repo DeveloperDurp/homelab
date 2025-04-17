@@ -86,6 +86,16 @@
     force: yes
   when: ansible_os_family == "Debian"      
 
+- name: Copy apt proxy
+  copy: 
+    src: files/01proxy
+    dest: /etc/apt/apt.conf.d/01proxy
+    owner: root 
+    group: root 
+    mode: "0644"
+    force: yes
+  when: ansible_os_family == "Debian"      
+
 - name: Remove undesirable packages
   package:
     name: "{{ unnecessary_software }}"
