@@ -6,7 +6,9 @@
     group: root 
     mode: "0644"
     force: yes
-  when: ansible_os_family == "Debian"      
+  when: 
+    - ansible_os_family == "Debian"      
+    - inventory_hostname not in hosts_deny
 
 - name: Update packages
   apt:
