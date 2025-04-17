@@ -22,7 +22,7 @@ locals {
   template  = "Debian12-Template"
   format    = "raw"
   dnsserver = "192.168.11.1"
-  vlan      = 10
+  vlan      = 11
   k3smaster = {
     tags    = "k3s_prd"
     count   = 3
