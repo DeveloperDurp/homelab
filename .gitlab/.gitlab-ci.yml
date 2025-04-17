@@ -24,3 +24,11 @@ build_dev:
   rules:
     - changes:
         - "dev/terraform/*.tf"
+
+build_prd:
+  stage: triggers
+  trigger:
+    include: prd/.gitlab/.gitlab-ci.yml
+  rules:
+    - changes:
+        - "prd/terraform/*.tf"
