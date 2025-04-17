@@ -1,3 +1,13 @@
+- name: Copy apt proxy
+  copy: 
+    src: files/01proxy
+    dest: /etc/apt/apt.conf.d/01proxy
+    owner: root 
+    group: root 
+    mode: "0644"
+    force: yes
+  when: ansible_os_family == "Debian"      
+
 - name: Update packages
   apt:
     name: '*'
@@ -80,16 +90,6 @@
   copy: 
     src: files/10periodic
     dest: /etc/apt/apt.conf.d/10periodic 
-    owner: root 
-    group: root 
-    mode: "0644"
-    force: yes
-  when: ansible_os_family == "Debian"      
-
-- name: Copy apt proxy
-  copy: 
-    src: files/01proxy
-    dest: /etc/apt/apt.conf.d/01proxy
     owner: root 
     group: root 
     mode: "0644"
