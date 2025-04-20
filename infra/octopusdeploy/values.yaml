@@ -1,5 +1,7 @@
 octopusdeploy-helm:
   octopus:
     acceptEula: Y
+    username: admin
+    password: temp
   mssql:
     enabled: true
