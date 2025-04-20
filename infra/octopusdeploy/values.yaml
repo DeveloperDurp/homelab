@@ -1,0 +1,5 @@
+octopusdeploy:
+  octopus:
+    acceptEula: Y
+  mssql:
+    enabled: true
