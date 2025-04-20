@@ -1,4 +1,4 @@
-octopusdeploy:
+octopusdeploy-helm:
   octopus:
     acceptEula: Y
   mssql:
