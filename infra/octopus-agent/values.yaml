@@ -1,6 +1,7 @@
 kubernetes-agent:
   agent:
     acceptEula: "Y"
+    bearerTokenSecretName: agent-token
     serverUrl: https://octopus.durp.info/"
     serverCommsAddress: 
       - https://octopus.durp.info:10943/
@@ -8,8 +9,6 @@ kubernetes-agent:
     name: Infra
     deploymentTarget:
       enabled: true
-      bearerToken: "test"
-      bearerTokenSecretName: agent-token
       initial:
         environments:
           - development
