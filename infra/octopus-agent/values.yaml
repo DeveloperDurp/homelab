@@ -1,6 +1,6 @@
 kubernetes-agent:
   agent:
-    acceptEula: y
+    acceptEula: Y
     serverUrl: https://octopus.durp.info/"
     serverCommsAddress: 
       - https://octopus.durp.info:10943/
