@@ -8,5 +8,5 @@ appVersion: "1.16.0"
 
 dependencies:
   - name: kubernetes-agent
-    repository: oci://ghcr.io/octopusdeploy
+    repository: oci://registry-1.docker.io/octopusdeploy
     version: 2.*.*
