@@ -1,0 +1,17 @@
+kubernetes-agent:
+  agent:
+    acceptEula: y
+    serverUrl: https://octopus.durp.info/"
+    serverCommsAddress: 
+      - https://octopus.durp.info:10943/
+    space: Default
+    name: Infra
+    deploymentTarget:
+      enabled: true
+      bearerTokenSecretName: agent-token
+      initial:
+        environments:
+          - development
+          - production
+        tags:
+          - infra-cluster
