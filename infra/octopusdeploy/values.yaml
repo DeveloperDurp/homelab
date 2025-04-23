@@ -2,5 +2,6 @@ octopusdeploy-helm:
   octopus:
     createSecrets: false
     acceptEula: Y
+    replicaCount: 3
   mssql:
     enabled: true
