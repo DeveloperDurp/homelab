@@ -1,15 +1,17 @@
 kubernetes-agent:
   agent:
-    acceptEula: "Y"
     bearerTokenSecretName: agent-token
-    serverUrl: http://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local/"
+    acceptEula: "Y"
+    serverUrl: "https://octopus.durp.info/"
     serverCommsAddresses:
-      - https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943/
-    space: Default
-    name: infra
+      - "https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943/"
+    space: "Default"
+    name: "infra"
     deploymentTarget:
-      enabled: true
       initial:
-        environments: {development,production}
+        environments:
+          - "development"
+          - "production"
         tags:
-          - infra-cluster
+          - "infra-cluster"
+      enabled: "true"
