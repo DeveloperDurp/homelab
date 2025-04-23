@@ -2,7 +2,7 @@ kubernetes-agent:
   agent:
     acceptEula: "Y"
     bearerTokenSecretName: agent-token
-    serverUrl: https://octopus.durp.info/"
+    serverUrl: http://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local/"
     serverCommsAddresses:
       - https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943/
     space: Default
