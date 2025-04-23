@@ -10,8 +10,6 @@ kubernetes-agent:
     deploymentTarget:
       enabled: true
       initial:
-        environments:
-          - development
-          - production
+        environments: {development,production}
         tags:
           - infra-cluster
