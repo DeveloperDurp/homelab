@@ -4,7 +4,7 @@ kubernetes-agent:
     bearerTokenSecretName: agent-token
     serverUrl: https://octopus.durp.info/"
     serverCommsAddress: 
-      - https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943
+      - "https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943/"
       #- https://octopus.durp.info:10943/
     space: Default
     name: Infra
