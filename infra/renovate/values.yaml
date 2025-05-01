@@ -63,6 +63,7 @@ renovate:
     # -- Prepend shell commands before renovate runs
     #preCommand: ''
     preCommand: |
+      ls /config
       cat /config/renovate.json
 
     postCommand: ''
