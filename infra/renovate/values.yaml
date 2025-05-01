@@ -181,9 +181,9 @@ renovate:
         name: renovate-config-secret
 
   extraVolumeMounts:
-    - name: renovate-config
-      mountPath: /config
-      subPath: renovate.json
+    - mountPath: "/config"
+      name: renovate.json
+      readOnly: true
 
   # -- Additional containers to the pod
   extraContainers: []
