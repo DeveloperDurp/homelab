@@ -95,7 +95,7 @@ renovate:
 
   renovate:
     # -- Custom exiting global renovate config
-    existingConfigFile: '/renovate.json'
+    existingConfigFile: '/config/renovate.json'
     # -- Inline global renovate config.json
     config: ''
     # See https://docs.renovatebot.com/self-hosted-configuration
@@ -182,7 +182,7 @@ renovate:
 
   extraVolumeMounts:
     - name: renovate-config
-      mountPath: /
+      mountPath: /config
       subPath: renovate.config
 
   # -- Additional containers to the pod
