@@ -95,13 +95,13 @@ renovate:
 
   renovate:
     # -- Custom exiting global renovate config
-    existingConfigFile: 'renovate-config'
+    existingConfigFile: '/renovate.json'
     # -- Inline global renovate config.json
     config: ''
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
     #   {
-    #     "platform": "gitlab",
+    #     "": "gitlab",
     #     "endpoint": "https://gitlab.example.com/api/v4",
     #     "token": "your-gitlab-renovate-user-token",
     #     "autodiscover": "false",
@@ -175,19 +175,15 @@ renovate:
   #         "key"="value"
   #         "key1"="value1"
 
-  # -- Additional volumes to the pod
-  extraVolumes: []
-  # extraVolumes:
-  #   - name: netrc-config
-  #     configMap:
-  #       name: renovate-extra-netrc-config
+  extraVolumes: 
+    - name: renovate-config
+      secretName:
+        name: renovate-config-secret
 
-  # -- Additional volumeMounts to the container
-  extraVolumeMounts: []
-  # extraVolumeMounts:
-  #   - name: netrc-config
-  #     mountPath: /home/ubuntu/.netrc
-  #     subPath: .netrc
+  extraVolumeMounts:
+    - name: renovate-config
+      mountPath: /
+      subPath: renovate.config
 
   # -- Additional containers to the pod
   extraContainers: []
