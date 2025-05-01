@@ -61,12 +61,10 @@ renovate:
     # -- Custom arguments to run in the container
     argsOverride: []
     # -- Prepend shell commands before renovate runs
-    preCommand: ''
-    # preCommand: |
-    #   echo hello
-    #   echo world
+    #preCommand: ''
+    preCommand: |
+      cat /config/renovate.json
 
-    # -- Append shell commands after renovate runs
     postCommand: ''
     # postCommand: |
     #   echo hello
