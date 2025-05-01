@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: renovate
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/developerdurp/homelab.git
+    targetRevision: main
+    path: infra/renovate
+  destination:
+    namespace: renovate
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
