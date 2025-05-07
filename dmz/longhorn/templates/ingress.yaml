@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`longhorn.infra.durp.info`) && PathPrefix(`/`)
+  - match: Host(`longhorn.dmz.durp.info`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: longhorn-frontend
@@ -27,6 +27,6 @@ spec:
   issuerRef:
     name: vault-issuer
     kind: ClusterIssuer
-  commonName: "longhorn.infra.durp.info"
+  commonName: "longhorn.dmz.durp.info"
   dnsNames:
-    - "longhorn.infra.durp.info"
+    - "longhorn.dmz.durp.info"
