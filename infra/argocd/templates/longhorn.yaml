@@ -15,12 +15,11 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true  
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
 
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -34,11 +33,10 @@ spec:
     path: dmz/longhorn
   destination:
     namespace: longhorn-system
-    name: in-cluster
+    name: dmz
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true  
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
-
+      - CreateNamespace=true
