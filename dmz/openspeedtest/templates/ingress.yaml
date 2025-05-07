@@ -8,10 +8,10 @@ spec:
   routes:
   - match: Host(`speedtest.durp.info`) && PathPrefix(`/`)
     kind: Rule
-    tls: true
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik  
+    - name: limit-buffering
     services:
     - name: openspeedtest
       port: 3000
@@ -44,3 +44,13 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: limit-buffering
+spec:
+  buffering:
+    maxRequestBodyBytes: 10000000000
