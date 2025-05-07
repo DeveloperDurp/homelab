@@ -8,6 +8,7 @@ spec:
   routes:
   - match: Host(`speedtest.durp.info`) && PathPrefix(`/`)
     kind: Rule
+    tls: true
     middlewares:
     - name: authentik-proxy-provider
       namespace: traefik  
