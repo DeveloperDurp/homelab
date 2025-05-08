@@ -5,20 +5,20 @@ renovate:
     compatibility:
       openshift:
         # --  Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: `auto` (apply if the detected running cluster is Openshift), `force` (perform the adaptation always), `disabled` (do not perform adaptation)
-        adaptSecurityContext: 'auto'
+        adaptSecurityContext: "auto"
 
   # -- Override the name of the chart
-  nameOverride: ''
+  nameOverride: ""
   # -- Override the fully qualified app name
-  fullnameOverride: ''
+  fullnameOverride: ""
   # -- Annotations to add to secret
   secretAnnotations: {}
 
   cronjob:
     # -- Schedules the job to run using cron notation
-    schedule: '0 1 * * *'  # At 01:00 every day
+    schedule: "0 1 * * *" # At 01:00 every day
     # -- You can specify a time zone for a CronJob by setting timeZone to the name of a valid time zone. (starting with k8s 1.27) <https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones>
-    timeZone: ''  # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for valid names
+    timeZone: "" # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for valid names
     # -- If it is set to true, all subsequent executions are suspended. This setting does not apply to already started executions.
     suspend: false
     # -- Annotations to set on the cronjob
@@ -26,36 +26,36 @@ renovate:
     # -- Labels to set on the cronjob
     labels: {}
     # -- "Allow" to allow concurrent runs, "Forbid" to skip new runs if a previous run is still running or "Replace" to replace the previous run
-    concurrencyPolicy: ''
+    concurrencyPolicy: ""
     # -- "Number of successful completions is reached to mark the job as complete"
-    completions: ''
+    completions: ""
     # -- "Where the jobs should be NonIndexed or Indexed"
-    completionMode: ''
+    completionMode: ""
     # -- Amount of failed jobs to keep in history
-    failedJobsHistoryLimit: ''
+    failedJobsHistoryLimit: ""
     # -- Amount of completed jobs to keep in history
-    successfulJobsHistoryLimit: ''
+    successfulJobsHistoryLimit: ""
     # -- Set to Never to restart the job when the pod fails or to OnFailure to restart when a container fails
     jobRestartPolicy: Never
     # -- Time to keep the job after it finished before automatically deleting it
-    ttlSecondsAfterFinished: ''
+    ttlSecondsAfterFinished: ""
     # -- Deadline for the job to finish
-    activeDeadlineSeconds: ''
+    activeDeadlineSeconds: ""
     # -- Number of times to retry running the pod before considering the job as being failed
-    jobBackoffLimit: ''
+    jobBackoffLimit: ""
     # -- Maximal number of failures per index
-    backoffLimitPerIndex: ''
+    backoffLimitPerIndex: ""
     # -- Maximal number of failed indexes before terminating the Job execution
-    maxFailedIndexes: ''
+    maxFailedIndexes: ""
     # -- Deadline to start the job, skips execution if job misses it's configured deadline
-    startingDeadlineSeconds: ''
+    startingDeadlineSeconds: ""
     # -- Additional initContainers that can be executed before renovate
     initContainers: []
     # initContainers:
     # - name: INIT_CONTAINER_NAME
     #   image: INIT_CONTAINER_IMAGE
     # -- Number of pods to run in parallel
-    parallelism: ''
+    parallelism: ""
     # -- Custom command to run in the container
     commandOverride: []
     # -- Custom arguments to run in the container
@@ -66,7 +66,7 @@ renovate:
       ls /config
       cat /config/renovate.json
 
-    postCommand: ''
+    postCommand: ""
     # postCommand: |
     #   echo hello
     #   echo world
@@ -94,9 +94,9 @@ renovate:
 
   renovate:
     # -- Custom exiting global renovate config
-    existingConfigFile: '/config/renovate.json'
+    existingConfigFile: "/config/renovate.json"
     # -- Inline global renovate config.json
-    config: ''
+    config: ""
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
     #   {
@@ -144,20 +144,20 @@ renovate:
 
     # Provide .ssh config file contents
     # -- Contents of the id_rsa file
-    id_rsa: ''
+    id_rsa: ""
     # -- Contents of the id_rsa_pub file
-    id_rsa_pub: ''
+    id_rsa_pub: ""
     # -- Contents of the config file
-    config: ''
+    config: ""
 
     # or provide the name of an existing secret to be read instead.
     # -- Name of the existing secret containing a valid .ssh configuration
-    existingSecret: ''
+    existingSecret: ""
 
   # -- Environment variables that should be referenced from a k8s secret, cannot be used when existingSecret is set
   secrets: {}
   # -- k8s secret to reference environment variables from. Overrides secrets if set
-  existingSecret: ''
+  existingSecret: ""
 
   # -- Additional configmaps. A generated configMap name is: "renovate.fullname" + "extra" + name(below) e.g. renovate-netrc-config
   extraConfigmaps: []
@@ -174,7 +174,7 @@ renovate:
   #         "key"="value"
   #         "key1"="value1"
 
-  extraVolumes: 
+  extraVolumes:
     - name: renovate-config
       secretName:
         name: renovate-config-secret
@@ -208,10 +208,11 @@ renovate:
     annotations: {}
     # -- The name of the service account to use
     # If not set and create is true, a name is generated using the fullname template
-    name: ''
+    name: ""
 
   # -- Specify resource limits and requests for the renovate container
-  resources: {}
+  resources:
+    {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -252,7 +253,7 @@ renovate:
     enabled: false
 
     # -- Override the prefix of the redisHost
-    nameOverride: ''
+    nameOverride: ""
 
     # -- Disable replication by default
     architecture: standalone
@@ -262,7 +263,7 @@ renovate:
       enabled: false
 
     # -- Override Kubernetes version for redis chart
-    kubeVersion: ''
+    kubeVersion: ""
 
   # -- Override hostname resolution
   hostAliases: []
