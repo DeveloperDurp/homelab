@@ -174,15 +174,15 @@ renovate:
   #         "key"="value"
   #         "key1"="value1"
 
-  extraVolumes:
-    - name: renovate-config
-      secretName:
-        name: renovate-config-secret
+  #extraVolumes:
+  #  - name: renovate-config
+  #    secretName:
+  #      name: renovate-config-secret
 
-  extraVolumeMounts:
-    - name: renovate-config
-      mountPath: /config
-      subPath: renovate.json
+  #extraVolumeMounts:
+  #  - name: renovate-config
+  #    mountPath: /config
+  #    subPath: renovate.json
 
   # -- Additional containers to the pod
   extraContainers: []
