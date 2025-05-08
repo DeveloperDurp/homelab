@@ -103,7 +103,7 @@ renovate:
         "autodiscover": "false",
         "dryRun": false,
         "printConfig": false,
-        "repositories": ["durfy/DurpCLI"]
+        "repositories": ["durfy/DurpCLI","developerdurp/homelab"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
