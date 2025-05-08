@@ -62,9 +62,9 @@ renovate:
     argsOverride: []
     # -- Prepend shell commands before renovate runs
     #preCommand: ''
-    preCommand: |
-      ls /config
-      cat /config/renovate.json
+    #preCommand: |
+    #  ls /config
+    #  cat /config/renovate.json
 
     postCommand: ""
     # postCommand: |
@@ -94,7 +94,7 @@ renovate:
 
   renovate:
     # -- Custom exiting global renovate config
-    existingConfigFile: "/config/renovate.json"
+    #existingConfigFile: "/config/renovate.json"
     # -- Inline global renovate config.json
     config: ""
     # See https://docs.renovatebot.com/self-hosted-configuration
