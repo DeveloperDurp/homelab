@@ -64,9 +64,7 @@ renovate:
     #preCommand: ''
     preCommand: |
       ls /config
-      ls /config/renovate.json
       cat /config/renovate.json
-      cat /config/renovate.json/renovate.json
 
     postCommand: ""
     # postCommand: |
@@ -177,7 +175,7 @@ renovate:
   #         "key1"="value1"
 
   extraVolumes:
-    - name: renovate-config
+    - name: renovate-config-secret
       secretName:
         name: renovate-config-secret
         items:
@@ -185,8 +183,8 @@ renovate:
             path: renovate.json
 
   extraVolumeMounts:
-    - name: renovate-config
-      mountPath: /config/renovate.json
+    - name: renovate-config-secret
+      mountPath: /config
       subPath: renovate.json
 
   # -- Additional containers to the pod

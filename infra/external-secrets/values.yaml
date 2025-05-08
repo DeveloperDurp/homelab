@@ -1,5 +1,5 @@
 external-secrets:
-  replicaCount: 3
+  replicaCount: 1
   revisionHistoryLimit: 1
   leaderElect: true
 
@@ -16,18 +16,18 @@ external-secrets:
     repository: registry.durp.info/external-secrets/external-secrets
     pullPolicy: Always
 
-  extraVolumes: 
+  extraVolumes:
     - name: ca-pemstore
       configMap:
         name: ca-pemstore
 
-  extraVolumeMounts: 
+  extraVolumeMounts:
     - name: ca-pemstore
       mountPath: /etc/ssl/certs/vault.pem
       subPath: vault.pem
       readOnly: true
 
-  resources: 
+  resources:
     requests:
       memory: 32Mi
       cpu: 10m
@@ -42,7 +42,7 @@ external-secrets:
       repository: registry.durp.info/external-secrets/external-secrets
       pullPolicy: Always
 
-    resources: 
+    resources:
       requests:
         memory: 32Mi
         cpu: 10m
@@ -61,7 +61,7 @@ external-secrets:
       pullPolicy: Always
       tag: ""
 
-    resources: 
+    resources:
       requests:
         memory: 32Mi
         cpu: 10m
