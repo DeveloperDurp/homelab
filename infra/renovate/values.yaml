@@ -64,7 +64,9 @@ renovate:
     #preCommand: ''
     preCommand: |
       ls /config
+      ls /config/renovate.json
       cat /config/renovate.json
+      cat /config/renovate.json/renovate.json
 
     postCommand: ""
     # postCommand: |
