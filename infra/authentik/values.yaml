@@ -1,6 +1,8 @@
 authentik:
   global:
-    env: 
+    security:
+      allowInsecureImages: true
+    env:
       - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
           secretKeyRef:
@@ -19,7 +21,7 @@ authentik:
     outposts:
       container_image_base: registry.durp.info/goauthentik/%(type)s:%(version)s
     postgresql:
-      host: '{{ .Release.Name }}-postgresql-hl'
+      host: "{{ .Release.Name }}-postgresql-hl"
       name: "authentik"
       user: "authentik"
       port: 5432
@@ -36,7 +38,7 @@ authentik:
       pullPolicy: Always
     postgresqlUsername: "authentik"
     postgresqlDatabase: "authentik"
-    existingSecret: db-pass 
+    existingSecret: db-pass
     persistence:
       enabled: true
       storageClass: longhorn
@@ -47,7 +49,7 @@ authentik:
     enabled: true
     master:
       persistence:
-        enabled: false    
+        enabled: false
     image:
       registry: registry.durp.info
       repository: bitnami/redis
