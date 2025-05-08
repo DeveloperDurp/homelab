@@ -96,7 +96,15 @@ renovate:
     # -- Custom exiting global renovate config
     #existingConfigFile: "/config/renovate.json"
     # -- Inline global renovate config.json
-    config: ""
+    config: |
+      {
+        "platform": "gitlab",
+        "endpoint": "https://gitlab.com/api/v4",
+        "autodiscover": "false",
+        "dryRun": false,
+        "printConfig": false,
+        "repositories": ["durfy/DurpCLI"]
+      }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
     #   {
