@@ -184,7 +184,7 @@ renovate:
 
   extraVolumeMounts:
     - name: renovate-config
-      mountPath: /config
+      mountPath: /config/renovate.json
       subPath: renovate.json
 
   # -- Additional containers to the pod
