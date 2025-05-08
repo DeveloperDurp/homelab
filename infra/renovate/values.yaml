@@ -157,7 +157,7 @@ renovate:
   # -- Environment variables that should be referenced from a k8s secret, cannot be used when existingSecret is set
   secrets: {}
   # -- k8s secret to reference environment variables from. Overrides secrets if set
-  existingSecret: ""
+  existingSecret: "renovate-config-secret"
 
   # -- Additional configmaps. A generated configMap name is: "renovate.fullname" + "extra" + name(below) e.g. renovate-netrc-config
   extraConfigmaps: []
@@ -174,18 +174,18 @@ renovate:
   #         "key"="value"
   #         "key1"="value1"
 
-  extraVolumes:
-    - name: renovate-config-secret
-      secretName:
-        name: renovate-config-secret
-        items:
-          - key: renovate.json
-            path: renovate.json
+  #extraVolumes:
+  #  - name: renovate-config-secret
+  #    secretName:
+  #      name: renovate-config-secret
+  #      items:
+  #        - key: renovate.json
+  #          path: renovate.json
 
-  extraVolumeMounts:
-    - name: renovate-config-secret
-      mountPath: /config
-      subPath: renovate.json
+  #extraVolumeMounts:
+  #  - name: renovate-config-secret
+  #    mountPath: /config
+  #    subPath: renovate.json
 
   # -- Additional containers to the pod
   extraContainers: []
