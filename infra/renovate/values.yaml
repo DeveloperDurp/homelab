@@ -103,7 +103,7 @@ renovate:
         "autodiscover": "true",
         "dryRun": false,
         "printConfig": false,
-        "autodiscoverNamespaces": ["developerdurp", "durfy"]
+        "autodiscoverFilter": ["developerdurp/*", "durfy/*"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
