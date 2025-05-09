@@ -100,10 +100,10 @@ renovate:
       {
         "platform": "gitlab",
         "endpoint": "https://gitlab.com/api/v4",
-        "autodiscover": "false",
+        "autodiscover": "true",
         "dryRun": false,
         "printConfig": false,
-        "repositories": ["durfy/DurpCLI","developerdurp/homelab"]
+        "autodiscoverFilter": ["developerdurp/*", "durfy/*"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
