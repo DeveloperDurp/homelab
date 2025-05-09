@@ -22,10 +22,10 @@ spec:
   target:
     name: gitlab-secret
   data:
-    - secretKey: RENOVATE_TOKEN
+    - secretKey: accesstoken
       remoteRef:
         key: kv/renovate
-        property: accesstoken
+        property: RENOVATE_TOKEN
 
 ---
 apiVersion: gitlab.crossplane.io/v1beta1
