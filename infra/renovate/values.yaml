@@ -104,7 +104,7 @@ renovate:
         "dryRun": false,
         "printConfig": false,
         "autodiscoverFilter": ["developerdurp/*", "durfy/*"],
-        "assignees": "developerdurp"
+        "assignees": ["developerdurp"],
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
