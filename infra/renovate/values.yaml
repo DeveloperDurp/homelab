@@ -103,7 +103,7 @@ renovate:
         "autodiscover": "true",
         "dryRun": false,
         "printConfig": false,
-        "autodiscoverFilter": ["developerdurp/*", "durfy/*"]
+        "autodiscoverNamespaces": ["developerdurp", "durfy"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
@@ -244,7 +244,8 @@ renovate:
   #       name: env-configmap
 
   # -- Environment variables to set on the renovate container
-  env: {}
+  env:
+    RENOVATE_AUTODISCOVER: true
   # env:
   #   VARIABLE_NAME: "value"
 
