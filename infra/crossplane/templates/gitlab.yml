@@ -40,18 +40,18 @@ spec:
       namespace: crossplane
       name: gitlab-secret
       key: accesstoken
----
-apiVersion: projects.gitlab.crossplane.io/v1alpha1
-kind: Project
-metadata:
-  name: example-project
-spec:
-  deletionPolicy: Orphan
-  forProvider:
-    name: "Example Project"
-    description: "example project description"
-  providerConfigRef:
-    name: gitlab-provider
-    policy:
-      resolution: Optional
-      resolve: Always
+#---
+#apiVersion: projects.gitlab.crossplane.io/v1alpha1
+#kind: Project
+#metadata:
+#  name: example-project
+#spec:
+#  deletionPolicy: Orphan
+#  forProvider:
+#    name: "Example Project"
+#    description: "example project description"
+#  providerConfigRef:
+#    name: gitlab-provider
+#    policy:
+#      resolution: Optional
+#      resolve: Always
