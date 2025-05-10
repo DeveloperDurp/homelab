@@ -6,16 +6,15 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`authentik.durp.info`) && PathPrefix(`/`) 
-    kind: Rule
-    services:
-    - name: authentik-server
-      port: 80
+    - match: Host(`authentik.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: authentik-server
+          port: 80
   tls:
     secretName: authentik-tls
 
 ---
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -27,5 +26,4 @@ spec:
     kind: ClusterIssuer
   commonName: "authentik.durp.info"
   dnsNames:
-  - "authentik.durp.info" 
-
+    - "authentik.durp.info"
