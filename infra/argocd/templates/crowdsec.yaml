@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crowdsec
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/developerdurp/homelab.git
+    targetRevision: main
+    path: dmz/crowdsec
+  destination:
+    namespace: crowdsec
+    name: dmz
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
