@@ -2,7 +2,7 @@ crowdsec:
   #
   image:
     repository: registry.durp.info/crowdsecurity/crowdsec
-    pullPolicy: always
+    pullPolicy: Always
 
   # for raw logs format: json or cri (docker|containerd)
   container_runtime: containerd
