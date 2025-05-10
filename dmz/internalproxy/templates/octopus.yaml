@@ -8,9 +8,6 @@ spec:
   routes:
     - match: Host(`octopus.durp.info`) && PathPrefix(`/`)
       kind: Rule
-      middlewares:
-        - name: bouncer
-          namespace: traefik
       services:
         - name: infra-cluster
           port: 443
