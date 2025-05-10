@@ -27,3 +27,14 @@ spec:
   commonName: "auth.durp.info"
   dnsNames:
     - "auth.durp.info"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: auth-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: auth.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
