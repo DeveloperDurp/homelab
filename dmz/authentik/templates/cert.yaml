@@ -21,7 +21,7 @@ metadata:
   name: authentik-outpost-tls
 spec:
   issuerRef:
-    name: vault-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
   secretName: authentik-outpost-tls
   commonName: "auth.durp.info"
