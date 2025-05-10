@@ -1,4 +1,6 @@
 external-secrets:
+  log:
+    level: debug
   replicaCount: 1
   revisionHistoryLimit: 1
   leaderElect: false
