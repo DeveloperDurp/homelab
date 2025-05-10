@@ -45,6 +45,7 @@ spec:
       enabled: true
       crowdsecMode: stream
       crowdsecLapiScheme: https
+      crowdsecLapiTLSInsecureVerify: true
       crowdsecLapiHost: crowdsec-service.crowdsec:8080
       crowdsecLapiKey:
         valueFrom:
