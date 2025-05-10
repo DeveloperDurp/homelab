@@ -35,6 +35,9 @@ spec:
   routes:
     - match: Host(`registry.durp.info`) && PathPrefix(`/`)
       kind: Rule
+      middlewares:
+        - name: whitelist
+          namespace: traefik
       services:
         - name: registry
           port: 5000
