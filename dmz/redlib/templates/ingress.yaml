@@ -8,9 +8,9 @@ spec:
   routes:
     - match: Host(`redlib.durp.info`) && PathPrefix(`/`)
       kind: Rule
-      #    middlewares:
-      #    - name: authentik-proxy-provider
-      #      namespace: traefik
+      middlewares:
+        - name: authentik-proxy-provider
+          namespace: traefik
       services:
         - name: redlib
           port: 8080
