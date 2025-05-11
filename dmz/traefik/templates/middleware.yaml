@@ -5,7 +5,7 @@ metadata:
   namespace: traefik
 spec:
   forwardAuth:
-    address: https://authentik.durp.info/outpost.goauthentik.io/auth/traefik?rd=$scheme://$http_host$request_uri
+    address: "https://authentik.durp.info/outpost.goauthentik.io/auth/traefik"
     trustForwardHeader: true
     authResponseHeaders:
       - X-authentik-username
@@ -19,6 +19,8 @@ spec:
       - X-authentik-meta-provider
       - X-authentik-meta-app
       - X-authentik-meta-version
+    query:
+      uri: "rd=$scheme://$http_host$request_uri"
 
 ---
 apiVersion: traefik.io/v1alpha1
