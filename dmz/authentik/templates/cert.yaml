@@ -4,7 +4,7 @@ metadata:
   name: authentik-tls
 spec:
   issuerRef:
-    name: vault-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
   secretName: authentik-tls
   commonName: "authentik.durp.info"
