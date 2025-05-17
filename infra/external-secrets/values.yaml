@@ -1,7 +1,7 @@
 external-secrets:
   global:
     security:
-    allowInsecureImages: true
+      allowInsecureImages: true
 
   log:
     level: debug

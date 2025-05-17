@@ -1,6 +1,8 @@
 external-dns:
   global:
     imageRegistry: "registry.durp.info"
+    security:
+      allowInsecureImages: true
 
   image:
     pullPolicy: Always
@@ -9,10 +11,10 @@ external-dns:
 
   sources:
     - service
-    
+
   provider: cloudflare
   cloudflare:
-    secretName : "external-dns"
+    secretName: "external-dns"
     proxied: false
 
   policy: sync
