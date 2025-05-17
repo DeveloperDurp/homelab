@@ -1,4 +1,8 @@
 external-secrets:
+  global:
+    security:
+    allowInsecureImages: true
+
   log:
     level: debug
   replicaCount: 1
