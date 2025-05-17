@@ -1,0 +1,62 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: authentik-tls
+spec:
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  secretName: authentik-tls
+  commonName: "authentik.durp.info"
+  dnsNames:
+    - "authentik.durp.info"
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: authentik-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`authentik.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: infra-cluster
+          port: 443
+  tls:
+    secretName: authentik-tls
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: authentik-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: authentik.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: infra-cluster
+subsets:
+  - addresses:
+      - ip: 192.168.12.130
+    ports:
+      - port: 443
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: infra-cluster
+spec:
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 443
