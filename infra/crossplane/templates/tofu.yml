@@ -36,10 +36,6 @@ kind: ProviderConfig
 metadata:
   name: default
 spec:
-  # Note that unlike most provider configs this one supports an array of
-  # credentials. This is because each tofu workspace uses a single
-  # Crossplane provider config, but could use multiple Terraform providers each
-  # with their own credentials.
   #credentials:
   #  - filename: gcp-credentials.json
   #    source: Secret
@@ -47,9 +43,6 @@ spec:
   #      namespace: upbound-system
   #      name: opentofu-gcp-creds
   #      key: credentials
-  # This optional configuration block can be used to inject HCL into any
-  # workspace that uses this provider config, for example to setup Terraform
-  # providers.
   configuration: |
 
     // Modules _must_ use remote state. The provider does not persist state.
@@ -68,134 +61,134 @@ spec:
     }
 
 ---
-apiVersion: opentofu.upbound.io/v1beta1
-kind: Workspace
-metadata:
-  name: test-vm
-  annotations:
-    crossplane.io/external-name: test
-spec:
-  forProvider:
-    source: Inline
-    env:
-      - name: TF_VAR_pm_api_url
-        secretKeyRef:
-          namespace: crossplane
-          name: proxmox-secret
-          key: pm_api_url
-      - name: TF_VAR_pm_password
-        secretKeyRef:
-          namespace: crossplane
-          name: proxmox-secret
-          key: pm_password
-      - name: TF_VAR_pm_user
-        secretKeyRef:
-          namespace: crossplane
-          name: proxmox-secret
-          key: pm_user
-    module: |
-
-      provider "proxmox" {
-        pm_parallel     = 1
-        pm_tls_insecure = true
-        pm_api_url      = var.pm_api_url
-        pm_user         = var.pm_user
-        pm_password     = var.pm_password
-        pm_debug        = false
-      }
-
-      variable "pm_api_url" {
-        description = "API URL to Proxmox provider"
-        type        = string
-      }
-
-      variable "pm_password" {
-        description = "Passowrd to Proxmox provider"
-        type        = string
-      }
-
-      variable "pm_user" {
-        description = "Username to Proxmox provider"
-        type        = string
-      }
-
-      locals {
-        sshkeys   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEphzWgwUZnvL6E5luKLt3WO0HK7Kh63arSMoNl5gmjzXyhG1DDW0OKfoIl0T+JZw/ZjQ7iii6tmSLFRk6nuYCldqe5GVcFxvTzX4/xGEioAyG0IiUGKy6s+9xzO8QXF0EtSNPH0nfHNKcCjgwWAzM+Lt6gW0Vqs+aU5ICuDiEchmvYPz+rBaVldJVTG7m3ogKJ2aIF7HU/pCPp5l0E9gMOw7s0ABijuc3KXLEWCYgL39jIST6pFH9ceRLmu8Xy5zXHAkkEEauY/e6ld0hlzLadiUD7zYJMdDcm0oRvenYcUlaUl9gS0569IpfsJsjCejuqOxCKzTHPJDOT0f9TbIqPXkGq3s9oEJGpQW+Z8g41BqRpjBCdBk+yv39bzKxlwlumDwqgx1WP8xxKavAWYNqNRG7sBhoWwtxYEOhKXoLNjBaeDRnO5OY5AQJvONWpuByyz0R/gTh4bOFVD+Y8WWlKbT4zfhnN70XvapRsbZiaGhJBPwByAMGg6XxSbC6xtbyligVGCEjCXbTLkeKq1w0DuItY+FBGO3J2k90OiciTVSeyiVz9J/Y03UB0gHdsMCoVNrj+9QWfrTLDhM7D5YrXUt5nj2LQTcbtf49zoQXWxUhozlg42E/FJU/Yla7y55qWizAEVyP2/Ks/PHrF679k59HNd2IJ/aicA9QnmWtLQ== ansible"
-        template  = "Debian12-Template"
-        format    = "raw"
-        dnsserver = "192.168.10.1"
-        vlan      = 10
-        testVM = {
-          tags    = "test"
-          count   = 1
-          name    = ["test-server"]
-          cores   = 2
-          memory  = "4096"
-          drive   = 20
-          storage = "cache-domains"
-          node    = ["mothership"]
-          ip      = ["99"]
-        }
-      }
-
-      resource "proxmox_vm_qemu" "testVM" {
-        count       = local.testVM.count
-        ciuser      = "administrator"
-        vmid        = "${local.vlan}${local.testVM.ip[count.index]}"
-        name        = local.testVM.name[count.index]
-        target_node = local.testVM.node[count.index]
-        clone       = local.template
-        tags        = local.testVM.tags
-        qemu_os     = "l26"
-        full_clone  = true
-        os_type     = "cloud-init"
-        agent       = 1
-        cores       = local.testVM.cores
-        sockets     = 1
-        cpu_type    = "host"
-        memory      = local.testVM.memory
-        scsihw      = "virtio-scsi-pci"
-        #bootdisk    = "scsi0"
-        boot    = "order=virtio0"
-        onboot  = true
-        sshkeys = local.sshkeys
-        vga {
-          type = "serial0"
-        }
-        serial {
-          id   = 0
-          type = "socket"
-        }
-        disks {
-          ide {
-            ide2 {
-              cloudinit {
-                storage = local.testVM.storage
-              }
-            }
-          }
-          virtio {
-            virtio0 {
-              disk {
-                size    = local.testVM.drive
-                format  = local.format
-                storage = local.testVM.storage
-              }
-            }
-          }
-        }
-        network {
-          id     = 0
-          model  = "virtio"
-          bridge = "vmbr0"
-          tag    = local.vlan
-        }
-        #Cloud Init Settings
-        ipconfig0    = "ip=192.168.${local.vlan}.${local.testVM.ip[count.index]}/24,gw=192.168.${local.vlan}.1"
-        searchdomain = "durp.loc"
-        nameserver   = local.dnsserver
-      }
-
-  writeConnectionSecretToRef:
-    namespace: crossplane
-    name: opentofu-workspace-example-inline
+#apiVersion: opentofu.upbound.io/v1beta1
+#kind: Workspace
+#metadata:
+#  name: test-vm
+#  annotations:
+#    crossplane.io/external-name: test
+#spec:
+#  forProvider:
+#    source: Inline
+#    env:
+#      - name: TF_VAR_pm_api_url
+#        secretKeyRef:
+#          namespace: crossplane
+#          name: proxmox-secret
+#          key: pm_api_url
+#      - name: TF_VAR_pm_password
+#        secretKeyRef:
+#          namespace: crossplane
+#          name: proxmox-secret
+#          key: pm_password
+#      - name: TF_VAR_pm_user
+#        secretKeyRef:
+#          namespace: crossplane
+#          name: proxmox-secret
+#          key: pm_user
+#    module: |
+#
+#      provider "proxmox" {
+#        pm_parallel     = 1
+#        pm_tls_insecure = true
+#        pm_api_url      = var.pm_api_url
+#        pm_user         = var.pm_user
+#        pm_password     = var.pm_password
+#        pm_debug        = false
+#      }
+#
+#      variable "pm_api_url" {
+#        description = "API URL to Proxmox provider"
+#        type        = string
+#      }
+#
+#      variable "pm_password" {
+#        description = "Passowrd to Proxmox provider"
+#        type        = string
+#      }
+#
+#      variable "pm_user" {
+#        description = "Username to Proxmox provider"
+#        type        = string
+#      }
+#
+#      locals {
+#        sshkeys   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEphzWgwUZnvL6E5luKLt3WO0HK7Kh63arSMoNl5gmjzXyhG1DDW0OKfoIl0T+JZw/ZjQ7iii6tmSLFRk6nuYCldqe5GVcFxvTzX4/xGEioAyG0IiUGKy6s+9xzO8QXF0EtSNPH0nfHNKcCjgwWAzM+Lt6gW0Vqs+aU5ICuDiEchmvYPz+rBaVldJVTG7m3ogKJ2aIF7HU/pCPp5l0E9gMOw7s0ABijuc3KXLEWCYgL39jIST6pFH9ceRLmu8Xy5zXHAkkEEauY/e6ld0hlzLadiUD7zYJMdDcm0oRvenYcUlaUl9gS0569IpfsJsjCejuqOxCKzTHPJDOT0f9TbIqPXkGq3s9oEJGpQW+Z8g41BqRpjBCdBk+yv39bzKxlwlumDwqgx1WP8xxKavAWYNqNRG7sBhoWwtxYEOhKXoLNjBaeDRnO5OY5AQJvONWpuByyz0R/gTh4bOFVD+Y8WWlKbT4zfhnN70XvapRsbZiaGhJBPwByAMGg6XxSbC6xtbyligVGCEjCXbTLkeKq1w0DuItY+FBGO3J2k90OiciTVSeyiVz9J/Y03UB0gHdsMCoVNrj+9QWfrTLDhM7D5YrXUt5nj2LQTcbtf49zoQXWxUhozlg42E/FJU/Yla7y55qWizAEVyP2/Ks/PHrF679k59HNd2IJ/aicA9QnmWtLQ== ansible"
+#        template  = "Debian12-Template"
+#        format    = "raw"
+#        dnsserver = "192.168.10.1"
+#        vlan      = 10
+#        testVM = {
+#          tags    = "test"
+#          count   = 1
+#          name    = ["test-server"]
+#          cores   = 2
+#          memory  = "4096"
+#          drive   = 20
+#          storage = "cache-domains"
+#          node    = ["mothership"]
+#          ip      = ["99"]
+#        }
+#      }
+#
+#      resource "proxmox_vm_qemu" "testVM" {
+#        count       = local.testVM.count
+#        ciuser      = "administrator"
+#        vmid        = "${local.vlan}${local.testVM.ip[count.index]}"
+#        name        = local.testVM.name[count.index]
+#        target_node = local.testVM.node[count.index]
+#        clone       = local.template
+#        tags        = local.testVM.tags
+#        qemu_os     = "l26"
+#        full_clone  = true
+#        os_type     = "cloud-init"
+#        agent       = 1
+#        cores       = local.testVM.cores
+#        sockets     = 1
+#        cpu_type    = "host"
+#        memory      = local.testVM.memory
+#        scsihw      = "virtio-scsi-pci"
+#        #bootdisk    = "scsi0"
+#        boot    = "order=virtio0"
+#        onboot  = true
+#        sshkeys = local.sshkeys
+#        vga {
+#          type = "serial0"
+#        }
+#        serial {
+#          id   = 0
+#          type = "socket"
+#        }
+#        disks {
+#          ide {
+#            ide2 {
+#              cloudinit {
+#                storage = local.testVM.storage
+#              }
+#            }
+#          }
+#          virtio {
+#            virtio0 {
+#              disk {
+#                size    = local.testVM.drive
+#                format  = local.format
+#                storage = local.testVM.storage
+#              }
+#            }
+#          }
+#        }
+#        network {
+#          id     = 0
+#          model  = "virtio"
+#          bridge = "vmbr0"
+#          tag    = local.vlan
+#        }
+#        #Cloud Init Settings
+#        ipconfig0    = "ip=192.168.${local.vlan}.${local.testVM.ip[count.index]}/24,gw=192.168.${local.vlan}.1"
+#        searchdomain = "durp.loc"
+#        nameserver   = local.dnsserver
+#      }
+#
+#  writeConnectionSecretToRef:
+#    namespace: crossplane
+#    name: opentofu-workspace-example-inline
