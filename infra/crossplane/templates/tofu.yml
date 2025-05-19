@@ -82,17 +82,17 @@ spec:
         secretKeyRef:
           namespace: crossplane
           name: proxmox-secret
-          key: pam_api_url
+          key: pm_api_url
       - name: TF_VAR_pm_password
         secretKeyRef:
           namespace: crossplane
           name: proxmox-secret
-          key: pam_password
+          key: pm_password
       - name: TF_VAR_pm_user
         secretKeyRef:
           namespace: crossplane
           name: proxmox-secret
-          key: pam_user
+          key: pm_user
     module: |
 
       provider "proxmox" {
