@@ -56,7 +56,7 @@ spec:
     terraform {
       backend "kubernetes" {
         secret_suffix     = "providerconfig-default"
-        namespace         = "upbound-system"
+        namespace         = "crossplane"
         in_cluster_config = true
       }
       required_providers {
