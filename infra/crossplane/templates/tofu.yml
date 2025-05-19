@@ -4,3 +4,28 @@ metadata:
   name: provider-opentofu
 spec:
   package: xpkg.upbound.io/upbound/provider-opentofu:v0
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: proxmox-secret
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  target:
+    name: db-pass
+  data:
+    - secretKey: pm_api_url
+      remoteRef:
+        key: kv/crossplane/proxmox
+        property: pm_api_url
+    - secretKey: pm_password
+      remoteRef:
+        key: kv/crossplane/proxmox
+        property: pm_password
+    - secretKey: pm_user
+      remoteRef:
+        key: kv/crossplane/proxmox
+        property: pm_user
