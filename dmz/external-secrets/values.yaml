@@ -33,13 +33,13 @@ external-secrets:
       subPath: vault.pem
       readOnly: true
 
-  resources:
-    requests:
-      memory: 32Mi
-      cpu: 10m
-    limits:
-      memory: 32Mi
-      cpu: 10m
+  #  resources:
+  #    requests:
+  #      memory: 32Mi
+  #      cpu: 10m
+  #    limits:
+  #      memory: 32Mi
+  #      cpu: 10m
 
   webhook:
     create: false
@@ -61,13 +61,13 @@ external-secrets:
         subPath: vault.pem
         readOnly: true
 
-    resources:
-      requests:
-        memory: 32Mi
-        cpu: 10m
-      limits:
-        memory: 32Mi
-        cpu: 10m
+  #    resources:
+  #      requests:
+  #        memory: 32Mi
+  #        cpu: 10m
+  #      limits:
+  #        memory: 32Mi
+  #        cpu: 10m
 
   certController:
     create: false
