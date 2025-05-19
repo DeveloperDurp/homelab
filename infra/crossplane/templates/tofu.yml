@@ -43,14 +43,17 @@ spec:
     env:
       - name: TF_VAR_pm_api_url
         secretKeyRef:
+          namespace: crossplane
           name: proxmox-secret
           key: pam_api_url
       - name: TF_VAR_pm_password
         secretKeyRef:
+          namespace: crossplane
           name: proxmox-secret
           key: pam_password
       - name: TF_VAR_pm_user
         secretKeyRef:
+          namespace: crossplane
           name: proxmox-secret
           key: pam_user
     module: |
