@@ -145,5 +145,5 @@ spec:
       }
 
   writeConnectionSecretToRef:
-    namespace: default
+    namespace: crossplane
     name: opentofu-workspace-example-inline
