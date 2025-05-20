@@ -34,7 +34,7 @@ argo-cd:
       annotations: {}
       url: https://argocd.infra.durp.info
       oidc.tls.insecure.skip.verify: "true"
-      accounts.argocd-provider: apiKey, login
+      accounts.argocd-provider: apiKey
       dex.config: |
         connectors:
           - config:
@@ -55,6 +55,7 @@ argo-cd:
       create: true
       policy.csv: |
         g, ArgoCD Admins, role:admin
+        g, provider-argocd, role:admin
       scopes: "[groups]"
 
   server:
