@@ -60,5 +60,6 @@ spec:
   credentials:
     source: Secret
     secretRef:
+      namespace: argocd
       name: argocd-crossplane-secret
       key: authToken
