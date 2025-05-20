@@ -29,6 +29,7 @@ spec:
       kubeconfigSecretRef:
         name: prod-kubeconfig
         key: kubeconfig
+        namespace: argocd
   providerConfigRef:
     name: argocd-provider
 
