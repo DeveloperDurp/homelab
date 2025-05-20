@@ -23,6 +23,23 @@ spec:
         property: token
 
 ---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: prod-kubeconfig
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  target:
+    name: prod-kubeconfig
+  data:
+    - secretKey: kubeconfig
+      remoteRef:
+        key: kv/argocd/prd
+        property: kubeconfig
+
+---
 apiVersion: argocd.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
@@ -37,3 +54,21 @@ spec:
       namespace: crossplane
       name: argocd-secret
       key: authToken
+
+---
+apiVersion: cluster.argocd.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: prd-cluster-kubeconfig
+  labels:
+    purpose: prd
+spec:
+  forProvider:
+    name: prd-cluster-kubeconfig
+    config:
+      kubeconfigSecretRef:
+        name: prod-kubeconfig
+        namespace: crossplane
+        key: kubeconfig
+  providerConfigRef:
+    name: argocd-provider
