@@ -64,7 +64,7 @@ metadata:
     purpose: prd
 spec:
   forProvider:
-    name: prd-cluster-kubeconfig
+    name: prd
     config:
       kubeconfigSecretRef:
         name: prod-kubeconfig
