@@ -27,7 +27,6 @@ spec:
     config:
       kubeconfigSecretRef:
         name: prod-kubeconfig
-        namespace: crossplane
         key: kubeconfig
   providerConfigRef:
     name: argocd-provider
