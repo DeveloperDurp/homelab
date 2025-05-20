@@ -34,6 +34,7 @@ argo-cd:
       annotations: {}
       url: https://argocd.infra.durp.info
       oidc.tls.insecure.skip.verify: "true"
+      accounts.argocd-provider: apiKey, login
       dex.config: |
         connectors:
           - config:
