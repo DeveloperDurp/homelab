@@ -6,4 +6,34 @@ spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-argocd:v0.10.1
 
 ---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: argocd-secret
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  target:
+    name: argocd-secret
+  data:
+    - secretKey: authToken
+      remoteRef:
+        key: kv/argocd/provider-argocd
+        property: token
 
+---
+apiVersion: argocd.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: argocd-provider
+spec:
+  serverAddr: argocd-server.argocd.svc:443
+  insecure: true
+  plainText: false
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane
+      name: argocd-secret
+      key: authToken
