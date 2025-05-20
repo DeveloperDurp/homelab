@@ -15,23 +15,23 @@ spec:
         property: kubeconfig
 
 ---
-apiVersion: cluster.argocd.crossplane.io/v1alpha1
-kind: Cluster
-metadata:
-  name: prd-cluster
-  labels:
-    purpose: prd
-spec:
-  forProvider:
-    name: prd-cluster
-    config:
-      kubeconfigSecretRef:
-        name: prod-kubeconfig
-        key: kubeconfig
-        namespace: argocd
-  providerConfigRef:
-    name: argocd-provider
-    namespace: argocd
+#apiVersion: cluster.argocd.crossplane.io/v1alpha1
+#kind: Cluster
+#metadata:
+#  name: prd-cluster
+#  labels:
+#    purpose: prd
+#spec:
+#  forProvider:
+#    name: prd-cluster
+#    config:
+#      kubeconfigSecretRef:
+#        name: prod-kubeconfig
+#        key: kubeconfig
+#        namespace: argocd
+#  providerConfigRef:
+#    name: argocd-provider
+#    namespace: argocd
 
 ---
 apiVersion: external-secrets.io/v1beta1
