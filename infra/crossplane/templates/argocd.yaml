@@ -59,12 +59,12 @@ spec:
 apiVersion: cluster.argocd.crossplane.io/v1alpha1
 kind: Cluster
 metadata:
-  name: prd-cluster
+  name: prd
   labels:
     purpose: prd
 spec:
   forProvider:
-    name: prd-cluster
+    name: prd
     config:
       kubeconfigSecretRef:
         name: prod-kubeconfig
