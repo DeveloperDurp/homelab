@@ -11,6 +11,7 @@ spec:
   data:
     - secretKey: kubeconfig
       remoteRef:
+        namespace: argocd
         key: kv/argocd/prd
         property: kubeconfig
 
