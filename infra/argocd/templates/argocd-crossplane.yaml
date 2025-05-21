@@ -64,3 +64,38 @@ spec:
         key: kubeconfig
   providerConfigRef:
     name: argocd-provider
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: dev-kubeconfig
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  target:
+    name: dev-kubeconfig
+  data:
+    - secretKey: kubeconfig
+      remoteRef:
+        key: kv/argocd/dev
+        property: kubeconfig
+
+---
+apiVersion: cluster.argocd.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: dev
+  labels:
+    purpose: dev
+spec:
+  forProvider:
+    name: dev
+    config:
+      kubeconfigSecretRef:
+        name: dev-kubeconfig
+        namespace: argocd
+        key: kubeconfig
+  providerConfigRef:
+    name: argocd-provider
