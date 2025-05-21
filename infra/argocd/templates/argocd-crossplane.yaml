@@ -1,13 +1,13 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: argocd-secret
+  name: argocd-secret-crossplane
 spec:
   secretStoreRef:
     name: vault
     kind: ClusterSecretStore
   target:
-    name: argocd-secret
+    name: argocd-secret-crossplane
   data:
     - secretKey: authToken
       remoteRef:
@@ -44,7 +44,7 @@ spec:
     source: Secret
     secretRef:
       namespace: argocd
-      name: argocd-secret
+      name: argocd-secret-crossplane
       key: authToken
 
 ---
