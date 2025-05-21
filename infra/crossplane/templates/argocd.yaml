@@ -1,59 +1,59 @@
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-argocd
-spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-argocd:v0.10.1
-
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: argocd-secret
-spec:
-  secretStoreRef:
-    name: vault
-    kind: ClusterSecretStore
-  target:
-    name: argocd-secret
-  data:
-    - secretKey: authToken
-      remoteRef:
-        key: kv/argocd/provider-argocd
-        property: token
-
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: prod-kubeconfig
-spec:
-  secretStoreRef:
-    name: vault
-    kind: ClusterSecretStore
-  target:
-    name: prod-kubeconfig
-  data:
-    - secretKey: kubeconfig
-      remoteRef:
-        key: kv/argocd/prd
-        property: kubeconfig
-
----
-apiVersion: argocd.crossplane.io/v1alpha1
-kind: ProviderConfig
-metadata:
-  name: argocd-provider
-spec:
-  serverAddr: argocd-server.argocd.svc:443
-  insecure: true
-  plainText: false
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane
-      name: argocd-secret
-      key: authToken
+#apiVersion: pkg.crossplane.io/v1
+#kind: Provider
+#metadata:
+#  name: provider-argocd
+#spec:
+#  package: xpkg.upbound.io/crossplane-contrib/provider-argocd:v0.10.1
+#
+#---
+#apiVersion: external-secrets.io/v1beta1
+#kind: ExternalSecret
+#metadata:
+#  name: argocd-secret
+#spec:
+#  secretStoreRef:
+#    name: vault
+#    kind: ClusterSecretStore
+#  target:
+#    name: argocd-secret
+#  data:
+#    - secretKey: authToken
+#      remoteRef:
+#        key: kv/argocd/provider-argocd
+#        property: token
+#
+#---
+#apiVersion: external-secrets.io/v1beta1
+#kind: ExternalSecret
+#metadata:
+#  name: prod-kubeconfig
+#spec:
+#  secretStoreRef:
+#    name: vault
+#    kind: ClusterSecretStore
+#  target:
+#    name: prod-kubeconfig
+#  data:
+#    - secretKey: kubeconfig
+#      remoteRef:
+#        key: kv/argocd/prd
+#        property: kubeconfig
+#
+#---
+#apiVersion: argocd.crossplane.io/v1alpha1
+#kind: ProviderConfig
+#metadata:
+#  name: argocd-provider
+#spec:
+#  serverAddr: argocd-server.argocd.svc:443
+#  insecure: true
+#  plainText: false
+#  credentials:
+#    source: Secret
+#    secretRef:
+#      namespace: crossplane
+#      name: argocd-secret
+#      key: authToken
 #---
 #apiVersion: cluster.argocd.crossplane.io/v1alpha1
 #kind: Cluster
