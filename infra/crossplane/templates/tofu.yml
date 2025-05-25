@@ -6,7 +6,7 @@ spec:
   package: xpkg.upbound.io/upbound/provider-opentofu:v0
 
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: proxmox-secret

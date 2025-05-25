@@ -6,7 +6,7 @@ spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-gitlab:v0.5.0
 ---
 
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: gitlab-secret
