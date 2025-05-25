@@ -1,9 +1,9 @@
 apiVersion: opentofu.upbound.io/v1beta1
 kind: Workspace
 metadata:
-  name: proxmoxBackupServer
+  name: proxmoxbackupserver
   annotations:
-    crossplane.io/external-name: proxmoxBackupServer
+    crossplane.io/external-name: proxmoxbackupserver
 spec:
   forProvider:
     source: Inline
