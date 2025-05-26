@@ -1,115 +1,115 @@
-#apiVersion: opentofu.upbound.io/v1beta1
-#kind: Workspace
-#metadata:
-#  name: proxmoxbackupserver
-#  annotations:
-#    crossplane.io/external-name: proxmoxbackupserver
-#spec:
-#  forProvider:
-#    source: Inline
-#    env:
-#      - name: TF_VAR_pm_api_url
-#        secretKeyRef:
-#          namespace: crossplane
-#          name: proxmox-secret
-#          key: pm_api_url
-#      - name: TF_VAR_pm_password
-#        secretKeyRef:
-#          namespace: crossplane
-#          name: proxmox-secret
-#          key: pm_password
-#      - name: TF_VAR_pm_user
-#        secretKeyRef:
-#          namespace: crossplane
-#          name: proxmox-secret
-#          key: pm_user
-#    module: |
-#
-#      provider "proxmox" {
-#        pm_parallel     = 1
-#        pm_tls_insecure = true
-#        pm_api_url      = var.pm_api_url
-#        pm_user         = var.pm_user
-#        pm_password     = var.pm_password
-#        pm_debug        = false
-#      }
-#
-#      variable "pm_api_url" {
-#        description = "API URL to Proxmox provider"
-#        type        = string
-#      }
-#
-#      variable "pm_password" {
-#        description = "Passowrd to Proxmox provider"
-#        type        = string
-#      }
-#
-#      variable "pm_user" {
-#        description = "Username to Proxmox provider"
-#        type        = string
-#      }
-#
-#      locals {
-#        format    = "raw"
-#        dnsserver = "192.168.10.1"
-#        vlan      = 21
-#        proxmoxBackup = {
-#          tags    = "Proxmox"
-#          count   = 1
-#          name    = ["Proxmox-BackupServer"]
-#          cores   = 2
-#          memory  = "4096"
-#          drive   = 1024
-#          storage = "domains"
-#          node    = ["mothership"]
-#          ip      = ["250"]
-#        }
-#      }
-#
-#      resource "proxmox_vm_qemu" "proxmoxBackup" {
-#        count       = local.proxmoxBackup.count
-#        ciuser      = "administrator"
-#        vmid        = "${local.vlan}${local.proxmoxBackup.ip[count.index]}"
-#        name        = local.proxmoxBackup.name[count.index]
-#        target_node = local.proxmoxBackup.node[count.index]
-#        tags        = local.proxmoxBackup.tags
-#        qemu_os     = "l26"
-#        os_type     = "cloud-init"
-#        agent       = 1
-#        cores       = local.proxmoxBackup.cores
-#        sockets     = 1
-#        cpu_type    = "host"
-#        memory      = local.proxmoxBackup.memory
-#        scsihw      = "virtio-scsi-pci"
-#        #bootdisk    = "scsi0"
-#        boot    = "order=virtio0"
-#        onboot  = true
-#        vga {
-#          type = "serial0"
-#        }
-#        serial {
-#          id   = 0
-#          type = "socket"
-#        }
-#        disks {
-#          virtio {
-#            virtio0 {
-#              disk {
-#                size    = local.proxmoxBackup.drive
-#                format  = local.format
-#                storage = local.proxmoxBackup.storage
-#              }
-#            }
-#          }
-#        }
-#        network {
-#          id     = 0
-#          model  = "virtio"
-#          bridge = "vmbr0"
-#          tag    = local.vlan
-#        }
-#      }
-#
-#  writeConnectionSecretToRef:
-#    namespace: crossplane
-#    name: opentofu-workspace-example-inline
+apiVersion: opentofu.upbound.io/v1beta1
+kind: Workspace
+metadata:
+  name: proxmoxbackupserver
+  annotations:
+    crossplane.io/external-name: proxmoxbackupserver
+spec:
+  forProvider:
+    source: Inline
+    env:
+      - name: TF_VAR_pm_api_url
+        secretKeyRef:
+          namespace: crossplane
+          name: proxmox-secret
+          key: pm_api_url
+      - name: TF_VAR_pm_password
+        secretKeyRef:
+          namespace: crossplane
+          name: proxmox-secret
+          key: pm_password
+      - name: TF_VAR_pm_user
+        secretKeyRef:
+          namespace: crossplane
+          name: proxmox-secret
+          key: pm_user
+    module: |
+
+      provider "proxmox" {
+        pm_parallel     = 1
+        pm_tls_insecure = true
+        pm_api_url      = var.pm_api_url
+        pm_user         = var.pm_user
+        pm_password     = var.pm_password
+        pm_debug        = false
+      }
+
+      variable "pm_api_url" {
+        description = "API URL to Proxmox provider"
+        type        = string
+      }
+
+      variable "pm_password" {
+        description = "Passowrd to Proxmox provider"
+        type        = string
+      }
+
+      variable "pm_user" {
+        description = "Username to Proxmox provider"
+        type        = string
+      }
+
+      locals {
+        format    = "raw"
+        dnsserver = "192.168.10.1"
+        vlan      = 21
+        proxmoxBackup = {
+          tags    = "Proxmox"
+          count   = 1
+          name    = ["Proxmox-BackupServer"]
+          cores   = 2
+          memory  = "4096"
+          drive   = 1024
+          storage = "domains"
+          node    = ["mothership"]
+          ip      = ["250"]
+        }
+      }
+
+      resource "proxmox_vm_qemu" "proxmoxBackup" {
+        count       = local.proxmoxBackup.count
+        ciuser      = "administrator"
+        vmid        = "${local.vlan}${local.proxmoxBackup.ip[count.index]}"
+        name        = local.proxmoxBackup.name[count.index]
+        target_node = local.proxmoxBackup.node[count.index]
+        tags        = local.proxmoxBackup.tags
+        qemu_os     = "l26"
+        os_type     = "cloud-init"
+        agent       = 1
+        cores       = local.proxmoxBackup.cores
+        sockets     = 1
+        cpu_type    = "host"
+        memory      = local.proxmoxBackup.memory
+        scsihw      = "virtio-scsi-pci"
+        #bootdisk    = "scsi0"
+        boot    = "order=virtio0"
+        onboot  = true
+        vga {
+          type = "serial0"
+        }
+        serial {
+          id   = 0
+          type = "socket"
+        }
+        disks {
+          virtio {
+            virtio0 {
+              disk {
+                size    = local.proxmoxBackup.drive
+                format  = local.format
+                storage = local.proxmoxBackup.storage
+              }
+            }
+          }
+        }
+        network {
+          id     = 0
+          model  = "virtio"
+          bridge = "vmbr0"
+          tag    = local.vlan
+        }
+      }
+
+  writeConnectionSecretToRef:
+    namespace: crossplane
+    name: opentofu-workspace-example-inline
