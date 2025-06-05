@@ -5,6 +5,11 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  ignoreDifferences:
+    - group: engineimages.longhorn.io
+      jsonPointers:
+        - /spec/preserveUnknownFields
+      kind: CustomResourceDefinition
   source:
     repoURL: https://gitlab.com/developerdurp/homelab.git
     targetRevision: main
@@ -16,12 +21,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    ignoreDifferences:
-      - group: apiextensions.k8s.io
-        name: engineimages.longhorn.io
-        kind: CustomResourceDefinition
-        jsonPointers:
-          - /spec/preserveUnknownFields
     syncOptions:
       - CreateNamespace=true
 
