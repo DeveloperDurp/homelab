@@ -4,7 +4,9 @@ kubernetes-agent:
     acceptEula: "Y"
     serverUrl: "https://octopus.durp.info/"
     serverCommsAddresses:
-      - "https://octopusdeploy-octopus-deploy.octopusdeploy.svc.cluster.local:10943/"
+      - "https://octopusdeploy-octopus-deploy-0.octohpusdeploy.svc.cluster.local:10943/"
+      - "https://octopusdeploy-octopus-deploy-1.octopusdeploy.svc.cluster.local:10943/"
+      - "https://octopusdeploy-octopus-deploy-2.octopusdeploy.svc.cluster.local:10943/"
     space: "Default"
     name: "infra"
     deploymentTarget:
