@@ -18,17 +18,16 @@ spec:
         topology.istio.io/network: network1
     automated:
       prune: true
-      selfHeal: true  
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
   ignoreDifferences:
-  - group: admissionregistration.k8s.io
-    kind: ValidatingWebhookConfiguration
-    jsonPointers:
-    - /webhooks/0/failurePolicy
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/failurePolicy
 
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -53,7 +52,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
   ignoreDifferences:
-  - group: admissionregistration.k8s.io
-    kind: ValidatingWebhookConfiguration
-    jsonPointers:
-    - /webhooks/0/failurePolicy
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/failurePolicy
