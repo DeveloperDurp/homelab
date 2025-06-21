@@ -14,4 +14,4 @@ dependencies:
   version: 1.26.0
 - name: gateway
   repository: https://istio-release.storage.googleapis.com/charts
-  version: 1.26.0
+  version: 1.26.2
