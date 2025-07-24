@@ -57,6 +57,8 @@ argo-cd:
           - "*"
           clusters:
           - "*"
+          resource:
+          - "*"
 
     rbac:
       create: true
