@@ -54,7 +54,7 @@ argo-cd:
         - apiGroups:
           - "*"
           kinds:
-          - "Endpoints"
+          - "*"
           clusters:
           - "*"
 
