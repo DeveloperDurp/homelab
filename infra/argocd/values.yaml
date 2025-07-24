@@ -50,13 +50,6 @@ argo-cd:
             name: authentik
             type: oidc
             id: authentik
-      resource.exclusions: |
-        - apiGroups:
-          - "*"
-          kinds:
-          - "*"
-          clusters:
-          - "*"
 
     rbac:
       create: true
