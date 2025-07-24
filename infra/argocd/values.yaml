@@ -52,13 +52,13 @@ argo-cd:
             id: authentik
       resource.inclusions: |
         - apiGroups:
-          - "*"
+          - "" 
           kinds:
-          - "*"
+          - "Endpoints"
           clusters:
           - "*"
-          resource:
-          - "*"
+          namespaces:
+          - "internalproxy"
 
     rbac:
       create: true
