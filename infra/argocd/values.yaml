@@ -54,11 +54,11 @@ argo-cd:
         - apiGroups:
           - "" 
           kinds:
-          - "Endpoints"
+          - "*"
           clusters:
           - "*"
           namespaces:
-          - "internalproxy"
+          - "*"
 
     rbac:
       create: true
