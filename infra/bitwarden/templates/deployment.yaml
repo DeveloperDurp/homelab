@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: bitwarden
-          image: registry.durp.info/vaultwarden/server:1.33.2
+          image: registry.durp.info/vaultwarden/server:1.34.3
           imagePullPolicy: Always
           volumeMounts:
             - name: bitwarden-pvc
