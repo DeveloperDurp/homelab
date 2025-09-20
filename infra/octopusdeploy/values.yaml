@@ -2,7 +2,7 @@ octopusdeploy-helm:
   octopus:
     image:
       repository: registry.durp.info/octopusdeploy/octopusdeploy
-      tag: 2025.1
+      tag: 2025.3
     createSecrets: false
     acceptEula: Y
     replicaCount: 3
