@@ -1,4 +1,4 @@
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana-ingress
@@ -6,16 +6,15 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`grafana.durp.info`) && PathPrefix(`/`) 
-    kind: Rule
-    services:
-    - name: grafana
-      port: 80
+    - match: Host(`grafana.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
   tls:
     secretName: grafana-tls
 
 ---
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -27,11 +26,10 @@ spec:
     kind: ClusterIssuer
   commonName: "grafana.durp.info"
   dnsNames:
-  - "grafana.durp.info"  
+    - "grafana.durp.info"
 
 ---
-
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: alertmanager-ingress
@@ -39,21 +37,20 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`alertmanager.durp.info`) && PathPrefix(`/`) 
-    middlewares:
-    - name: whitelist
-      namespace: traefik
-    - name: authentik-proxy-provider
-      namespace: traefik    
-    kind: Rule
-    services:
-    - name: prometheus-alertmanager
-      port: 9093
+    - match: Host(`alertmanager.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+        - name: authentik-proxy-provider
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: prometheus-alertmanager
+          port: 9093
   tls:
     secretName: alertmanager-tls
 
 ---
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -65,10 +62,9 @@ spec:
     kind: ClusterIssuer
   commonName: "alertmanager.durp.info"
   dnsNames:
-  - "alertmanager.durp.info"  
+    - "alertmanager.durp.info"
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
@@ -77,4 +73,5 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: grafana.durp.info
 spec:
   type: ExternalName
-  externalName: durp.info  
+  externalName: durp.info
+
