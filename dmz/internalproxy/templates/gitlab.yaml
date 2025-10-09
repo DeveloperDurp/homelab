@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab
+spec:
+  ports:
+    - name: app
+      port: 9080
+      protocol: TCP
+      targetPort: 9080
+  clusterIP: None
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: gitlab
+subsets:
+  - addresses:
+      - ip: 192.168.21.200
+    ports:
+      - name: app
+        port: 9080
+        protocol: TCP
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitlab-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gitlab.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: gitlab
+          port: 9080
+          scheme: http
+  tls:
+    secretName: gitlab-tls
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitlab-tls
+spec:
+  secretName: gitlab-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "gitlab.durp.info"
+  dnsNames:
+    - "gitlab.durp.info"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitlab-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: gitlab.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
