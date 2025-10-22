@@ -12,21 +12,19 @@ spec:
   type: ClusterIP
 
 ---
-
 apiVersion: v1
 kind: Endpoints
 metadata:
   name: n8n
 subsets:
   - addresses:
-      - ip: 192.168.20.104
+      - ip: 192.168.21.200
     ports:
       - name: app
         port: 5678
         protocol: TCP
 
 ---
-
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -45,7 +43,6 @@ spec:
     secretName: n8n-tls
 
 ---
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -60,7 +57,6 @@ spec:
     - "n8n.durp.info"
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
