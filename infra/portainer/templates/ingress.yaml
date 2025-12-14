@@ -6,14 +6,11 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`portainer.internal.durp.info`) && PathPrefix(`/`)
-      #middlewares:
-      #- name: whitelist
-      #  namespace: traefik
-    kind: Rule
-    services:
-      - name: infra-cluster
-        port: 443
+    - match: Host(`portainer.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: portainer
+          port: 9443
   tls:
     secretName: portainer-tls
 
@@ -30,4 +27,4 @@ spec:
     kind: ClusterIssuer
   commonName: "portainer.internal.durp.info"
   dnsNames:
-  - "portainer.internal.durp.info"
+    - "portainer.internal.durp.info"
