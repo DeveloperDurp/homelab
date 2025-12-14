@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`portainer.durp.info`) && PathPrefix(`/`)
+    - match: Host(`portainer.internal.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: portainer
