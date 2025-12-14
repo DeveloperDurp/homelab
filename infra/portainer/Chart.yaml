@@ -1,5 +1,5 @@
 apiVersion: v2
-name: octopusdeploy
+name: portainer
 description: A Helm chart for Kubernetes
 type: application
 
@@ -7,6 +7,6 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 dependencies:
-  - name: octopusdeploy-helm
-    repository: oci://ghcr.io/octopusdeploy
-    version: 1.7.0
+  - name: portainer
+    repository: https://portainer.github.io/k8s/
+    version: 2.33.5
