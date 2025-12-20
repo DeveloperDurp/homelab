@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: redlib
-        image: registry.durp.info/redlib/redlib:latest
+        image: registry.durp.info/redlib/redlib:sha-ba98178
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
