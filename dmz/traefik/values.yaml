@@ -23,6 +23,11 @@ traefik:
     dashboard:
       enabled: true
 
+  ports:
+    gitlab-ssh:
+      port: 9022
+      expose: true
+
   additionalArguments:
     #  - "--providers.file.filename=/config/config.yml"
     - "--serversTransport.insecureSkipVerify=true"
