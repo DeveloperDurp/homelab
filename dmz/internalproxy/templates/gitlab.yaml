@@ -36,7 +36,7 @@ spec:
     - match: HostSNI(`*`)
       kind: Rule
       services:
-        - name: gitlab-ssh
+        - name: app
           port: 9022
   tls:
     secretName: gitlab-tls
