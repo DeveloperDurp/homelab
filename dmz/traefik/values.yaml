@@ -26,7 +26,9 @@ traefik:
   ports:
     gitlab-ssh:
       port: 9022
-      expose: true
+      expose:
+        default: true
+      exposedPort: 9022
 
   additionalArguments:
     #  - "--providers.file.filename=/config/config.yml"
