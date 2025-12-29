@@ -28,13 +28,12 @@ subsets:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: gitlab-ssh-ingress
+  name: gitlab-ssh
 spec:
   entryPoints:
     - gitlab-ssh
   routes:
     - match: HostSNI(`*`)
-      kind: Rule
       services:
         - name: app
           port: 9022
