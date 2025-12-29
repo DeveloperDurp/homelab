@@ -35,10 +35,8 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: app
+        - name: gitlab-ssh
           port: 9022
-  tls:
-    secretName: gitlab-tls
 
 ---
 apiVersion: v1
