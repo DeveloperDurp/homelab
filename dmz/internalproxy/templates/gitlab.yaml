@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - name: app
-      port: 9443
+      port: 9022
       protocol: TCP
-      targetPort: 9443
+      targetPort: 9022
   clusterIP: None
   type: ClusterIP
 
@@ -21,12 +21,12 @@ subsets:
       - ip: 192.168.21.200
     ports:
       - name: app
-        port: 9443
+        port: 9022
         protocol: TCP
 
 ---
 apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+kind: IngressRouteTCP
 metadata:
   name: gitlab-ssh
 spec:
@@ -36,7 +36,7 @@ spec:
     - match: HostSNI(`*`)
       services:
         - name: app
-          port: 9443
+          port: 9022
   tls:
     secretName: gitlab-tls
 
