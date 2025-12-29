@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - name: app
-      port: 9080
+      port: 9443
       protocol: TCP
-      targetPort: 9080
+      targetPort: 9443
   clusterIP: None
   type: ClusterIP
 
@@ -21,7 +21,7 @@ subsets:
       - ip: 192.168.21.200
     ports:
       - name: app
-        port: 9080
+        port: 9443
         protocol: TCP
 
 ---
@@ -37,8 +37,8 @@ spec:
       kind: Rule
       services:
         - name: gitlab
-          port: 9080
-          scheme: http
+          port: 9443
+          scheme: https
   tls:
     secretName: gitlab-tls
 
