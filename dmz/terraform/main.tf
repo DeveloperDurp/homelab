@@ -45,4 +45,14 @@ locals {
     node   = ["mothership", "overlord", "vanguard"]
     ip     = ["21", "22", "23"]
   }
+  openVPN = {
+    tags   = "openVPN"
+    count  = 1
+    name   = ["openVPN"]
+    cores  = 2
+    memory = "4096"
+    drive  = 20
+    node   = ["mothership"]
+    ip     = ["20"]
+  }
 }
