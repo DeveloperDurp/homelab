@@ -4,7 +4,7 @@ stages:
 build_dmz:
   stage: triggers
   trigger:
-    include: infra/.gitlab/.gitlab-ci.yml
+    include: dmz/.gitlab/.gitlab-ci.yml
   rules:
     - changes:
         - "dmz/terraform/*.tf"
