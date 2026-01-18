@@ -12,8 +12,8 @@ spec:
         - name: authentik-proxy-provider
           namespace: traefik
       services:
-        - name: searxng
-          port: 3000
+        - name: searxng-service
+          port: 8080
   tls:
     secretName: searxng-tls
 
