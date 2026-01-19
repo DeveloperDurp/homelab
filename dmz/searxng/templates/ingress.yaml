@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault
+
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -33,7 +39,6 @@ spec:
     - "searxng.durp.info"
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
@@ -43,3 +48,35 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: searxng-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`searxng.internal.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: searxng-service
+          port: 8080
+  tls:
+    secretName: searxng-internal-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: searxng-internal-tls
+spec:
+  secretName: searxng-internal-tls
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
+  commonName: "searxng.internal.durp.info"
+  dnsNames:
+    - "searxng.internal.durp.info"
