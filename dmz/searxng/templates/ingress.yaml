@@ -67,7 +67,6 @@ spec:
     secretName: searxng-internal-tls
 
 ---
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -75,7 +74,7 @@ metadata:
 spec:
   secretName: searxng-internal-tls
   issuerRef:
-    name: vault-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: "searxng.internal.durp.info"
   dnsNames:
