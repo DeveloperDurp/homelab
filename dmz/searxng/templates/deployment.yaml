@@ -36,5 +36,5 @@ spec:
               subPath: settings.yml
       volumes:
         - name: searxng-config-volume
-          secret:
-            secretName: searxng-config
+          configMap:
+            name: searxng-config
