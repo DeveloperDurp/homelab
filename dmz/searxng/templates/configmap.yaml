@@ -4,4 +4,8 @@ metadata:
   name: searxng-config
 data:
   settings.yml: |-
-{{ toYaml .Values.searxng.config | indent 4 }}
+    use_default_settings: true
+    search:
+      formats:
+        - html
+        - json
