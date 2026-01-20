@@ -49,6 +49,10 @@ ingress:
 searxng:
   config:
     use_default_settings: true
+  search:
+    formats:
+      - html
+      - json
     #server:
     #  secret_key: pleasechangeme
     # Uncomment when using the builtin rate limiter

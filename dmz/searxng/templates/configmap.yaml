@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: searxng-config
+data:
+  settings.yml: |-
+{{ toYaml .Values.searxng.config | indent 4 }}

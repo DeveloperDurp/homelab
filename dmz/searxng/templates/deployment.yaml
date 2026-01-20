@@ -22,3 +22,19 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          env:
+            - name: SEARXNG_BASE_URL
+              value: https://searxng.durp.info
+            - name: SEARXNG_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: searxng-secret
+                  key: SEARXNG_SECRET
+          volumeMounts:
+            - name: searxng-config-volume
+              mountPath: /etc/searxng/settings.yml
+              subPath: settings.yml
+      volumes:
+        - name: searxng-config-volume
+          secret:
+            secretName: searxng-config
