@@ -93,7 +93,7 @@ spec:
       kind: Rule
       services:
         - name: prometheus-prometheus
-          port: 9093
+          port: 9090
   tls:
     secretName: prometheus-tls
 
