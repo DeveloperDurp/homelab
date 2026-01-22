@@ -75,3 +75,50 @@ spec:
   type: ExternalName
   externalName: durp.info
 
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+        - name: authentik-proxy-provider
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: prometheus-prometheus
+          port: 9093
+  tls:
+    secretName: prometheus-tls
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: prometheus-tls
+spec:
+  secretName: prometheus-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "prometheus.durp.info"
+  dnsNames:
+    - "prometheus.durp.info"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: grafana-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: grafana.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
+
