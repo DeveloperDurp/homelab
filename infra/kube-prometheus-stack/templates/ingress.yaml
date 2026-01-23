@@ -115,7 +115,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: grafana-external-dns
+  name: prometheus-external-dns
   annotations:
     external-dns.alpha.kubernetes.io/hostname: grafana.durp.info
 spec:
