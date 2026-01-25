@@ -68,7 +68,7 @@ gitlab-runner:
       memory: 2Gi
     requests:
       memory: 128Mi
-      cpu: 500m
+      cpu: 50m
 
 personal:
 
@@ -77,7 +77,7 @@ personal:
     image: gitlab-org/gitlab-runner
 
   imagePullPolicy: Always
-  gitlabUrl: https://gitlab.com/
+  gitlabUrl: https://gitlab.durp.info/
   unregisterRunner: false
   terminationGracePeriodSeconds: 3600
   concurrent: 10
@@ -113,15 +113,15 @@ personal:
     runUntagged: true
     privileged: true
     secret: gitlab-secret-personal
-    #builds: 
-      #cpuLimit: 200m
-      #cpuLimitOverwriteMaxAllowed: 400m
-      #memoryLimit: 256Mi
-      #memoryLimitOverwriteMaxAllowed: 512Mi
-      #cpuRequests: 100m
-      #cpuRequestsOverwriteMaxAllowed: 200m
-      #memoryRequests: 128Mi
-      #memoryRequestsOverwriteMaxAllowed: 256Mi
+    builds:
+      cpuLimit: 200m
+      cpuLimitOverwriteMaxAllowed: 400m
+      memoryLimit: 256Mi
+      memoryLimitOverwriteMaxAllowed: 512Mi
+      cpuRequests: 100m
+      cpuRequestsOverwriteMaxAllowed: 200m
+      memoryRequests: 128Mi
+      memoryRequestsOverwriteMaxAllowed: 256Mi
 
   securityContext:
     allowPrivilegeEscalation: false
@@ -140,4 +140,4 @@ personal:
       memory: 2Gi
     requests:
       memory: 128Mi
-      cpu: 500m
+      cpu: 50m
