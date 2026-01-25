@@ -8,8 +8,8 @@ appVersion: 0.0.1
 dependencies:
 - name: gitlab-runner
   repository: https://charts.gitlab.io/
-  version: 0.77.2
+  version: 0.85.0
 - name: gitlab-runner
   repository: https://charts.gitlab.io/
-  version: 0.77.2
+  version: 0.85.0
   alias: personal
