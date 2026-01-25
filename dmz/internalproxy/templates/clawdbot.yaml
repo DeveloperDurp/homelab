@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clawdbot
+spec:
+  ports:
+    - name: app
+      port: 18789
+      protocol: TCP
+      targetPort: 18789
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: clawdbot
+subsets:
+  - addresses:
+      - ip: 192.168.20.104
+    ports:
+      - name: app
+        port: 18789
+        protocol: TCP
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: clawdbot-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`clawdbot.internal.durp.info`) && PathPrefix(`/`)
+      middlewares:
+        - name: whitelist
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: clawdbot
+          port: 18789
+          scheme: http
+  tls:
+    secretName: clawdbot-tls
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: clawdbot-tls
+spec:
+  secretName: clawdbot-tls
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
+  commonName: "clawdbot.internal.durp.info"
+  dnsNames:
+    - "clawdbot.internal.durp.info"
