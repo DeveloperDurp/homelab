@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
+    repoURL: https://gitlab.durp.info/durfy/homelab/gitops.git
     targetRevision: main
     path: infra/istio-system
   destination:
@@ -36,7 +36,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
+    repoURL: https://gitlab.durp.info/durfy/homelab/gitops.git
     targetRevision: main
     path: dmz/istio-system
   destination:

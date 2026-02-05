@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
+    repoURL: https://gitlab.durp.info/durfy/homelab/gitops.git
     targetRevision: main
     path: infra/traefik
   destination:
@@ -32,7 +32,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
+    repoURL: https://gitlab.durp.info/durfy/homelab/gitops.git
     targetRevision: main
     path: dmz/traefik
   destination:
@@ -58,7 +58,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/developerdurp/homelab.git
+    repoURL: https://gitlab.durp.info/durfy/homelab/gitops.git
     targetRevision: main
     path: dev/traefik
   destination:
