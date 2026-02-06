@@ -18,15 +18,15 @@ gitlab-runner:
     podSecurityPolicy:
       enabled: false
       resourceNames:
-      - gitlab-runner
+        - gitlab-runner
 
   metrics:
     enabled: true
     serviceMonitor:
-      enabled: true      
+      enabled: true
   service:
     enabled: true
-    annotations: {}  
+    annotations: {}
 
   runners:
     config: |
@@ -41,7 +41,7 @@ gitlab-runner:
     runUntagged: true
     privileged: true
     secret: gitlab-secret
-    #builds: 
+      #builds:
       #cpuLimit: 200m
       #cpuLimitOverwriteMaxAllowed: 400m
       #memoryLimit: 256Mi
@@ -49,7 +49,7 @@ gitlab-runner:
       #cpuRequests: 100m
       #cpuRequestsOverwriteMaxAllowed: 200m
       #memoryRequests: 128Mi
-      #memoryRequestsOverwriteMaxAllowed: 256Mi
+    #memoryRequestsOverwriteMaxAllowed: 256Mi
 
   securityContext:
     allowPrivilegeEscalation: false
@@ -63,7 +63,7 @@ gitlab-runner:
     runAsUser: 100
     fsGroup: 65533
 
-  resources: 
+  resources:
     limits:
       memory: 2Gi
     requests:
@@ -90,15 +90,15 @@ personal:
     podSecurityPolicy:
       enabled: false
       resourceNames:
-      - gitlab-runner
+        - gitlab-runner
 
   metrics:
     enabled: true
     serviceMonitor:
-      enabled: true      
+      enabled: true
   service:
     enabled: true
-    annotations: {}  
+    annotations: {}
 
   runners:
     config: |
@@ -107,6 +107,7 @@ personal:
           namespace = "{{.Release.Namespace}}"
           image = "ubuntu:22.04"
           privileged = true
+          environment = ["CI_SERVER_URL=https://gitlab.durp.info/"]
 
     executor: kubernetes
     name: "k3s"
@@ -135,7 +136,7 @@ personal:
     runAsUser: 100
     fsGroup: 65533
 
-  resources: 
+  resources:
     limits:
       memory: 2Gi
     requests:
